@@ -23,9 +23,6 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
     private NavigationView navigationView;
     private Toolbar toolbar;
 
-    /*_________ LOG __________*/
-    private static final String LOG_TAG = HomeScreenActivity.class.getSimpleName();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
