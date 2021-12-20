@@ -11,7 +11,7 @@
         android:theme="@style/Theme.XFran"
         android:name=".AppCtx">
         <activity
-            android:name=".TrainingDiaryActivity"
+            android:name=".WorkoutsTabActivity"
             android:exported="false" />
         <activity
             android:name=".HomeScreenActivity"

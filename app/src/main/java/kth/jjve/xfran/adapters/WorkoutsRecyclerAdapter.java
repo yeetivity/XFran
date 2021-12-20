@@ -1,6 +1,7 @@
 package kth.jjve.xfran.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +16,25 @@ import java.util.List;
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.Workout;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+/**
+ * Adapter for Workouts tab
+ */
 
+public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private final String LOG_TAG = getClass().getSimpleName();
     private List<Workout> mWorkouts = new ArrayList<>();
     private Context mContext;
+    final private ListItemClickListener mOnClickListener;
 
-    public RecyclerAdapter(Context context, List<Workout> workouts) {
+    public interface ListItemClickListener{
+        void onListItemClick(int position);
+    }
+
+    public WorkoutsRecyclerAdapter(Context context, List<Workout> workouts, ListItemClickListener onClickListener) {
         mWorkouts = workouts;
         mContext = context;
+        this.mOnClickListener = onClickListener;
     }
 
     @NonNull
@@ -44,13 +56,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return mWorkouts.size();
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder{
+    private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView mName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mName = itemView.findViewById(R.id.image_name);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            mOnClickListener.onListItemClick(position);
+            Log.d(LOG_TAG, "clicked: "+position);
         }
     }
 }

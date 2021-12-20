@@ -3,6 +3,10 @@ package kth.jjve.xfran.models;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Workout constructor
+ */
+
 public class Workout {
 
     private String title;

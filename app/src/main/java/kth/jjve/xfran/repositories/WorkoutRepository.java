@@ -1,6 +1,5 @@
 package kth.jjve.xfran.repositories;
 
-import android.content.Context;
 import android.util.JsonReader;
 import android.util.Log;
 
@@ -14,7 +13,6 @@ import java.util.List;
 
 import kth.jjve.xfran.AppCtx;
 import kth.jjve.xfran.R;
-import kth.jjve.xfran.TrainingDiaryActivity;
 import kth.jjve.xfran.models.Workout;
 
 /**

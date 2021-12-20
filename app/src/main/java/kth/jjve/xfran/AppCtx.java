@@ -3,6 +3,10 @@ package kth.jjve.xfran;
 import android.app.Application;
 import android.content.Context;
 
+/**
+ * Get application context without memory leak
+ */
+
 public class AppCtx extends Application {
 
     private static Context mContext;

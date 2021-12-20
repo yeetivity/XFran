@@ -6,43 +6,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
+import kth.jjve.xfran.adapters.WorkoutsRecyclerAdapter;
+import kth.jjve.xfran.viewmodels.WorkoutsViewModel;
 
-import kth.jjve.xfran.adapters.RecyclerAdapter;
-import kth.jjve.xfran.models.Workout;
-import kth.jjve.xfran.viewmodels.TrainingDiaryViewModel;
-
-public class TrainingDiaryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class WorkoutsTabActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, WorkoutsRecyclerAdapter.ListItemClickListener {
     /*_________ VIEW MODEL _________*/
-    private TrainingDiaryViewModel mTrainingDiaryViewModel;
-    private RecyclerAdapter mAdapter;
+    private WorkoutsViewModel mWorkoutsViewModel;
+    private WorkoutsRecyclerAdapter mAdapter;
 
     /*_________ VIEW _________*/
     private RecyclerView mRecyclerView;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
-    private static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_training_diary);
+        setContentView(R.layout.activity_workouts_tab);
 
         /*------ HOOKS ------*/
         drawerLayout = findViewById(R.id.drawerlayout_trainingdiary);
@@ -51,15 +42,14 @@ public class TrainingDiaryActivity extends AppCompatActivity implements Navigati
         toolbar = findViewById(R.id.diary_toolbar);
 
         /*----- VIEW MODEL -----*/
-        mTrainingDiaryViewModel = ViewModelProviders.of(this).get(TrainingDiaryViewModel.class);
-        mTrainingDiaryViewModel.init();
-        mTrainingDiaryViewModel.getWorkouts().observe(this, workouts -> mAdapter.notifyDataSetChanged());
+        mWorkoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel.class);
+        mWorkoutsViewModel.init();
+        mWorkoutsViewModel.getWorkouts().observe(this, workouts -> mAdapter.notifyDataSetChanged());
 
         /*------ INIT ------*/
         setSupportActionBar(toolbar);
         initNavMenu();
         initRecyclerView();
-        mContext = getApplicationContext();
     }
 
     @Override
@@ -91,7 +81,7 @@ public class TrainingDiaryActivity extends AppCompatActivity implements Navigati
     }
 
     private void initRecyclerView(){
-        mAdapter = new RecyclerAdapter(this, mTrainingDiaryViewModel.getWorkouts().getValue());
+        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutsViewModel.getWorkouts().getValue(), this);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(mAdapter);
@@ -108,4 +98,11 @@ public class TrainingDiaryActivity extends AppCompatActivity implements Navigati
         navigationView.setCheckedItem(R.id.nav_home);
     }
 
+    @Override
+    public void onListItemClick(int position) {
+        //TODO new activity with workout details
+        //Intent intent = new Intent (this, WorkoutDetailsActivity.class);
+        //startActivity(intent);
+        Toast.makeText(this, mWorkoutsViewModel.getWorkouts().getValue().get(position).getType(), Toast.LENGTH_SHORT).show();
+    }
 }

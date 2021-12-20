@@ -58,7 +58,7 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.nav_diary){
-            Intent intent = new Intent(HomeScreenActivity.this, TrainingDiaryActivity.class);
+            Intent intent = new Intent(HomeScreenActivity.this, WorkoutsTabActivity.class);
             startActivity(intent);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
