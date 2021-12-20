@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,7 @@ public class TrainingDiaryActivity extends AppCompatActivity implements Navigati
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    private static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class TrainingDiaryActivity extends AppCompatActivity implements Navigati
         setSupportActionBar(toolbar);
         initNavMenu();
         initRecyclerView();
+        mContext = getApplicationContext();
     }
 
     @Override
@@ -103,4 +107,5 @@ public class TrainingDiaryActivity extends AppCompatActivity implements Navigati
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
     }
+
 }

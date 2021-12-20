@@ -1,13 +1,18 @@
 package kth.jjve.xfran.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Workout {
 
     private String title;
-    private String workoutDate;
+    private String type;
+    private String timeCap;
+    private int rounds;
+    private ArrayList<String> exercises;
 
-    public Workout(String title, String workoutDate){
+    public Workout(String title){
         this.title = title;
-        this.workoutDate = workoutDate;
     }
 
     public Workout(){
@@ -21,11 +26,35 @@ public class Workout {
         this.title = title;
     }
 
-    public String getWorkoutDate(){
-        return workoutDate;
+    public String getType(){
+        return type;
     }
 
-    public void setWorkoutDate(String workoutDate){
-        this.workoutDate = workoutDate;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTimeCap() {
+        return timeCap;
+    }
+
+    public void setTimeCap(String timeCap) {
+        this.timeCap = timeCap;
+    }
+
+    public ArrayList<String> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(ArrayList<String> exercises) {
+        this.exercises = exercises;
+    }
+
+    public int getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(int rounds) {
+        this.rounds = rounds;
     }
 }
