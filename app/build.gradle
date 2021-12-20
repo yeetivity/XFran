@@ -41,4 +41,7 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$archLifeCycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$archLifeCycleVersion"
 
+    // weekview
+    implementation 'com.github.alamkanak:android-week-view:1.2.6'
+
 }

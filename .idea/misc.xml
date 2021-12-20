@@ -13,6 +13,11 @@
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/trainingdiary_item1.xml" value="0.1" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/menu/menu.xml" value="0.29074074074074074" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/menu/menu_background.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_homescreen.xml" value="0.14763231197771587" />
+        <entry key="app/src/main/res/layout/activity_training_diary.xml" value="0.33242753623188404" />
+        <entry key="app/src/main/res/layout/menu_header.xml" value="0.33242753623188404" />
+        <entry key="app/src/main/res/layout/trainingdiary_item.xml" value="0.33242753623188404" />
       </map>
     </option>
   </component>
