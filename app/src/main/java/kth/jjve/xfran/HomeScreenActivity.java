@@ -61,6 +61,11 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
             Intent intent = new Intent(HomeScreenActivity.this, TrainingDiaryActivity.class);
             startActivity(intent);
         }
+
+        if (id == R.id.nav_calendar){
+            Intent intent = new Intent(HomeScreenActivity.this, CalendarViewActivity.class);
+            startActivity(intent);
+        }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

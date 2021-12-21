@@ -18,6 +18,11 @@
             android:title="Training Diary"
             android:icon="@drawable/ic_baseline_calendar_month_24"/>
 
+        <item
+            android:id="@+id/nav_calendar"
+            android:title="Calendar"
+            android:icon="@drawable/ic_baseline_calendar_month_24"/>
+
     </group>
 
 </menu>
