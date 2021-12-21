@@ -1,7 +1,11 @@
 package kth.jjve.xfran;
 /*
-This activity is only used for updating the user interface
-getting data, handling data and such is all done somewhere else
+This activity is the view of the homepage of XFran.
+
+Made by:
+Jitse van Esch
+Elisa Perini
+Mariah Sabioni
  */
 
 import androidx.annotation.NonNull;
@@ -49,17 +53,12 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         /*------------ FBASE ------------*/
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser() != null){
+        if(firebaseAuth.getCurrentUser() != null){  // Check if user is already logged in
             profileMenu.findItem(R.id.nav_login).setVisible(false);
             profileMenu.findItem(R.id.nav_profile).setVisible(true);
             profileMenu.findItem(R.id.nav_logout).setVisible(true);
         }
-
-        /*------------ LISTENERS ------------*/
-
-
     }
-
 
     @Override
     protected void onResume(){
@@ -96,8 +95,6 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
 
 
     private void initNavMenu(){
-
-        //Hide or show items
         profileMenu = navigationView.getMenu();
         profileMenu.findItem(R.id.nav_logout).setVisible(false);
         profileMenu.findItem(R.id.nav_profile).setVisible(false);

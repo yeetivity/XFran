@@ -1,4 +1,8 @@
 package kth.jjve.xfran;
+/*
+Activity to let the user register
+Todo: See if an MVVM structure is really needed here
+ */
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,17 +33,17 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_register);
 
         /*------------ HOOKS ------------*/
-        mFullName   = findViewById(R.id.reg_fullName);
-        mEmail      = findViewById(R.id.reg_email);
-        mPassword   = findViewById(R.id.reg_password);
-        mRegisterBtn= findViewById(R.id.reg_btnRegister);
-        mLoginBtn   = findViewById(R.id.reg_login);
+        mFullName = findViewById(R.id.reg_fullName);
+        mEmail = findViewById(R.id.reg_email);
+        mPassword = findViewById(R.id.reg_password);
+        mRegisterBtn = findViewById(R.id.reg_btnRegister);
+        mLoginBtn = findViewById(R.id.reg_login);
         progressBar = findViewById(R.id.progressBar);
 
         /*------------ FBASE ------------*/
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if(firebaseAuth.getCurrentUser() != null){
+        if (firebaseAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
             finish();
         }
@@ -49,16 +53,16 @@ public class RegisterActivity extends AppCompatActivity {
             String email = mEmail.getText().toString().trim();
             String password = mPassword.getText().toString().trim();
 
-            if(TextUtils.isEmpty(email)){
+            if (TextUtils.isEmpty(email)) {
                 mEmail.setError("Email is Required");
                 return;
             }
-            if(TextUtils.isEmpty(password)){
+            if (TextUtils.isEmpty(password)) {
                 mPassword.setError("Password is Required");
                 return;
             }
 
-            if(password.length() < 6){
+            if (password.length() < 6) {
                 mPassword.setError("Password must be at least 6 characters");
                 return;
             }
@@ -66,18 +70,18 @@ public class RegisterActivity extends AppCompatActivity {
             progressBar.setVisibility(View.VISIBLE);
 
             // register the user in firebase
-
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(RegisterActivity.this, "Account created", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
-                }else{
+                } else {
                     Toast.makeText(RegisterActivity.this, "Error !" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 }
             });
         });
-        /*------------ TO LOGIN ------------*/
+
+        // send the user to login
         mLoginBtn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));
 
     }

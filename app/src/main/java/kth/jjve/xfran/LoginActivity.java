@@ -1,4 +1,8 @@
 package kth.jjve.xfran;
+/*
+Activity to let the user log in
+Todo: See if an MVVM structure is really needed here
+ */
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,10 +33,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_login);
 
         /*------------ HOOKS ------------*/
-        mEmail      = findViewById(R.id.log_email);
-        mPassword   = findViewById(R.id.log_password);
-        mRegisterBtn= findViewById(R.id.log_register);
-        mLoginBtn   = findViewById(R.id.log_btnlogin);
+        mEmail = findViewById(R.id.log_email);
+        mPassword = findViewById(R.id.log_password);
+        mRegisterBtn = findViewById(R.id.log_register);
+        mLoginBtn = findViewById(R.id.log_btnlogin);
         progressBar = findViewById(R.id.progressBar_login);
 
         /*------------ FBASE ------------*/
@@ -42,16 +46,16 @@ public class LoginActivity extends AppCompatActivity {
             String email = mEmail.getText().toString().trim();
             String password = mPassword.getText().toString().trim();
 
-            if(TextUtils.isEmpty(email)){
+            if (TextUtils.isEmpty(email)) {
                 mEmail.setError("Email is Required");
                 return;
             }
-            if(TextUtils.isEmpty(password)){
+            if (TextUtils.isEmpty(password)) {
                 mPassword.setError("Password is Required");
                 return;
             }
 
-            if(password.length() < 6){
+            if (password.length() < 6) {
                 mPassword.setError("Password must be at least 6 characters");
                 return;
             }
@@ -60,16 +64,17 @@ public class LoginActivity extends AppCompatActivity {
 
             // authenticate the user in firebase
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
-                }else{
+                } else {
                     Toast.makeText(LoginActivity.this, "Error !" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 }
             });
         });
 
+        // send user to the register activity
         mRegisterBtn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), RegisterActivity.class)));
     }
 }
