@@ -40,7 +40,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.trainingdiary_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.workout_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -49,6 +49,13 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         // Set the name of the 'Workout'
         ((ViewHolder) vh).mName.setText(mWorkouts.get(i).getTitle());
+        //Set the details of the 'Workout'
+        ((ViewHolder) vh).mDescription.setText(mWorkouts.get(i).getType());
+
+        //TODO make this a method
+        boolean expanded = mWorkouts.get(i).isExpanded();
+        ((ViewHolder) vh).mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
+        mWorkouts.get(i).setExpanded(!expanded);
     }
 
     @Override
@@ -59,10 +66,14 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView mName;
+        private TextView mDescription;
+        private View mExpandedView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mName = itemView.findViewById(R.id.image_name);
+            mName = itemView.findViewById(R.id.workout_name);
+            mDescription = itemView.findViewById(R.id.workout_description);
+            mExpandedView = itemView.findViewById(R.id.item_expanded);
 
             itemView.setOnClickListener(this);
         }
@@ -72,6 +83,12 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             int position = getAdapterPosition();
             mOnClickListener.onListItemClick(position);
             Log.d(LOG_TAG, "clicked: "+position);
+
+            //TODO make this a method (same thing as before)
+            boolean expanded = mWorkouts.get(position).isExpanded();
+            mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
+            mWorkouts.get(position).setExpanded(!expanded);
         }
+
     }
 }

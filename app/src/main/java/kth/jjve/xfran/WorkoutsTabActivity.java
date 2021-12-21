@@ -100,7 +100,7 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onListItemClick(int position) {
-        //TODO new activity with workout details
+        //TODO expand item
         //Intent intent = new Intent (this, WorkoutDetailsActivity.class);
         //startActivity(intent);
         Toast.makeText(this, mWorkoutsViewModel.getWorkouts().getValue().get(position).getType(), Toast.LENGTH_SHORT).show();

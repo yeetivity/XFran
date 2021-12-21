@@ -14,9 +14,11 @@ public class Workout {
     private String timeCap;
     private int rounds;
     private ArrayList<String> exercises;
+    private boolean isExpanded;
 
     public Workout(String title){
         this.title = title;
+        this.isExpanded = false;
     }
 
     public Workout(){
@@ -60,5 +62,13 @@ public class Workout {
 
     public void setRounds(int rounds) {
         this.rounds = rounds;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
+    }
+
+    public boolean isExpanded() {
+        return isExpanded;
     }
 }
