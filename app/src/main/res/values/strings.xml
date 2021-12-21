@@ -10,4 +10,12 @@
     <string name="menu_profile_profile">Profile</string>
     <string name="menu_profile_logout">Logout</string>
     <string name="description_temporary">temporary</string>
+    <string name="logIn_title">Authenticator App</string>
+    <string name="logIn_subtitle">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="logIn_register">No account yet?\n Create new account</string>
+    <string name="reg_subtitle">Create New Account</string>
+    <string name="full_name">Full Name</string>
+    <string name="reg_login">Already Registered?\nLogin Here</string>
 </resources>

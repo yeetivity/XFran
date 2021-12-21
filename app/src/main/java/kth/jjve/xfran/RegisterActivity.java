@@ -1,9 +1,7 @@
 package kth.jjve.xfran;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,9 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -48,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
             finish();
         }
-
+        /*------------ REGISTER ------------*/
         mRegisterBtn.setOnClickListener(v -> {
             //Todo: check where this needs to be in MVVM structure
             String email = mEmail.getText().toString().trim();
@@ -78,9 +73,12 @@ public class RegisterActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
                 }else{
                     Toast.makeText(RegisterActivity.this, "Error !" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             });
         });
+        /*------------ TO LOGIN ------------*/
+        mLoginBtn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));
 
     }
 }
