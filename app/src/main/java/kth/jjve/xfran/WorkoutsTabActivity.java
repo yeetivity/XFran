@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 import kth.jjve.xfran.adapters.WorkoutsRecyclerAdapter;
 import kth.jjve.xfran.viewmodels.WorkoutsViewModel;
 
@@ -100,9 +102,8 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onListItemClick(int position) {
-        //TODO expand item
         //Intent intent = new Intent (this, WorkoutDetailsActivity.class);
         //startActivity(intent);
-        Toast.makeText(this, mWorkoutsViewModel.getWorkouts().getValue().get(position).getType(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, mWorkoutsViewModel.getWorkouts().getValue().get(position).getType(), Toast.LENGTH_SHORT).show();
     }
 }

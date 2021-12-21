@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import kth.jjve.xfran.R;
@@ -24,6 +25,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private final String LOG_TAG = getClass().getSimpleName();
     private List<Workout> mWorkouts = new ArrayList<>();
+    private ArrayList<Boolean> mExpandedStatus = new ArrayList<>();
     private Context mContext;
     final private ListItemClickListener mOnClickListener;
 
@@ -34,6 +36,9 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     public WorkoutsRecyclerAdapter(Context context, List<Workout> workouts, ListItemClickListener onClickListener) {
         mWorkouts = workouts;
         mContext = context;
+        mExpandedStatus.clear();
+        mExpandedStatus.addAll(Collections.nCopies(mWorkouts.size(), false));
+        Log.i(LOG_TAG, "mExpandedStatus is: "+mExpandedStatus);
         this.mOnClickListener = onClickListener;
     }
 
@@ -53,9 +58,9 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         ((ViewHolder) vh).mDescription.setText(mWorkouts.get(i).getType());
 
         //TODO make this a method
-        boolean expanded = mWorkouts.get(i).isExpanded();
+        boolean expanded = mExpandedStatus.get(i);
         ((ViewHolder) vh).mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
-        mWorkouts.get(i).setExpanded(!expanded);
+        mExpandedStatus.set(i, (!expanded));
     }
 
     @Override
@@ -85,9 +90,14 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             Log.d(LOG_TAG, "clicked: "+position);
 
             //TODO make this a method (same thing as before)
-            boolean expanded = mWorkouts.get(position).isExpanded();
+            //boolean expanded = mWorkouts.get(position).isExpanded();
+            //mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
+            //mWorkouts.get(position).setExpanded(!expanded);
+
+            boolean expanded = mExpandedStatus.get(position);
             mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
-            mWorkouts.get(position).setExpanded(!expanded);
+            mExpandedStatus.set(position, (!expanded));
+
         }
 
     }
