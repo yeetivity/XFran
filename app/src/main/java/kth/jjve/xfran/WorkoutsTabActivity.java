@@ -10,8 +10,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -31,6 +34,9 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+
+    /*_________ INTENT _________*/
+    private static final String WORKOUT_ID="Workout ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,7 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
         setSupportActionBar(toolbar);
         initNavMenu();
         initRecyclerView();
+
     }
 
     @Override
@@ -83,7 +90,7 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     }
 
     private void initRecyclerView(){
-        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutsViewModel.getWorkouts().getValue(), this);
+        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutsViewModel.getWorkouts().getValue(), this,this::onPlanButtonClick, this::onSaveButtonClick);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(mAdapter);
@@ -106,4 +113,23 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
         //startActivity(intent);
         //Toast.makeText(this, mWorkoutsViewModel.getWorkouts().getValue().get(position).getType(), Toast.LENGTH_SHORT).show();
     }
+
+    public void onPlanButtonClick(int position){
+        //TODO start activity of workout planner
+        //Intent intent = new Intent (this, HomeScreenActivity.class);
+        //startActivity(intent);
+        //intent.putExtra(WORKOUT_ID, position);
+        Toast.makeText(this, "You planned workout: "+mWorkoutsViewModel.getWorkouts().getValue().get(position).getTitle(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void onSaveButtonClick(int position){
+        //TODO start activity of workout saver
+        //Intent intent = new Intent (this, HomeScreenActivity.class);
+        //startActivity(intent);
+        //intent.putExtra(WORKOUT_ID, position);
+        Toast.makeText(this, "You saved workout: "+mWorkoutsViewModel.getWorkouts().getValue().get(position).getTitle(), Toast.LENGTH_SHORT).show();
+
+    }
+
 }

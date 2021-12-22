@@ -69,12 +69,12 @@
                 android:id="@+id/button_plan_wod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_below="@id/workout_exercises"
+                android:layout_marginStart="10dp"
                 android:text="+ Plan" />
 
             <Button
-                android:id="@+id/button_result_wod"
+                android:id="@+id/button_save_wod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/button_plan_wod"

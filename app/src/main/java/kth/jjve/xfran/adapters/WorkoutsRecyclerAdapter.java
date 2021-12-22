@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,19 +28,35 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private List<Workout> mWorkouts = new ArrayList<>();
     private ArrayList<Boolean> mExpandedStatus = new ArrayList<>();
     private Context mContext;
-    final private ListItemClickListener mOnClickListener;
+    final private ListItemClickListener mItemClickListener;
+    final private PlanButtonClickListener mPlanClickListener;
+    final private SaveButtonClickListener mSaveClickListener;
 
     public interface ListItemClickListener{
         void onListItemClick(int position);
     }
 
-    public WorkoutsRecyclerAdapter(Context context, List<Workout> workouts, ListItemClickListener onClickListener) {
+    public interface PlanButtonClickListener{
+        void onPlanButtonClick(int position);
+    }
+
+    public interface SaveButtonClickListener{
+        void onSaveButtonClick(int position);
+    }
+
+    public WorkoutsRecyclerAdapter(Context context, List<Workout> workouts,
+                                   ListItemClickListener onClickListener, PlanButtonClickListener onPlanButtonClickListener,
+                                   SaveButtonClickListener onSaveButtonClickListener) {
         mWorkouts = workouts;
         mContext = context;
+        //reset the ArrayList that saves the expanded status of the items
         mExpandedStatus.clear();
         mExpandedStatus.addAll(Collections.nCopies(mWorkouts.size(), false));
         Log.i(LOG_TAG, "mExpandedStatus is: "+mExpandedStatus);
-        this.mOnClickListener = onClickListener;
+        //initialize onclicklisteners
+        this.mItemClickListener = onClickListener;
+        this.mPlanClickListener = onPlanButtonClickListener;
+        this.mSaveClickListener = onSaveButtonClickListener;
     }
 
     @NonNull
@@ -74,12 +91,14 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         return mWorkouts.size();
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    private class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mName;
         private TextView mDescription;
         private View mExpandedView;
         private TextView mExercises;
+        private Button planButton;
+        private Button saveButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -88,19 +107,37 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             mExpandedView = itemView.findViewById(R.id.item_expanded);
             mExercises = itemView.findViewById(R.id.workout_exercises);
 
-            itemView.setOnClickListener(this);
-        }
+            planButton = itemView.findViewById(R.id.button_plan_wod);
+            saveButton = itemView.findViewById(R.id.button_save_wod);
 
-        @Override
-        public void onClick(View v) {
-            int position = getAdapterPosition();
-            mOnClickListener.onListItemClick(position);
-            Log.d(LOG_TAG, "clicked: "+position);
 
-            boolean expanded = mExpandedStatus.get(position);
-            mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
-            mExpandedStatus.set(position, (!expanded));
+            itemView.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    mItemClickListener.onListItemClick(position);
+                    Log.d(LOG_TAG, "clicked: " + position);
 
+                    boolean expanded = mExpandedStatus.get(position);
+                    mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
+                    mExpandedStatus.set(position, (!expanded));
+                }
+            });
+
+            planButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    mPlanClickListener.onPlanButtonClick(position);
+                    Log.i(LOG_TAG, "you clicked plan in WOD "+position);
+                }
+            });
+
+            saveButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    mSaveClickListener.onSaveButtonClick(position);
+                    Log.i(LOG_TAG, "you clicked save in WOD " +position);
+                }
+            });
         }
 
     }
