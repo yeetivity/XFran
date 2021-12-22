@@ -56,8 +56,14 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         ((ViewHolder) vh).mName.setText(mWorkouts.get(i).getTitle());
         //Set the details of the 'Workout'
         ((ViewHolder) vh).mDescription.setText(mWorkouts.get(i).getType());
+        //Set the exercises of the 'Workout'
+        String exercises = "";
+        ArrayList<String> exercisesArray = mWorkouts.get(i).getExercises();
+        for (String s : exercisesArray){
+            exercises += s + "\n";
+        }
+        ((ViewHolder) vh).mExercises.setText(exercises);
 
-        //TODO make this a method
         boolean expanded = mExpandedStatus.get(i);
         ((ViewHolder) vh).mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
         mExpandedStatus.set(i, (!expanded));
@@ -73,12 +79,14 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         private TextView mName;
         private TextView mDescription;
         private View mExpandedView;
+        private TextView mExercises;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mName = itemView.findViewById(R.id.workout_name);
             mDescription = itemView.findViewById(R.id.workout_description);
             mExpandedView = itemView.findViewById(R.id.item_expanded);
+            mExercises = itemView.findViewById(R.id.workout_exercises);
 
             itemView.setOnClickListener(this);
         }
@@ -88,11 +96,6 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             int position = getAdapterPosition();
             mOnClickListener.onListItemClick(position);
             Log.d(LOG_TAG, "clicked: "+position);
-
-            //TODO make this a method (same thing as before)
-            //boolean expanded = mWorkouts.get(position).isExpanded();
-            //mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
-            //mWorkouts.get(position).setExpanded(!expanded);
 
             boolean expanded = mExpandedStatus.get(position);
             mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
