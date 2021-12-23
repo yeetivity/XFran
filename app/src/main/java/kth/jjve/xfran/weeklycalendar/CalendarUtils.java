@@ -1,5 +1,12 @@
 package kth.jjve.xfran.weeklycalendar;
 
+/*
+Function: useful methods for the calendar
+Activity: CalendarViewActivity
+Jitse van Esch, Elisa Perini & Mariah Sabioni
+based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
+ */
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,6 +28,7 @@ public class CalendarUtils {
     }
 
     public static String monthYearFromDate(LocalDate date) {
+        // changes format of date
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
         return date.format(formatter);
     }

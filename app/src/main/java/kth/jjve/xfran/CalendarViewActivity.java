@@ -6,19 +6,23 @@ import static kth.jjve.xfran.weeklycalendar.CalendarUtils.monthYearFromDate;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
+import android.view.MenuItem;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -49,6 +53,8 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         drawerLayout = findViewById(R.id.drawer_layout_weeklycalendar);
         navigationView = findViewById(R.id.nav_view_weeklycalendar);
         toolbar = findViewById(R.id.weeklycalendar_toolbar);
+        Button buttonBack = findViewById(R.id.buttonBack);
+        Button buttonNext = findViewById(R.id.buttonNext);
 
         /*------ INIT ------*/
         setSupportActionBar(toolbar);   // Initialise toolbar
@@ -64,6 +70,20 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
         setWeekView();
+
+        /*-------- LISTENERS ------------*/
+        buttonBack.setOnClickListener(v -> {
+            Toast.makeText(getApplicationContext(), "back pressed", Toast.LENGTH_SHORT).show();
+            CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
+            setWeekView(); //go to previous week
+        });
+
+        buttonNext.setOnClickListener(v -> {
+            Toast.makeText(getApplicationContext(), "next pressed", Toast.LENGTH_SHORT).show();
+            CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
+            setWeekView(); // go to next week
+        });
+
     }
 
 
@@ -74,6 +94,7 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
     }
 
     private void setWeekView() {
+        // makes the week view with the correct days visible
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> days = daysInWeekArray(CalendarUtils.selectedDate);
 
@@ -107,8 +128,16 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if (id == R.id.nav_home){
+            finish();
+        } else if (id == R.id.nav_settings){
+            //Todo: create something towards settings
+            finish();
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     @Override

@@ -1,5 +1,12 @@
 package kth.jjve.xfran.weeklycalendar;
 
+/*
+Function:
+Activity: CalendarViewActivity
+Jitse van Esch, Elisa Perini & Mariah Sabioni
+based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
+ */
+
 import android.view.View;
 import android.widget.TextView;
 
