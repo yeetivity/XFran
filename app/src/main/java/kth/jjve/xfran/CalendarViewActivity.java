@@ -1,9 +1,12 @@
 package kth.jjve.xfran;
 
+/*
+Jitse van Esch, Elisa Perini & Mariah Sabioni
+ */
+
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.daysInWeekArray;
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.monthYearFromDate;
 
-import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -26,7 +29,6 @@ import android.view.MenuItem;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import kth.jjve.xfran.weeklycalendar.CalendarAdapter;
@@ -55,6 +57,10 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         toolbar = findViewById(R.id.weeklycalendar_toolbar);
         Button buttonBack = findViewById(R.id.buttonBack);
         Button buttonNext = findViewById(R.id.buttonNext);
+        mCalendarView = findViewById(R.id.calendarView);
+        calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
+        monthYearText = findViewById(R.id.monthYearTV);
+        eventListView = findViewById(R.id.eventListView);
 
         /*------ INIT ------*/
         setSupportActionBar(toolbar);   // Initialise toolbar
@@ -62,13 +68,6 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
 
         /*----- CALENDAR ------*/
         CalendarUtils.selectedDate = LocalDate.now(); //get today's date
-
-        // Get a reference for the week view in the layout.
-        mCalendarView = findViewById(R.id.calendarView);
-
-        calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
-        monthYearText = findViewById(R.id.monthYearTV);
-        eventListView = findViewById(R.id.eventListView);
         setWeekView();
 
         /*-------- LISTENERS ------------*/
@@ -83,7 +82,6 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
             setWeekView(); // go to next week
         });
-
     }
 
 
@@ -95,7 +93,7 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
 
     private void setWeekView() {
         // makes the week view with the correct days visible
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
+        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate)); //outputs month and year
         ArrayList<LocalDate> days = daysInWeekArray(CalendarUtils.selectedDate);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(days, this);
@@ -111,10 +109,6 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         eventListView.setAdapter(eventAdapter);
     } */
 
-    //TODO implement methods to go forward and backwards in calendar
-    //TODO check sunday/monday
-
-
 
     //TODO can this one be public in one of the classes?
     private void initNavMenu(){
@@ -129,6 +123,7 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        // menu
         int id = menuItem.getItemId();
         if (id == R.id.nav_home){
             finish();
