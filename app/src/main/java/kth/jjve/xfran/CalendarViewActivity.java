@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,7 +40,7 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
-    private CalendarView mCalendarView;
+    //private CalendarView mCalendarView;
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
@@ -59,7 +58,7 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         Button buttonBack = findViewById(R.id.buttonBack);
         Button buttonNext = findViewById(R.id.buttonNext);
         Button buttonNewEvent = findViewById(R.id.newEvent);
-        mCalendarView = findViewById(R.id.calendarView);
+        //mCalendarView = findViewById(R.id.calendarView);
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);

@@ -42,12 +42,10 @@ public class Event {
 
     public void setEndTime(LocalTime time) { this.endTime = endTime; }
 
-    public static ArrayList<Event> eventsForDate(LocalDate date)
-    {
+    public static ArrayList<Event> eventsForDate(LocalDate date) {
         ArrayList<Event> events = new ArrayList<>();
 
-        for(Event event : eventsList)
-        {
+        for(Event event : eventsList) {
             if(event.getDate().equals(date))
                 events.add(event);
         }

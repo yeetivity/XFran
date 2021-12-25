@@ -2,4 +2,19 @@
     <string name="app_name">XFran</string>
     <string name="nav_close">Close navigation drawer</string>
     <string name="nav_open">Open navigation drawer</string>
+
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thu">THU</string>
+    <string name="fri">FRI</string>
+    <string name="sat">SAT</string>
+    <string name="sun">SUN</string>
+
+    <string name="time_hint">hh:mm</string>
+
+    <string name="back">BACK</string>
+    <string name="next">NEXT</string>
+    <string name="save">SAVE</string>
+    <string name="newEvent">NEW EVENT</string>
 </resources>
