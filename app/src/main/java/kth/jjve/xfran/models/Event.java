@@ -16,12 +16,14 @@ public class Event {
 
     private String name;
     private LocalDate date;
-    private LocalTime time;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
-    public Event(String name, LocalDate date, LocalTime time) {
+    public Event(String name, LocalDate date, LocalTime startTime, LocalTime endTime) {
         this.name = name;
         this.date = date;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public String getName() { return name; }
@@ -32,9 +34,13 @@ public class Event {
 
     public void setDate(LocalDate date) { this.date = date; }
 
-    public LocalTime getTime() { return time; }
+    public LocalTime getStartTime() { return startTime; }
 
-    public void setTime(LocalTime time) { this.time = time; }
+    public void setStartTime(LocalTime startTime) { this.startTime = startTime; }
+
+    public LocalTime getEndTime() { return endTime; }
+
+    public void setEndTime(LocalTime time) { this.endTime = endTime; }
 
     public static ArrayList<Event> eventsForDate(LocalDate date)
     {

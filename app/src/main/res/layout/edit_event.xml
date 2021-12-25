@@ -38,15 +38,44 @@
         android:textColor="@color/black"/>
 
     <TextView
-        android:id="@+id/eventTime"
+        android:id="@+id/eventStartTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Time"
+        android:text="Start time"
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/eventStartTimeEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:ems="10"
+        android:inputType="time"/>
+
+    <TextView
+        android:id="@+id/eventEndTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="End time"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/eventEndTimeEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:ems="10"
+        android:inputType="time"/>
 
     <Button
         android:id="@+id/eventSave"

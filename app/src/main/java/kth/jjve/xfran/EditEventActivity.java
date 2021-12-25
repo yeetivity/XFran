@@ -17,9 +17,10 @@ import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 public class EditEventActivity extends AppCompatActivity
 {
-    private EditText eventName;
-    private TextView eventDate, eventTime;
+    private EditText eventName, eventStartTimeEdit, eventEndTimeEdit;
+    private TextView eventDate, eventStartTime, eventEndTime;
     private LocalTime time;
+    private String startTime, endTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,20 +30,25 @@ public class EditEventActivity extends AppCompatActivity
         /*------ HOOKS ------*/
         eventName = findViewById(R.id.eventName);
         eventDate = findViewById(R.id.eventDate);
-        eventTime = findViewById(R.id.eventTime);
+        eventStartTime = findViewById(R.id.eventStartTime);
+        eventEndTime = findViewById(R.id.eventEndTime);
+        eventStartTimeEdit = findViewById(R.id.eventStartTimeEdit);
+        eventEndTimeEdit = findViewById(R.id.eventEndTimeEdit);
         Button buttonSave = findViewById(R.id.eventSave);
 
-        time = LocalTime.now();
+        //time = LocalTime.now();
         String s_date = "Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate);
-        String s_time = "Time: " + CalendarUtils.formattedTime(time);
+        //String s_time = "Time: " + CalendarUtils.formattedTime(time);
         eventDate.setText(s_date);
-        eventTime.setText(s_time);
+        //eventTime.setText(s_time);
 
         /*-------- LISTENERS ------------*/
         buttonSave.setOnClickListener(v -> {
             Toast.makeText(getApplicationContext(), "event saved", Toast.LENGTH_SHORT).show();
             String s_eventName = eventName.getText().toString();
-            Event newEvent = new Event(s_eventName, CalendarUtils.selectedDate, time);
+            startTime = eventStartTimeEdit.getText().toString();
+            endTime = eventEndTimeEdit.getText().toString();
+            Event newEvent = new Event(s_eventName, CalendarUtils.selectedDate, LocalTime.parse(startTime), LocalTime.parse(endTime));
             Event.eventsList.add(newEvent);
             finish();
         });
