@@ -1,19 +1,20 @@
 package kth.jjve.xfran;
 
 /*
+Activity:
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.daysInWeekArray;
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.monthYearFromDate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -25,12 +26,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
-import android.view.MenuItem;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
+import kth.jjve.xfran.adapters.EventAdapter;
+import kth.jjve.xfran.models.Event;
 import kth.jjve.xfran.weeklycalendar.CalendarAdapter;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
@@ -57,6 +58,7 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         toolbar = findViewById(R.id.weeklycalendar_toolbar);
         Button buttonBack = findViewById(R.id.buttonBack);
         Button buttonNext = findViewById(R.id.buttonNext);
+        Button buttonNewEvent = findViewById(R.id.newEvent);
         mCalendarView = findViewById(R.id.calendarView);
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
@@ -72,15 +74,18 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
 
         /*-------- LISTENERS ------------*/
         buttonBack.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "back pressed", Toast.LENGTH_SHORT).show();
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
             setWeekView(); //go to previous week
         });
 
         buttonNext.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "next pressed", Toast.LENGTH_SHORT).show();
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
             setWeekView(); // go to next week
+        });
+
+        buttonNewEvent.setOnClickListener(v -> {
+            //TODO make it a popup window, not a new activity
+            startActivity(new Intent(this, EditEventActivity.class));
         });
     }
 
@@ -100,14 +105,14 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
-        //setEventAdapter();
+        setEventAdapter();
     }
-/*
+
     private void setEventAdapter() {
         ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
         EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
         eventListView.setAdapter(eventAdapter);
-    } */
+    }
 
 
     //TODO can this one be public in one of the classes?

@@ -20,6 +20,8 @@
         <entry key="app/src/main/res/layout/activity_training_diary.xml" value="0.19672131147540983" />
         <entry key="app/src/main/res/layout/activity_weeklycalendar.xml" value="0.17721518987341772" />
         <entry key="app/src/main/res/layout/calendar_cell.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/layout/edit_event.xml" value="0.317481884057971" />
+        <entry key="app/src/main/res/layout/event_cell.xml" value="0.317481884057971" />
         <entry key="app/src/main/res/layout/menu_header.xml" value="0.33242753623188404" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/trainingdiary_item.xml" value="0.33242753623188404" />
