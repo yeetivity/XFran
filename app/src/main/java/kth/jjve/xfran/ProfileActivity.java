@@ -68,7 +68,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onResume() {
         super.onResume();
-        navigationView.setCheckedItem(R.id.nav_diary);
+        navigationView.setCheckedItem(R.id.nav_profile);
     }
 
     @Override
@@ -107,4 +107,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
     }
+
+    //Todo: make login invisible
 }

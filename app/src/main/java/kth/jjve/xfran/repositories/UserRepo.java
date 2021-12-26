@@ -28,4 +28,8 @@ public class UserRepo {
     private void findUserProfile(){
         //Todo: get user profile from firebase
     }
+
+    public void setUserProfile(String fn, String ln, String e, double w, int l){
+        userProfile = new UserProfile(fn, ln, e, w, l);
+    }
 }

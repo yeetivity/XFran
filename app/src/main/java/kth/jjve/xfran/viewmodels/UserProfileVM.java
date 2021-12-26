@@ -23,5 +23,9 @@ public class UserProfileVM extends ViewModel {
         return mUserProfile;
     }
 
+    public void setUserProfile(String fn, String ln, String e, double w, int l){
+        mRepo.setUserProfile(fn, ln, e, w, l);
+    }
+
 
 }
