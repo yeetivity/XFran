@@ -32,4 +32,11 @@
     <string name="testmeasurementdate">Dec 12</string>
     <string name="measurement_description">Latest\nMeasurement</string>
     <string name="edit">edit</string>
+    <string name="save">save</string>
+    <string name="editprofile_title">Edit Profile</string>
+    <string name="testpassword">testpassword</string>
+    <string name="editProfile_firstname_hint">First Name</string>
+    <string name="editProfile_lastname_hint">Last Name</string>
+    <string name="editProfile_weight_hint">Weight [kg]</string>
+    <string name="editProfile_length_hint">Length [cm]</string>
 </resources>
