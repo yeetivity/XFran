@@ -1,7 +1,6 @@
 package kth.jjve.xfran;
 /*
 Activity to let the user log in
-Todo: See if an MVVM structure is really needed here
  */
 
 import androidx.appcompat.app.AppCompatActivity;

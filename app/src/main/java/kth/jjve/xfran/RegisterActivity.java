@@ -1,7 +1,6 @@
 package kth.jjve.xfran;
 /*
 Activity to let the user register
-Todo: See if an MVVM structure is really needed here
  */
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,7 +48,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
         /*------------ REGISTER ------------*/
         mRegisterBtn.setOnClickListener(v -> {
-            //Todo: check where this needs to be in MVVM structure
             String email = mEmail.getText().toString().trim();
             String password = mPassword.getText().toString().trim();
 
