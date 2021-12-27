@@ -18,6 +18,15 @@ public class UserProfile {
         this.empty = false;
     }
 
+    public UserProfile(String fullName, String email){
+        String[] nameParts = fullName.split(" ", 2);
+        this.userFirstName = nameParts[0];
+        this.userLastName = nameParts[1];
+        this.userEmail = email;
+        this.userWeight = 0.0;
+        this.userLength = 0;
+    }
+
     public UserProfile(){
         this.empty = true;
     }

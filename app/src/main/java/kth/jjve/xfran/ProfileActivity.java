@@ -57,7 +57,10 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         });
 
         /*--- OBSERVER ---*/
-        edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
+        edit.setOnClickListener(v -> {
+            startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
+            finish();
+        });
 
         /*----- INIT -----*/
         setSupportActionBar(toolbar);
