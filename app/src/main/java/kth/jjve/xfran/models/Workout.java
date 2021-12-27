@@ -1,5 +1,6 @@
 package kth.jjve.xfran.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,13 +8,13 @@ import java.util.List;
  * Workout constructor
  */
 
-public class Workout {
+public class Workout implements Serializable {
 
     private String title;
     private String type;
     private String timeCap;
     private int rounds;
-    private ArrayList<String> exercises;
+    private ArrayList<String> exercises; //TODO substitute for exercises object
 
     public Workout(String title){
         this.title = title;

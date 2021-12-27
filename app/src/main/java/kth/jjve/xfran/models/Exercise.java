@@ -26,7 +26,7 @@ public class Exercise {
     public Exercise(){
     }
 
-    public void setHeightAndWeight(){
+    public void setROM(){
         //TODO define the multipliers for power calculation
         switch (name) {
             case "thruster":

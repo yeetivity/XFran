@@ -14,6 +14,9 @@
             android:name=".WorkoutsTabActivity"
             android:exported="false" />
         <activity
+            android:name=".SaveResultsActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeScreenActivity"
             android:exported="true">
             <intent-filter>

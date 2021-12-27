@@ -14,9 +14,9 @@
             android:icon="@drawable/ic_baseline_settings_24"/>
 
         <item
-            android:id="@+id/nav_diary"
+            android:id="@+id/nav_workouts"
             android:title="Workouts"
-            android:icon="@drawable/ic_baseline_calendar_month_24"/>
+            android:icon="@drawable/icon_workout_tab"/>
 
     </group>
 

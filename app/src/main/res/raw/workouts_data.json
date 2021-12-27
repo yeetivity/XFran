@@ -12,7 +12,39 @@
             "track"
         ],
         "tag": "",
-        "permalink": "8433C33C"
+        "permalink": "8433C33C",
+        "movements": [
+            {
+                "name": "Run",
+                "reps":  1700,
+                "weightMale":  0,
+                "weightFemale": 0
+            },
+            {
+                "name": "Elbow Plank Push-Ups",
+                "reps":  100,
+                "weightMale":  0,
+                "weightFemale": 0
+            },
+            {
+                "name": "Sit-Ups",
+                "reps":  150,
+                "weightMale":  0,
+                "weightFemale": 0
+            },
+            {
+                "name": "Burpee",
+                "reps":  100,
+                "weightMale":  0,
+                "weightFemale": 0
+            },
+            {
+                "name": "Lunges",
+                "reps":  150,
+                "weightMale":  0,
+                "weightFemale": 0
+            }
+        ]
     },
     {
         "name": "Orbison",

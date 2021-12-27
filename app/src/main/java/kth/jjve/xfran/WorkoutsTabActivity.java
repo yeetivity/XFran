@@ -12,19 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.ArrayList;
 
 import kth.jjve.xfran.adapters.WorkoutsRecyclerAdapter;
 import kth.jjve.xfran.viewmodels.WorkoutsViewModel;
 
 public class WorkoutsTabActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, WorkoutsRecyclerAdapter.ListItemClickListener {
+
+    private final String LOG_TAG = getClass().getSimpleName();
+
     /*_________ VIEW MODEL _________*/
     private WorkoutsViewModel mWorkoutsViewModel;
     private WorkoutsRecyclerAdapter mAdapter;
@@ -36,7 +36,8 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     private Toolbar toolbar;
 
     /*_________ INTENT _________*/
-    private static final String WORKOUT_ID="Workout ID";
+    public static String WORKOUT_ID="Workout ID";
+    public static String WORKOUT_OBJ="Workout Obj";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     @Override
     protected void onResume(){
         super.onResume();
-        navigationView.setCheckedItem(R.id.nav_diary);
+        navigationView.setCheckedItem(R.id.nav_workouts);
     }
 
     @Override
@@ -80,9 +81,8 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.nav_home){
-            finish();
-        } else if (id == R.id.nav_settings){
-            //Todo: create something towards settings
+            Intent intent = new Intent(WorkoutsTabActivity.this, HomeScreenActivity.class);
+            startActivity(intent);
             finish();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -94,7 +94,6 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
     private void initNavMenu(){
@@ -104,13 +103,12 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_workouts);
     }
 
     @Override
     public void onListItemClick(int position) {
-        //Intent intent = new Intent (this, WorkoutDetailsActivity.class);
-        //startActivity(intent);
+        //Do something on UI when the item is clicked
         //Toast.makeText(this, mWorkoutsViewModel.getWorkouts().getValue().get(position).getType(), Toast.LENGTH_SHORT).show();
     }
 
@@ -118,18 +116,17 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
         //TODO start activity of workout planner
         //Intent intent = new Intent (this, HomeScreenActivity.class);
         //startActivity(intent);
-        //intent.putExtra(WORKOUT_ID, position);
-        Toast.makeText(this, "You planned workout: "+mWorkoutsViewModel.getWorkouts().getValue().get(position).getTitle(), Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(this, "Plan workout in development", Toast.LENGTH_SHORT).show();
     }
 
     public void onSaveButtonClick(int position){
-        //TODO start activity of workout saver
-        //Intent intent = new Intent (this, HomeScreenActivity.class);
-        //startActivity(intent);
-        //intent.putExtra(WORKOUT_ID, position);
-        Toast.makeText(this, "You saved workout: "+mWorkoutsViewModel.getWorkouts().getValue().get(position).getTitle(), Toast.LENGTH_SHORT).show();
-
+        // start activity of workout saver
+        Intent intent = new Intent (this, SaveResultsActivity.class);
+        intent.putExtra(WORKOUT_ID, position);
+        intent.putExtra(WORKOUT_OBJ,mWorkoutsViewModel.getWorkouts().getValue().get(position));
+        Log.i(LOG_TAG, "workout sent: "+mWorkoutsViewModel.getWorkouts().getValue().get(position));
+        startActivity(intent);
+        Toast.makeText(this, "Save workout: "+mWorkoutsViewModel.getWorkouts().getValue().get(position).getTitle(), Toast.LENGTH_SHORT).show();
     }
 
 }

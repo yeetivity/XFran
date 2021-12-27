@@ -45,7 +45,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public WorkoutsRecyclerAdapter(Context context, List<Workout> workouts,
-                                   ListItemClickListener onClickListener, PlanButtonClickListener onPlanButtonClickListener,
+                                   ListItemClickListener onItemClickListener, PlanButtonClickListener onPlanButtonClickListener,
                                    SaveButtonClickListener onSaveButtonClickListener) {
         mWorkouts = workouts;
         mContext = context;
@@ -54,7 +54,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         mExpandedStatus.addAll(Collections.nCopies(mWorkouts.size(), false));
         Log.i(LOG_TAG, "mExpandedStatus is: "+mExpandedStatus);
         //initialize onclicklisteners
-        this.mItemClickListener = onClickListener;
+        this.mItemClickListener = onItemClickListener;
         this.mPlanClickListener = onPlanButtonClickListener;
         this.mSaveClickListener = onSaveButtonClickListener;
     }
@@ -110,12 +110,11 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             planButton = itemView.findViewById(R.id.button_plan_wod);
             saveButton = itemView.findViewById(R.id.button_save_wod);
 
-
             itemView.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     mItemClickListener.onListItemClick(position);
-                    Log.d(LOG_TAG, "clicked: " + position);
+                    Log.i(LOG_TAG, "clicked: " + position);
 
                     boolean expanded = mExpandedStatus.get(position);
                     mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
@@ -139,6 +138,5 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 }
             });
         }
-
     }
 }

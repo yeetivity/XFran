@@ -72,13 +72,10 @@ public class WorkoutRepository {
             String name = reader.nextName();
             if (name.equals("name")) {
                 title = reader.nextString();
-                Log.i(LOG_TAG, "title: "+title);
             } else if (name.equals("description")) {
                 type = reader.nextString();
-                Log.i(LOG_TAG, "type: "+type);
             } else if (name.equals("excercises")) {
                 exercises = readExercises(reader);
-                Log.i(LOG_TAG, "exercises: "+exercises);
             } else {
                 reader.skipValue();
             }
@@ -87,7 +84,7 @@ public class WorkoutRepository {
         Workout workout = new Workout(title);
         workout.setExercises(exercises);
         workout.setType(type);
-        Log.i(LOG_TAG, "workout: "+workout);
+        //Log.i(LOG_TAG, "workout: "+workout);
         return workout;
     }
 
