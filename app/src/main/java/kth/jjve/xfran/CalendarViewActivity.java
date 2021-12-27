@@ -1,7 +1,7 @@
 package kth.jjve.xfran;
 
 /*
-Activity:
+Activity to set out the weekly calendar view and output the events
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 import kth.jjve.xfran.adapters.EventAdapter;
 import kth.jjve.xfran.models.Event;
-import kth.jjve.xfran.weeklycalendar.CalendarAdapter;
+import kth.jjve.xfran.adapters.CalendarAdapter;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 public class CalendarViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, NavigationView.OnNavigationItemSelectedListener {
@@ -40,8 +40,6 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
-    //private CalendarView mCalendarView;
-
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
@@ -58,7 +56,6 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         Button buttonBack = findViewById(R.id.buttonBack);
         Button buttonNext = findViewById(R.id.buttonNext);
         Button buttonNewEvent = findViewById(R.id.newEvent);
-        //mCalendarView = findViewById(R.id.calendarView);
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
@@ -72,14 +69,14 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         setWeekView();
 
         /*-------- LISTENERS ------------*/
-        buttonBack.setOnClickListener(v -> {
+        buttonBack.setOnClickListener(v -> { //go to previous week
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
-            setWeekView(); //go to previous week
+            setWeekView();
         });
 
-        buttonNext.setOnClickListener(v -> {
+        buttonNext.setOnClickListener(v -> { // go to next week
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
-            setWeekView(); // go to next week
+            setWeekView();
         });
 
         buttonNewEvent.setOnClickListener(v -> {
@@ -96,7 +93,7 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
     }
 
     private void setWeekView() {
-        // makes the week view with the correct days visible
+        // makes the week view with the correct days visible and sets events in the recycler view
         monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate)); //outputs month and year
         ArrayList<LocalDate> days = daysInWeekArray(CalendarUtils.selectedDate);
 
@@ -104,10 +101,11 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
-        setEventAdapter();
+        setEventAdapter(); //events made visible
     }
 
     private void setEventAdapter() {
+        // takes the day's events from the list and outputs them
         ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
         EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
         eventListView.setAdapter(eventAdapter);

@@ -17,12 +17,14 @@ import java.util.ArrayList;
 public class CalendarUtils {
     public static LocalDate selectedDate;
 
-    public static String formattedDate(LocalDate date) {
+    public static String cleanDate(LocalDate date) {
+        // changes date format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
         return date.format(formatter);
     }
 
-    public static String formattedTime(LocalTime time) {
+    public static String cleanTime(LocalTime time) {
+        // changes time to ie. 13:00
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return time.format(formatter);
     }
@@ -31,24 +33,6 @@ public class CalendarUtils {
         // changes format of date from 2021-12-23 to December 2021
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
         return date.format(formatter);
-    }
-
-    public static ArrayList<LocalDate> daysInMonthArray(LocalDate date) {
-        ArrayList<LocalDate> daysInMonthArray = new ArrayList<>();
-        YearMonth yearMonth = YearMonth.from(date);
-
-        int daysInMonth = yearMonth.lengthOfMonth();
-
-        LocalDate firstOfMonth = CalendarUtils.selectedDate.withDayOfMonth(1);
-        int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
-
-        for(int i = 1; i <= 42; i++) {
-            if(i <= dayOfWeek || i > daysInMonth + dayOfWeek)
-                daysInMonthArray.add(null);
-            else
-                daysInMonthArray.add(LocalDate.of(selectedDate.getYear(),selectedDate.getMonth(),i - dayOfWeek));
-        }
-        return  daysInMonthArray;
     }
 
     public static ArrayList<LocalDate> daysInWeekArray(LocalDate selectedDate) {
@@ -68,8 +52,7 @@ public class CalendarUtils {
         // also sets monday as 1st day of the week
         LocalDate oneWeekAgo = current.minusWeeks(1);
 
-        while (current.isAfter(oneWeekAgo))
-        {
+        while (current.isAfter(oneWeekAgo)) {
             if(current.getDayOfWeek() == DayOfWeek.MONDAY)
                 return current;
 

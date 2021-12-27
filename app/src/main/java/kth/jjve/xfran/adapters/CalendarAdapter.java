@@ -1,7 +1,7 @@
-package kth.jjve.xfran.weeklycalendar;
+package kth.jjve.xfran.adapters;
 
 /*
-Function:
+Function: adapter for the weekly calendar
 Activity: CalendarViewActivity
 Jitse van Esch, Elisa Perini & Mariah Sabioni
 based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
@@ -19,6 +19,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import kth.jjve.xfran.R;
+import kth.jjve.xfran.weeklycalendar.CalendarUtils;
+import kth.jjve.xfran.weeklycalendar.CalendarViewHolder;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>{
 

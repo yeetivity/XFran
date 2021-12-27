@@ -17,4 +17,8 @@
     <string name="next">NEXT</string>
     <string name="save">SAVE</string>
     <string name="newEvent">NEW EVENT</string>
+    <string name="startTime">Start time</string>
+    <string name="endTime">End time</string>
+    <string name="date">Date</string>
+    <string name="nameEvent">Name of the event:</string>
 </resources>
