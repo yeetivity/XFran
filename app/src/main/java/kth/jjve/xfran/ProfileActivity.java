@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    private Menu profileMenu;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -57,10 +59,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         });
 
         /*--- OBSERVER ---*/
-        edit.setOnClickListener(v -> {
-            startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class));
-            finish();
-        });
+        edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
 
         /*----- INIT -----*/
         setSupportActionBar(toolbar);
@@ -102,6 +101,11 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     }
 
     private void initNavMenu() {
+        profileMenu = navigationView.getMenu();
+        profileMenu.findItem(R.id.nav_login).setVisible(false);
+        profileMenu.findItem(R.id.nav_logout).setVisible(true);
+        profileMenu.findItem(R.id.nav_profile).setVisible(true);
+
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.nav_open, R.string.nav_close);
