@@ -2,4 +2,18 @@
     <string name="app_name">XFran</string>
     <string name="nav_close">Close navigation drawer</string>
     <string name="nav_open">Open navigation drawer</string>
+    <string name="workout_title">Workout title</string>
+    <string name="workout_description">Workout description</string>
+    <string name="workout_exercises">Workout exercises</string>
+    <string name="add_plan">+ Plan</string>
+    <string name="add_result">+ Result</string>
+    <string name="time">Time:</string>
+    <string name="reps">Num. of reps:</string>
+    <string name="date">Date:</string>
+    <string name="feel_score">How did it feel?</string>
+    <string name="feel_comments">Comments:</string>
+    <string name="garmin_connect">Sync Garmin activity</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_result">Add new result</string>
 </resources>

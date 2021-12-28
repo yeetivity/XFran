@@ -1291,5 +1291,23 @@
         "equipment": [],
         "tag": "",
         "permalink": "67E2E5B8"
+    },
+    {
+        "name": "xYEET goes BIRL",
+        "description": "For Max Weight",
+        "excercises": [
+            "3x4 Power Clean",
+            "3x7 Back Squat",
+            "3x7 Box Step-Up",
+            "3x7 Bench Press",
+            "3x7 Deadlift"
+        ],
+        "equipment": [
+            "barbell",
+            "bench",
+            "boxjump"
+        ],
+        "tag": "",
+        "permalink": "Y69EE42T"
     }
 ]

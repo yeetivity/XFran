@@ -108,6 +108,7 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onListItemClick(int position) {
+        //List Item listener
         //Do something on UI when the item is clicked
         //Toast.makeText(this, mWorkoutsViewModel.getWorkouts().getValue().get(position).getType(), Toast.LENGTH_SHORT).show();
     }
@@ -120,13 +121,13 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     }
 
     public void onSaveButtonClick(int position){
-        // start activity of workout saver
+        //start activity of workout saver
         Intent intent = new Intent (this, SaveResultsActivity.class);
+        //send the position and the workout object selected
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ,mWorkoutsViewModel.getWorkouts().getValue().get(position));
         Log.i(LOG_TAG, "workout sent: "+mWorkoutsViewModel.getWorkouts().getValue().get(position));
         startActivity(intent);
-        Toast.makeText(this, "Save workout: "+mWorkoutsViewModel.getWorkouts().getValue().get(position).getTitle(), Toast.LENGTH_SHORT).show();
     }
 
 }

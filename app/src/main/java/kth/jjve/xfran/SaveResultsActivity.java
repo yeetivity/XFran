@@ -19,10 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.RecyclerView;
 import kth.jjve.xfran.models.Workout;
-import kth.jjve.xfran.viewmodels.WorkoutsViewModel;
+
+import static android.view.View.GONE;
 
 public class SaveResultsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,7 +30,6 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
     /*_________ INTENT _________*/
     private int position;
     private Workout mWorkout;
-    private String exercises;
 
     /*_________ VIEW _________*/
     private DrawerLayout drawerLayout;
@@ -44,6 +42,8 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
     private TextView mName;
     private TextView mDescription;
     private TextView mExercises;
+    private Button mSaveButton;
+    private Button mPlanButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,18 +59,22 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
         mName = findViewById(R.id.workout_name);
         mDescription = findViewById(R.id.workout_description);
         mExercises = findViewById(R.id.workout_exercises);
+        mSaveButton = findViewById(R.id.button_save_wod);
+        mPlanButton = findViewById(R.id.button_plan_wod);
 
         /*------ INIT ------*/
         setSupportActionBar(toolbar);   // Initialise toolbar
         initNavMenu();                  // Initialise nav menu
 
         /*------ LISTENERS ------*/
+        //cancel button listener
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cancel();
             }
         });
+        //save button listener
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,21 +83,25 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
         });
 
         /*------ INTENT ------*/
-        //get workout from intent and fill the UI
+        //get selected workout position and object from intent
         Intent intent = getIntent();
         position = intent.getIntExtra(WorkoutsTabActivity.WORKOUT_ID,1);
         mWorkout = (Workout) intent.getSerializableExtra(WorkoutsTabActivity.WORKOUT_OBJ);
         Log.i(LOG_TAG, "workout read: "+mWorkout);
-
+        //fill the UI with workout info
         mName.setText(mWorkout.getTitle());
         mDescription.setText(mWorkout.getType());
+        String exercises = "";
         ArrayList<String> exercisesArray = mWorkout.getExercises();
         for (String s : exercisesArray){
             exercises += s + "\n";
         }
         mExercises.setText(exercises);
+        //hide the buttons from workout_item view
+        mSaveButton.setVisibility(GONE);
+        mPlanButton.setVisibility(GONE);
 
-        //TODO finish this activity --> requires result object
+        //TODO finish this activity --> requires result object to create result fields
 
     }
 
@@ -137,10 +145,12 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
     }
 
     public void saveResult(){
+        // TODO save result object --> requires result object to save result
         Toast.makeText(this, "Save workout in development", Toast.LENGTH_SHORT).show();
     }
 
     public void cancel(){
+        //cancel
         Intent intent = new Intent (this, WorkoutsTabActivity.class);
         startActivity(intent);
     }
