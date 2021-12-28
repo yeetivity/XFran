@@ -19,11 +19,12 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import kth.jjve.xfran.models.UserProfile;
 import kth.jjve.xfran.viewmodels.UserProfileVM;
 
 public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     /*_________ VIEW _________*/
-    private TextView mName, mEmail, mWeight, mLength;
+    private TextView mName, mEmail, mWeight, mHeight;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
@@ -43,20 +44,13 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         mName = findViewById(R.id.profile_username);
         mEmail = findViewById(R.id.profile_useremail);
         mWeight = findViewById(R.id.profile_weight);
-        mLength = findViewById(R.id.profile_height);
+        mHeight = findViewById(R.id.profile_height);
         ImageButton edit = findViewById(R.id.profile_Edit);
 
         /*-----  VM  -----*/
         UserProfileVM mUserProfileVM = ViewModelProviders.of(this).get(UserProfileVM.class);
         mUserProfileVM.init();
-        mUserProfileVM.getUserProfile().observe(this, uP -> {
-            if (!uP.checkEmpty()){
-                mName.setText(uP.getFullName());
-                mEmail.setText(uP.getEmail());
-                mWeight.setText(Double.toString(uP.getWeight()));
-                mLength.setText(Integer.toString(uP.getLength()));
-            }
-        });
+        mUserProfileVM.getUserProfile().observe(this, this::setViews);
 
         /*--- OBSERVER ---*/
         edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
@@ -113,6 +107,16 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void setViews(UserProfile userProfile){
+        if (!userProfile.checkEmpty()){
+            mName.setText(userProfile.getFullName());
+            mEmail.setText(userProfile.getEmail());
+            mWeight.setText(Double.toString(userProfile.getWeight()));
+            mHeight.setText(Integer.toString(userProfile.getHeight()));
+        }
     }
 
     //Todo: make login invisible

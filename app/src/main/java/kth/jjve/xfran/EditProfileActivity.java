@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import kth.jjve.xfran.models.UserProfile;
 import kth.jjve.xfran.viewmodels.UserProfileVM;
 
 public class EditProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,6 +30,8 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    private Menu profileMenu;
+    private UserProfileVM mUserProfileVM;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -49,42 +53,12 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
 
         /*-----  VM  -----*/
         //Todo: check if we can somehow inherit this between editprofile and normal profile
-        UserProfileVM mUserProfileVM = ViewModelProviders.of(this).get(UserProfileVM.class);
+        mUserProfileVM = ViewModelProviders.of(this).get(UserProfileVM.class);
         mUserProfileVM.init();
-        mUserProfileVM.getUserProfile().observe(this, uP -> {
-            if (!uP.checkEmpty()){
-                mFirstName.setText(uP.getFirstName());
-                mLastName.setText(uP.getLastName());
-                mEmail.setText(uP.getEmail());
-                mWeight.setText(Double.toString(uP.getWeight()));
-                mLength.setText(Integer.toString(uP.getLength()));
-            }
-        });
+        mUserProfileVM.getUserProfile().observe(this, this::setViews);
 
         /*--- OBSERVER ---*/
-        save.setOnClickListener(v -> {
-            // Since a double/int can't be directly read from a edittext,
-            // it is first read as string and then parsed
-            try {
-                String w = mWeight.getText().toString();
-                String l = mLength.getText().toString();
-                double weight = Double.parseDouble(w);
-                int length = Integer.parseInt(l);
-
-                mUserProfileVM.setUserProfile(
-                        mFirstName.getText().toString(),
-                        mLastName.getText().toString(),
-                        mEmail.getText().toString(),
-                        weight,
-                        length);
-
-                Toast.makeText(getApplicationContext(), "User profile saved", Toast.LENGTH_SHORT).show();
-                finish();
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Edittexts cannot be empty", Toast.LENGTH_SHORT).show();
-            }
-        });
+        save.setOnClickListener(v -> saveUserProfile());
 
         /*----- INIT -----*/
         setSupportActionBar(toolbar);
@@ -107,6 +81,11 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
     }
 
     private void initNavMenu() {
+        profileMenu = navigationView.getMenu();
+        profileMenu.findItem(R.id.nav_login).setVisible(false);
+        profileMenu.findItem(R.id.nav_logout).setVisible(true);
+        profileMenu.findItem(R.id.nav_profile).setVisible(true);
+
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.nav_open, R.string.nav_close);
@@ -134,5 +113,38 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
         return true;
     }
 
-    //Todo: make login invisible
+    @SuppressLint("SetTextI18n")
+    private void setViews(UserProfile userProfile){
+        if (!userProfile.checkEmpty()){
+            mFirstName.setText(userProfile.getFirstName());
+            mLastName.setText(userProfile.getLastName());
+            mEmail.setText(userProfile.getEmail());
+            mWeight.setText(Double.toString(userProfile.getWeight()));
+            mLength.setText(Integer.toString(userProfile.getHeight()));
+        }
+    }
+
+    private void saveUserProfile(){
+        try {
+            // Since a double/int can't be directly read from a edittext,
+            // it is first read as string and then parsed
+            String w = mWeight.getText().toString();
+            String l = mLength.getText().toString();
+            double weight = Double.parseDouble(w);
+            int length = Integer.parseInt(l);
+
+            mUserProfileVM.setUserProfile(
+                    mFirstName.getText().toString(),
+                    mLastName.getText().toString(),
+                    mEmail.getText().toString(),
+                    weight,
+                    length);
+
+            Toast.makeText(getApplicationContext(), "User profile saved", Toast.LENGTH_SHORT).show();
+            finish();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Edittexts cannot be empty", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

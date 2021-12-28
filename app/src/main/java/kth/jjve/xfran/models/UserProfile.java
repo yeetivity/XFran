@@ -6,15 +6,15 @@ public class UserProfile {
     private String userLastName;
     private String userEmail;
     private Double userWeight;
-    private Integer userLength;
+    private Integer userHeight;
     private boolean empty;
 
-    public UserProfile(String firstName, String lastName, String email, double weight, int length){
+    public UserProfile(String firstName, String lastName, String email, double weight, int height){
         this.userFirstName = firstName;
         this.userLastName = lastName;
         this.userEmail = email;
         this.userWeight = weight;
-        this.userLength = length;
+        this.userHeight = height;
         this.empty = false;
     }
 
@@ -24,7 +24,7 @@ public class UserProfile {
         this.userLastName = nameParts[1];
         this.userEmail = email;
         this.userWeight = 0.0;
-        this.userLength = 0;
+        this.userHeight = 0;
     }
 
     public UserProfile(){
@@ -49,8 +49,8 @@ public class UserProfile {
         return userWeight;
     }
 
-    public Integer getLength(){
-        return userLength;
+    public Integer getHeight(){
+        return userHeight;
     }
 
     public boolean checkEmpty(){return empty;}

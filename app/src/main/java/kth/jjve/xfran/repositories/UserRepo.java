@@ -33,10 +33,10 @@ public class UserRepo {
 
     public MutableLiveData<UserProfile> getUserProfile() {
         up = new MutableLiveData<>();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
-        if (userProfile.checkEmpty()) {
-            firebaseAuth = FirebaseAuth.getInstance();
-            firebaseFirestore = FirebaseFirestore.getInstance();
+        if (userProfile.checkEmpty() || !userID.equals(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())) {
             if (firebaseAuth.getCurrentUser() != null) {
                 //authenticate user
                 userID = firebaseAuth.getCurrentUser().getUid();
@@ -56,7 +56,7 @@ public class UserRepo {
                                     document.getString("lastName"),
                                     document.getString("email"),
                                     document.getDouble("weight"),
-                                    Objects.requireNonNull(document.getLong("length")).intValue());
+                                    Objects.requireNonNull(document.getLong("height")).intValue());
                             up.setValue(userProfile);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -100,7 +100,7 @@ public class UserRepo {
             user.put("firstName", userProfile.getFirstName());
             user.put("lastName", userProfile.getLastName());
             user.put("weight", userProfile.getWeight());
-            user.put("length", userProfile.getLength());
+            user.put("height", userProfile.getHeight());
             documentReference.update(user).addOnSuccessListener(aVoid -> Log.d("UserRepo", "onSuccess: user profile is updated for " + userID));
         } else {
             Log.i("UserRepo", "User is not logged in");

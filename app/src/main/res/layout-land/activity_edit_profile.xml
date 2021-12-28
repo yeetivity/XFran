@@ -146,7 +146,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/input_background"
-                android:hint="@string/editProfile_length_hint"
+                android:hint="@string/editProfile_height_hint"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:padding="5dp" />
