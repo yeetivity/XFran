@@ -12,7 +12,7 @@
     <string name="date">Date:</string>
     <string name="feel_score">How did it feel?</string>
     <string name="feel_comments">Comments:</string>
-    <string name="garmin_connect">Sync Garmin activity</string>
+    <string name="garmin_connect">Sync Garmin activity:</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="new_result">Add new result</string>

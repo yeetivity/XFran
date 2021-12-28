@@ -1,4 +1,18 @@
-[{
+[   {
+        "name": "Fran",
+        "description": "21-15-9 Reps for Time",
+        "excercises": [
+            "Thruster (95/65lbs)",
+            "Pull-Ups"
+        ],
+        "equipment": [
+            "barbell",
+            "pullupbar"
+        ],
+        "tag": "Benchmark-WOD",
+        "permalink": "EDE3D2D7"
+    },
+    {
         "name": "Dallas 5",
         "description": "For Time",
         "excercises": [
@@ -142,20 +156,6 @@
         ],
         "tag": "Benchmark-WOD",
         "permalink": "DECA7536"
-    },
-    {
-        "name": "Fran",
-        "description": "21-15-9 Reps for Time",
-        "excercises": [
-            "Thruster 95lbs",
-            "Pull-Ups"
-        ],
-        "equipment": [
-            "barbell",
-            "pullupbar"
-        ],
-        "tag": "Benchmark-WOD",
-        "permalink": "EDE3D2D7"
     },
     {
         "name": "Grace",
@@ -343,7 +343,7 @@
         "permalink": "EAD2409B"
     },
     {
-        "name": "",
+        "name": "Triplet MGG",
         "description": "For Time",
         "excercises": [
             "800m Row",
@@ -440,7 +440,7 @@
         "permalink": "CC3C64AE"
     },
     {
-        "name": "",
+        "name": "Holy lungs",
         "description": "For Time",
         "excercises": [
             "30 Wall Balls",
@@ -462,7 +462,7 @@
         "permalink": "F46B8E9F"
     },
     {
-        "name": "",
+        "name": "Row sprints",
         "description": "20 Minute EMOM",
         "excercises": [
             "1min Row",
@@ -837,7 +837,7 @@
         "permalink": "15F5CE11"
     },
     {
-        "name": "",
+        "name": "One more home WOD",
         "description": "8 Rounds for Time",
         "excercises": [
             "10 Push-Ups",
@@ -988,15 +988,15 @@
         "permalink": "602CB700"
     },
     {
-        "name": "",
+        "name": "Home abs killer",
         "description": "2 Rounds for Time",
         "excercises": [
             "50 Sit-Ups",
-            "100 Ropejumps",
+            "100 Jump Ropes",
             "100 Flutter Kicks (per Leg)",
-            "100 Ropejumps",
+            "100 Jump Ropes",
             "50 Leg Raises",
-            "100 Ropejumps",
+            "100 Jump Ropes",
             "100 Mountain Climbers (per Leg)",
             "100 Jump Ropes"
         ],
@@ -1007,7 +1007,7 @@
         "permalink": "EFD9A6ED"
     },
     {
-        "name": "",
+        "name": "Home abs killer v2",
         "description": "4 Rounds for Time",
         "excercises": [
             "30 V-Ups",
@@ -1109,7 +1109,7 @@
         "permalink": "301E0264"
     },
     {
-        "name": 190102,
+        "name": "190102",
         "description": "For Time",
         "excercises": [
             "9 Thrusters",
