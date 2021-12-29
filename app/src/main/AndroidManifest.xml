@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="kth.jjve.xfran">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -28,6 +29,12 @@
             android:name=".TrainingDiaryActivity"
             android:exported="false" />
         <activity
+            android:name=".CalendarViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeScreenActivity"
             android:exported="true">
             <intent-filter>
@@ -41,5 +48,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

@@ -91,6 +91,11 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
             profileMenu.findItem(R.id.nav_login).setVisible(true);
             profileMenu.findItem(R.id.nav_profile).setVisible(false);
         }
+
+        if (id == R.id.nav_calendar){
+            Intent intent = new Intent(HomeScreenActivity.this, CalendarViewActivity.class);
+            startActivity(intent);
+        }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

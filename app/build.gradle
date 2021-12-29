@@ -47,4 +47,7 @@ dependencies {
     //noinspection LifecycleAnnotationProcessorWithJava8
     annotationProcessor "android.arch.lifecycle:compiler:$archLifeCycleVersion"
 
+    // weekview
+    implementation 'com.github.alamkanak:android-week-view:1.2.6'
+
 }
