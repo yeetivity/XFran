@@ -139,7 +139,7 @@
                     android:inputType="numberDecimal" />
 
                 <EditText
-                    android:id="@+id/editProfileLength"
+                    android:id="@+id/editProfileHeight"
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"

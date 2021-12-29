@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -25,7 +25,7 @@ import kth.jjve.xfran.models.UserProfile;
 import kth.jjve.xfran.viewmodels.UserProfileVM;
 
 public class EditProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private EditText mFirstName, mLastName, mWeight, mLength;
+    private EditText mFirstName, mLastName, mWeight, mHeight;
     private TextView mEmail;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -47,7 +47,7 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
         mFirstName = findViewById(R.id.editProfileFirstName);
         mLastName = findViewById(R.id.editProfileLastName);
         mWeight = findViewById(R.id.editProfileWeight);
-        mLength = findViewById(R.id.editProfileLength);
+        mHeight = findViewById(R.id.editProfileHeight);
         mEmail = findViewById(R.id.editProfileEmail);
         ImageButton save = findViewById(R.id.saveProfile);
 
@@ -120,25 +120,38 @@ public class EditProfileActivity extends AppCompatActivity implements Navigation
             mLastName.setText(userProfile.getLastName());
             mEmail.setText(userProfile.getEmail());
             mWeight.setText(Double.toString(userProfile.getWeight()));
-            mLength.setText(Integer.toString(userProfile.getHeight()));
+            mHeight.setText(Integer.toString(userProfile.getHeight()));
         }
     }
 
     private void saveUserProfile(){
-        try {
-            // Since a double/int can't be directly read from a edittext,
-            // it is first read as string and then parsed
-            String w = mWeight.getText().toString();
-            String l = mLength.getText().toString();
-            double weight = Double.parseDouble(w);
-            int length = Integer.parseInt(l);
+        String firstname = mFirstName.getText().toString();
+        String lastname = mLastName.getText().toString();
 
+        // Since a double/int can't be directly read from a edittext,
+        // it is first read as string and then parsed
+        String w = mWeight.getText().toString();
+        String l = mHeight.getText().toString();
+        double weight = Double.parseDouble(w);
+        int height = Integer.parseInt(l);
+
+        if (TextUtils.isEmpty(firstname)){
+            mFirstName.setError("Firstname is required");
+            return;
+        }
+
+        if (TextUtils.isEmpty(lastname)){
+            mLastName.setError("Lastname is required");
+            return;
+        }
+
+        try {
             mUserProfileVM.setUserProfile(
-                    mFirstName.getText().toString(),
-                    mLastName.getText().toString(),
+                    firstname,
+                    lastname,
                     mEmail.getText().toString(),
                     weight,
-                    length);
+                    height);
 
             Toast.makeText(getApplicationContext(), "User profile saved", Toast.LENGTH_SHORT).show();
             finish();

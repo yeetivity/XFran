@@ -29,6 +29,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     private NavigationView navigationView;
     private Toolbar toolbar;
     private Menu profileMenu;
+    private UserProfileVM mUserProfileVM;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -48,7 +49,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         ImageButton edit = findViewById(R.id.profile_Edit);
 
         /*-----  VM  -----*/
-        UserProfileVM mUserProfileVM = ViewModelProviders.of(this).get(UserProfileVM.class);
+        mUserProfileVM = ViewModelProviders.of(this).get(UserProfileVM.class);
         mUserProfileVM.init();
         mUserProfileVM.getUserProfile().observe(this, this::setViews);
 
@@ -65,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     protected void onResume() {
         super.onResume();
         navigationView.setCheckedItem(R.id.nav_profile);
+        //Todo: update bug (doesn't update in onResume)
     }
 
     @Override
