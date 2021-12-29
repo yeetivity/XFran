@@ -6,6 +6,7 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -42,20 +43,36 @@ public class EditEventActivity extends AppCompatActivity
         /*-------- LISTENERS ------------*/
         buttonSave.setOnClickListener(v -> {
             saveEvent();
-            finish();
         });
     }
 
     private void saveEvent(){
         //method to save the name, start and end time of an event into a list
+        String s_eventName = eventName.getText().toString(); //given name
+        String startTime = eventStartTimeEdit.getText().toString(); //start time
+        String endTime = eventEndTimeEdit.getText().toString(); //end time
+
+        if (TextUtils.isEmpty(s_eventName)){
+            eventName.setError("Event name is required");
+            return;
+        }
+
+        //TODO make safety feature if time format wrong pretty
+        if (TextUtils.isEmpty(startTime)){
+            eventStartTimeEdit.setError("Start time is required");
+            return;
+        }
+
+        if (TextUtils.isEmpty(endTime)){
+            eventEndTimeEdit.setError("End time is required");
+            return;
+        }
+
         try {
-            String s_eventName = eventName.getText().toString(); //given name
-            String startTime = eventStartTimeEdit.getText().toString(); //start time
-            String endTime = eventEndTimeEdit.getText().toString(); //end time
-            //TODO add some safety feature if time format wrong, currently need ie 04:00
             Event newEvent = new Event(s_eventName, CalendarUtils.selectedDate, LocalTime.parse(startTime), LocalTime.parse(endTime));
             Event.eventsList.add(newEvent);
             Toast.makeText(getApplicationContext(), "event saved", Toast.LENGTH_SHORT).show();
+            finish();
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "no event info added", Toast.LENGTH_SHORT).show();
