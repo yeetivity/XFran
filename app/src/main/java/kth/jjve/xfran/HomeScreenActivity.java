@@ -80,8 +80,10 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         int id = menuItem.getItemId();
         if (id == R.id.nav_diary){
             startActivity(new Intent(HomeScreenActivity.this, TrainingDiaryActivity.class));
-        } else if (id == R.id.nav_login){
+        } else if (id == R.id.nav_login) {
             startActivity(new Intent(HomeScreenActivity.this, RegisterActivity.class));
+        } else if (id == R.id.nav_profile) {
+            startActivity(new Intent(HomeScreenActivity.this, ProfileActivity.class));
         } else if (id == R.id.nav_logout){
             firebaseAuth.signOut();
             Toast.makeText(HomeScreenActivity.this, "Logged out", Toast.LENGTH_SHORT).show();

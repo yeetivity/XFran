@@ -11,6 +11,8 @@
         <item name="colorOnSecondary">@color/Midnight_Blue</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Background color. -->
+        <item name="colorOnBackground"> @color/white </item>
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

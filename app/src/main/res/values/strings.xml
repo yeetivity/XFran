@@ -18,4 +18,25 @@
     <string name="reg_subtitle">Create New Account</string>
     <string name="full_name">Full Name</string>
     <string name="reg_login">Already Registered?\nLogin Here</string>
+    <string name="profilepicture">ProfilePicture</string>
+    <string name="btnchangepicture">btnChangePicture</string>
+    <string name="profile_title">My Profile</string>
+    <string name="test_name"> </string>
+    <string name="testemail"> </string>
+    <string name="testweight"> - </string>
+    <string name="weight_description">Current\nWeight</string>
+    <string name="test_length"> - </string>
+    <string name="length_description">Current\nHeight</string>
+    <string name="testheartrate"> - </string>
+    <string name="heartrate_description">Current\n Heartrate range</string>
+    <string name="testmeasurementdate"> - </string>
+    <string name="measurement_description">Latest\nMeasurement</string>
+    <string name="edit">edit</string>
+    <string name="save">save</string>
+    <string name="editprofile_title">Edit Profile</string>
+    <string name="testpassword">testpassword</string>
+    <string name="editProfile_firstname_hint">First Name</string>
+    <string name="editProfile_lastname_hint">Last Name</string>
+    <string name="editProfile_weight_hint">Weight [kg]</string>
+    <string name="editProfile_height_hint">Height [cm]</string>
 </resources>
