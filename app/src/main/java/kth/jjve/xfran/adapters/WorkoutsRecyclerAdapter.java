@@ -130,35 +130,29 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
             /*------ LISTENERS ------*/
             //listener for item click
-            itemView.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View v) {
-                    //get position of clicked item
-                    int position = getAdapterPosition();
-                    mItemClickListener.onListItemClick(position);
-                    Log.i(LOG_TAG, "clicked: " + position);
-                    //update UI and save new expanded status
-                    boolean expanded = mExpandedStatus.get(position);
-                    mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
-                    mExpandedStatus.set(position, (!expanded));
-                }
+            itemView.setOnClickListener(v -> {
+                //get position of clicked item
+                int position = getAdapterPosition();
+                mItemClickListener.onListItemClick(position);
+                Log.i(LOG_TAG, "clicked: " + position);
+                //update UI and save new expanded status
+                boolean expanded = mExpandedStatus.get(position);
+                mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
+                mExpandedStatus.set(position, (!expanded));
             });
 
             //listener for plan button click
-            planButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    mPlanClickListener.onPlanButtonClick(position);
-                    Log.i(LOG_TAG, "you clicked plan in WOD "+position);
-                }
+            planButton.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                mPlanClickListener.onPlanButtonClick(position);
+                Log.i(LOG_TAG, "you clicked plan in WOD "+position);
             });
 
             //listener for save results click
-            saveButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    mSaveClickListener.onSaveButtonClick(position);
-                    Log.i(LOG_TAG, "you clicked save in WOD " +position);
-                }
+            saveButton.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                mSaveClickListener.onSaveButtonClick(position);
+                Log.i(LOG_TAG, "you clicked save in WOD " +position);
             });
         }
     }

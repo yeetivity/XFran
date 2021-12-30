@@ -37,13 +37,15 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
     private Toolbar toolbar;
 
     /*------ HOOKS ------*/
-    private Button saveButton;
-    private Button cancelButton;
+    //workout_item
     private TextView mName;
     private TextView mDescription;
     private TextView mExercises;
-    private Button mSaveButton;
-    private Button mPlanButton;
+    private Button workoutItemSaveButton;
+    private Button workoutItemPlanButton;
+    //results
+    private Button saveButton;
+    private Button cancelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,8 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
         mName = findViewById(R.id.workout_name);
         mDescription = findViewById(R.id.workout_description);
         mExercises = findViewById(R.id.workout_exercises);
-        mSaveButton = findViewById(R.id.button_save_wod);
-        mPlanButton = findViewById(R.id.button_plan_wod);
+        workoutItemSaveButton = findViewById(R.id.button_save_wod);
+        workoutItemPlanButton = findViewById(R.id.button_plan_wod);
 
         /*------ INIT ------*/
         setSupportActionBar(toolbar);   // Initialise toolbar
@@ -68,19 +70,9 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
 
         /*------ LISTENERS ------*/
         //cancel button listener
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancel();
-            }
-        });
+        cancelButton.setOnClickListener(v -> cancel());
         //save button listener
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveResult();
-            }
-        });
+        saveButton.setOnClickListener(v -> saveResult());
 
         /*------ INTENT ------*/
         //get selected workout position and object from intent
@@ -88,6 +80,7 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
         position = intent.getIntExtra(WorkoutsTabActivity.WORKOUT_ID,1);
         mWorkout = (Workout) intent.getSerializableExtra(WorkoutsTabActivity.WORKOUT_OBJ);
         Log.i(LOG_TAG, "workout read: "+mWorkout);
+
         //fill the UI with workout info
         mName.setText(mWorkout.getTitle());
         mDescription.setText(mWorkout.getType());
@@ -97,9 +90,10 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
             exercises += s + "\n";
         }
         mExercises.setText(exercises);
+
         //hide the buttons from workout_item view
-        mSaveButton.setVisibility(GONE);
-        mPlanButton.setVisibility(GONE);
+        workoutItemSaveButton.setVisibility(GONE);
+        workoutItemPlanButton.setVisibility(GONE);
 
         //TODO finish this activity --> requires result object to create result fields
 

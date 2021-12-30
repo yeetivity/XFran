@@ -108,15 +108,11 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onListItemClick(int position) {
-        //List Item listener
         //Do something on UI when the item is clicked
-        //Toast.makeText(this, mWorkoutsViewModel.getWorkouts().getValue().get(position).getType(), Toast.LENGTH_SHORT).show();
     }
 
     public void onPlanButtonClick(int position){
         //TODO start activity of workout planner
-        //Intent intent = new Intent (this, HomeScreenActivity.class);
-        //startActivity(intent);
         Toast.makeText(this, "Plan workout in development", Toast.LENGTH_SHORT).show();
     }
 
