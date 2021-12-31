@@ -62,5 +62,15 @@ public class CalendarUtils {
         return null;
     }
 
+    /* ------------ METHODS FOR EXPORTING EVENTS ------------ */
+
+    public static int exportMinutes(String time){
+        return Integer.parseInt(time.substring(time.length() - 2));
+    }
+
+    public static int exportHours(String time){
+        return Integer.parseInt(time.substring(0,2));
+    }
+
 
 }
