@@ -106,19 +106,20 @@ public class EditEventActivity extends AppCompatActivity {
     }
 
     private void exportToExternalCalendar(){
-        //TODO remove hardcoding of date
         Calendar beginTime = Calendar.getInstance();
-        // /!\ 0 = january!!!!!
-        beginTime.set(2022, 0, 1, CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
+        beginTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate), CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
         Calendar endTime = Calendar.getInstance();
-        endTime.set(2022, 0, 1, CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
+        endTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate), CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
         Intent intent = new Intent(Intent.ACTION_INSERT)
                 .setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
                 .putExtra(CalendarContract.Events.TITLE, s_eventName)
-                .putExtra(CalendarContract.Events.DESCRIPTION, "Group class"); //TODO: add WO description
+                .putExtra(CalendarContract.Events.DESCRIPTION, "Group class"); //TODO: add WO description here
         startActivity(intent);
+
+        //TODO come back to XRan from calendar app. see if doable?
+
     }
 
 }

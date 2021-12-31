@@ -40,8 +40,7 @@ public class CalendarUtils {
         LocalDate current = mondayForDate(selectedDate);
         LocalDate endDate = current.plusWeeks(1);
 
-        while (current.isBefore(endDate))
-        {
+        while (current.isBefore(endDate)) {
             days.add(current);
             current = current.plusDays(1);
         }
@@ -63,6 +62,7 @@ public class CalendarUtils {
     }
 
     /* ------------ METHODS FOR EXPORTING EVENTS ------------ */
+    //methds to change the date and time into a format accepted by the calendar provider API
 
     public static int exportMinutes(String time){
         return Integer.parseInt(time.substring(time.length() - 2));
@@ -72,5 +72,21 @@ public class CalendarUtils {
         return Integer.parseInt(time.substring(0,2));
     }
 
+    public static int exportYear(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy");
+        return Integer.parseInt(date.format(formatter));
+    }
+
+    public static int exportMonth(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM");
+        int month = Integer.parseInt(date.format(formatter));
+        // /!\ 0 = january!!!!!
+        return month-1;
+    }
+
+    public static int exportDay(LocalDate date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd");
+        return Integer.parseInt(date.format(formatter));
+    }
 
 }
