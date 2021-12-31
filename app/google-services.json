@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "425045774267",
+    "project_id": "xfran-c16e3",
+    "storage_bucket": "xfran-c16e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425045774267:android:78ce1794d4b82582d13e9e",
+        "android_client_info": {
+          "package_name": "kth.jjve.xfran"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425045774267-3i9mth3ptdmaqoas5l445d8hjsdqovgd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHtKgDR79k7OCJl7e_xQqlvkSUaD1n8Ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425045774267-3i9mth3ptdmaqoas5l445d8hjsdqovgd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

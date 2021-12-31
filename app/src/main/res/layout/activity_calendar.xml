@@ -2,16 +2,14 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/drawer_layout_calendar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?colorOnBackground"
-    tools:context=".HomeScreenActivity"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:context=".CalendarViewActivity"
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
+        android:id="@+id/nav_view_calendar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -22,27 +20,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/main_toolbar"
-            layout="@layout/toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <include
+        android:id="@+id/calendar_toolbar"
+        layout="@layout/toolbar" />
 
-        <ImageView
-            android:id="@+id/imageView"
+
+        <CalendarView
+            android:id="@+id/calendarView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_toolbar"
-            app:srcCompat="@drawable/underconstruction"
-            android:contentDescription="@string/description_temporary"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/calendar_toolbar"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

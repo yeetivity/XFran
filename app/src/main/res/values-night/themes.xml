@@ -11,6 +11,9 @@
         <item name="colorOnSecondary">@color/Orange_500</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <!-- Default background color -->
+        <item name="colorOnBackground">@color/grey</item>
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
