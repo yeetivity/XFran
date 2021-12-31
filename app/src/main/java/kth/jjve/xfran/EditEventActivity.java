@@ -106,19 +106,23 @@ public class EditEventActivity extends AppCompatActivity {
     }
 
     private void exportToExternalCalendar(){
-        Calendar beginTime = Calendar.getInstance();
-        beginTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate), CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
-        Calendar endTime = Calendar.getInstance();
-        endTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate), CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
-        Intent intent = new Intent(Intent.ACTION_INSERT)
-                .setData(CalendarContract.Events.CONTENT_URI)
-                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
-                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                .putExtra(CalendarContract.Events.TITLE, s_eventName)
-                .putExtra(CalendarContract.Events.DESCRIPTION, "Group class"); //TODO: add WO description here
-        startActivity(intent);
-
-        //TODO come back to XRan from calendar app. see if doable?
+        try {
+            Calendar beginTime = Calendar.getInstance();
+            beginTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate), CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
+            Calendar endTime = Calendar.getInstance();
+            endTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate), CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
+            Intent intent = new Intent(Intent.ACTION_INSERT)
+                    .setData(CalendarContract.Events.CONTENT_URI)
+                    .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
+                    .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
+                    .putExtra(CalendarContract.Events.TITLE, s_eventName)
+                    .putExtra(CalendarContract.Events.DESCRIPTION, "Group class"); //TODO: add WO description here
+            startActivity(intent);
+            //TODO come back to XRan from calendar app. see if doable?
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "couldn't export event", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
