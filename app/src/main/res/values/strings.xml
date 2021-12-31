@@ -13,11 +13,13 @@
     <string name="back">BACK</string>
     <string name="next">NEXT</string>
     <string name="save">SAVE</string>
-    <string name="newEvent">NEW EVENT</string>
+    <string name="close">CLOSE</string>
+    <string name="export">export</string>
+    <string name="newEventInApp">NEW EVENT</string>
     <string name="startTime">Start time</string>
     <string name="endTime">End time</string>
     <string name="date">Date</string>
-    <string name="nameEvent">Name of the event:</string>
+    <string name="nameEvent">Name of the Event:</string>
     <string name="menu_home">Home</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_trainingdiary">Training Diary</string>
@@ -48,7 +50,6 @@
     <string name="testmeasurementdate"> - </string>
     <string name="measurement_description">Latest\nMeasurement</string>
     <string name="edit">edit</string>
-    <string name="save">save</string>
     <string name="editprofile_title">Edit Profile</string>
     <string name="testpassword">testpassword</string>
     <string name="editProfile_firstname_hint">First Name</string>
