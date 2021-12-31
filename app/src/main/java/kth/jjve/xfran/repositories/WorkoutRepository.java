@@ -1,13 +1,13 @@
 package kth.jjve.xfran.repositories;
 
 import android.util.JsonReader;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +20,11 @@ import kth.jjve.xfran.models.Workout;
  */
 public class WorkoutRepository {
 
-    private static final String LOG_TAG = WorkoutRepository.class.getSimpleName();;
     private static WorkoutRepository instance;
     private ArrayList<Workout> dataSet = new ArrayList<>();
 
-    public static WorkoutRepository getInstance(){
-        if(instance == null){
+    public static WorkoutRepository getInstance() {
+        if (instance == null) {
             instance = new WorkoutRepository();
         }
         return instance;
@@ -42,10 +41,10 @@ public class WorkoutRepository {
     private void setWorkouts() throws IOException {
         // This mimics what the database would normally do
         // For now it reads a json file with workout info
-        //open json file
-        InputStream workoutData  = AppCtx.getContext().getResources().openRawResource(R.raw.workouts_data);
-        //initialize reader
-        JsonReader reader = new JsonReader(new InputStreamReader(workoutData, "UTF-8"));
+        // open json file
+        InputStream workoutData = AppCtx.getContext().getResources().openRawResource(R.raw.workouts_data);
+        // initialize reader
+        JsonReader reader = new JsonReader(new InputStreamReader(workoutData, StandardCharsets.UTF_8));
         try {
             parseWorkouts(reader);
         } finally {
@@ -54,7 +53,7 @@ public class WorkoutRepository {
     }
 
     public void parseWorkouts(JsonReader reader) throws IOException {
-        //read json array, loop through workouts on dataSet and read each of them
+        // read json array, loop through workouts on dataSet and read each of them
         reader.beginArray();
         while (reader.hasNext()) {
             dataSet.add(readWorkout(reader));
@@ -63,38 +62,43 @@ public class WorkoutRepository {
     }
 
     public Workout readWorkout(JsonReader reader) throws IOException {
-        //initialize workout parameters
+        // initialize workout parameters
         String title = null;
         String type = null;
         ArrayList<String> exercises = null;
-        //read workout info
+        // read workout info
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("name")) {
-                title = reader.nextString();
-            } else if (name.equals("description")) {
-                type = reader.nextString();
-            } else if (name.equals("excercises")) {
-                //exercise is an array therefore requires a reader
-                exercises = readExercises(reader);
-            } else {
-                reader.skipValue();
+            switch (name) {
+                case "name":
+                    title = reader.nextString();
+                    break;
+                case "description":
+                    type = reader.nextString();
+                    break;
+                case "excercises":
+                    // exercise is an array therefore requires a reader
+                    // Todo: change the spelling to correct spelling
+                    exercises = readExercises(reader);
+                    break;
+                default:
+                    reader.skipValue();
+                    break;
             }
         }
         reader.endObject();
-        //create workout object from info read
+        // create workout object from info read
         Workout workout = new Workout(title);
         workout.setExercises(exercises);
         workout.setType(type);
-        //Log.i(LOG_TAG, "workout: "+workout);
         return workout;
     }
 
     public ArrayList<String> readExercises(JsonReader reader) throws IOException {
-        //exercises for each workout obj are stored in an ArrayList
-        ArrayList<String> exercises = new ArrayList<String>();
-        //loop through exercises and read each of them
+        // exercises for each workout obj are stored in an ArrayList
+        ArrayList<String> exercises = new ArrayList<>();
+        // loop through exercises and read each of them
         reader.beginArray();
         while (reader.hasNext()) {
             exercises.add(reader.nextString());

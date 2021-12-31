@@ -25,49 +25,30 @@ import kth.jjve.xfran.models.Workout;
 public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final String LOG_TAG = getClass().getSimpleName();
-    private Context mContext;
-    //data
-    private List<Workout> mWorkouts = new ArrayList<>();
-    //ArrayList saves a boolean for each workout item (false-->collapsed view/ true-->expanded view)
-    //The position on the array corresponds to the position on the mWorkouts list
-    //This is built locally not to interact with the repo (unnecessary mix of concerns)
-    private ArrayList<Boolean> mExpandedStatus = new ArrayList<>();
-
     /*------ LISTENERS ------*/
-    //listeners to interact with activity
     //expand/collapse workout item
     private final ListItemClickListener mItemClickListener;
-    //plan workout
     private final PlanButtonClickListener mPlanClickListener;
-    //save result for the workout
+    /*
+    ArrayList saves a boolean for each workout item (false-->collapsed view/ true-->expanded view)
+    The position on the array corresponds to the position on the mWorkouts list
+    This is built locally not to interact with the repo (unnecessary mix of concerns)
+     */
     private final SaveButtonClickListener mSaveClickListener;
-
-    public interface ListItemClickListener{
-        //interface to expand workout item
-        void onListItemClick(int position);
-    }
-
-    public interface PlanButtonClickListener{
-        //interface to plan the workout
-        void onPlanButtonClick(int position);
-    }
-
-    public interface SaveButtonClickListener{
-        //interface to save the workout
-        void onSaveButtonClick(int position);
-    }
+    private Context mContext;
+    private List<Workout> mWorkouts = new ArrayList<>();
+    private ArrayList<Boolean> mExpandedStatus = new ArrayList<>();
 
     public WorkoutsRecyclerAdapter(Context context, List<Workout> workouts,
                                    ListItemClickListener onItemClickListener,
                                    PlanButtonClickListener onPlanButtonClickListener,
                                    SaveButtonClickListener onSaveButtonClickListener) {
-        //adapter constructor receives the workout list and the listeners
         mWorkouts = workouts;
         mContext = context;
         //set all workout items to collapsed view when adapter is constructed (ArrayList of false)
         mExpandedStatus.clear();
         mExpandedStatus.addAll(Collections.nCopies(mWorkouts.size(), false));
-        //initialize listeners
+
         this.mItemClickListener = onItemClickListener;
         this.mPlanClickListener = onPlanButtonClickListener;
         this.mSaveClickListener = onSaveButtonClickListener;
@@ -90,8 +71,10 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         //Set the exercises of the 'Workout'
         String exercises = "";
         ArrayList<String> exercisesArray = mWorkouts.get(i).getExercises();
-        for (String s : exercisesArray){
+        for (String s : exercisesArray) {
             exercises += s + "\n";
+            // Todo: check if the following line works
+            // exercises.append(s).append("\n");
         }
         ((ViewHolder) vh).mExercises.setText(exercises);
 
@@ -106,15 +89,25 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         return mWorkouts.size();
     }
 
+    public interface ListItemClickListener {
+        //interface to expand workout item
+        void onListItemClick(int position);
+    }
+
+    public interface PlanButtonClickListener {
+        void onPlanButtonClick(int position);
+    }
+
+    public interface SaveButtonClickListener {
+        void onSaveButtonClick(int position);
+    }
+
     private class ViewHolder extends RecyclerView.ViewHolder {
 
         /*------ HOOKS ------*/
-        private TextView mName;
-        private TextView mDescription;
+        private TextView mName, mDescription, mExercises;
         private View mExpandedView;
-        private TextView mExercises;
-        private Button planButton;
-        private Button saveButton;
+        private Button planButton, saveButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -122,7 +115,6 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             /*------ HOOKS ------*/
             mName = itemView.findViewById(R.id.workout_name);
             mDescription = itemView.findViewById(R.id.workout_description);
-            //item_expanded is a layout inside workout item containing the details of the workout
             mExpandedView = itemView.findViewById(R.id.item_expanded);
             mExercises = itemView.findViewById(R.id.workout_exercises);
             planButton = itemView.findViewById(R.id.button_plan_wod);
@@ -141,18 +133,16 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                 mExpandedStatus.set(position, (!expanded));
             });
 
-            //listener for plan button click
             planButton.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 mPlanClickListener.onPlanButtonClick(position);
-                Log.i(LOG_TAG, "you clicked plan in WOD "+position);
+                Log.i(LOG_TAG, "you clicked plan in WOD " + position);
             });
 
-            //listener for save results click
             saveButton.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 mSaveClickListener.onSaveButtonClick(position);
-                Log.i(LOG_TAG, "you clicked save in WOD " +position);
+                Log.i(LOG_TAG, "you clicked save in WOD " + position);
             });
         }
     }

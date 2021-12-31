@@ -28,7 +28,7 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
     private final String LOG_TAG = getClass().getSimpleName();
 
     /*_________ INTENT _________*/
-    private int position;
+    private Integer position;
     private Workout mWorkout;
 
     /*_________ VIEW _________*/
@@ -37,15 +37,9 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
     private Toolbar toolbar;
 
     /*------ HOOKS ------*/
-    //workout_item
-    private TextView mName;
-    private TextView mDescription;
-    private TextView mExercises;
-    private Button workoutItemSaveButton;
-    private Button workoutItemPlanButton;
-    //results
-    private Button saveButton;
-    private Button cancelButton;
+    private TextView mName, mDescription, mExercises;
+    private Button workoutItemSaveButton, workoutItemPlanButton, saveButton, cancelButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +63,7 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
         initNavMenu();                  // Initialise nav menu
 
         /*------ LISTENERS ------*/
-        //cancel button listener
         cancelButton.setOnClickListener(v -> cancel());
-        //save button listener
         saveButton.setOnClickListener(v -> saveResult());
 
         /*------ INTENT ------*/
@@ -87,6 +79,7 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
         String exercises = "";
         ArrayList<String> exercisesArray = mWorkout.getExercises();
         for (String s : exercisesArray){
+            // Todo: check if we can use a stringbuilder here
             exercises += s + "\n";
         }
         mExercises.setText(exercises);

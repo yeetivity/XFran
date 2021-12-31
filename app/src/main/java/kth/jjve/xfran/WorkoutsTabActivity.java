@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
+
 import kth.jjve.xfran.adapters.WorkoutsRecyclerAdapter;
 import kth.jjve.xfran.viewmodels.WorkoutsViewModel;
 
@@ -108,7 +110,7 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onListItemClick(int position) {
-        //Do something on UI when the item is clicked
+        //Todo: Do something on UI when the item is clicked
     }
 
     public void onPlanButtonClick(int position){
@@ -121,7 +123,7 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
         Intent intent = new Intent (this, SaveResultsActivity.class);
         //send the position and the workout object selected
         intent.putExtra(WORKOUT_ID, position);
-        intent.putExtra(WORKOUT_OBJ,mWorkoutsViewModel.getWorkouts().getValue().get(position));
+        intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutsViewModel.getWorkouts().getValue()).get(position));
         Log.i(LOG_TAG, "workout sent: "+mWorkoutsViewModel.getWorkouts().getValue().get(position));
         startActivity(intent);
     }
