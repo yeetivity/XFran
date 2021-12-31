@@ -2,6 +2,19 @@
     <string name="app_name">XFran</string>
     <string name="nav_close">Close navigation drawer</string>
     <string name="nav_open">Open navigation drawer</string>
+    <string name="workout_title">Workout title</string>
+    <string name="workout_description">Workout description</string>
+    <string name="workout_exercises">Workout exercises</string>
+    <string name="add_plan">+ Plan</string>
+    <string name="add_result">+ Result</string>
+    <string name="time">Time:</string>
+    <string name="reps">Num. of reps:</string>
+    <string name="date">Date:</string>
+    <string name="feel_score">How did it feel?</string>
+    <string name="feel_comments">Comments:</string>
+    <string name="garmin_connect">Sync Garmin activity:</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_result">Add new result</string>
     <string name="mon">MON</string>
     <string name="tue">TUE</string>
     <string name="wed">WED</string>
@@ -12,7 +25,6 @@
     <string name="time_hint">hh:mm</string>
     <string name="back">BACK</string>
     <string name="next">NEXT</string>
-    <string name="save">SAVE</string>
     <string name="newEvent">NEW EVENT</string>
     <string name="startTime">Start time</string>
     <string name="endTime">End time</string>
@@ -48,7 +60,7 @@
     <string name="testmeasurementdate"> - </string>
     <string name="measurement_description">Latest\nMeasurement</string>
     <string name="edit">edit</string>
-    <string name="save">save</string>
+    <string name="save">SAVE</string>
     <string name="editprofile_title">Edit Profile</string>
     <string name="testpassword">testpassword</string>
     <string name="editProfile_firstname_hint">First Name</string>

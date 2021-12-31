@@ -4,21 +4,26 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.io.IOException;
 import java.util.List;
 
 import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.repositories.WorkoutRepository;
 
-public class TrainingDiaryViewModel extends ViewModel {
+public class WorkoutsViewModel extends ViewModel {
     private MutableLiveData<List<Workout>> mWorkouts; //subclass of LiveData (mutable)
     private WorkoutRepository mRepo;
 
-    public void init(){
+    public void init() {
         if(mWorkouts != null){
             return;
         }
         mRepo = WorkoutRepository.getInstance();
-        mWorkouts = mRepo.getWorkouts();
+        try {
+            mWorkouts = mRepo.getWorkouts();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public LiveData<List<Workout>> getWorkouts(){
