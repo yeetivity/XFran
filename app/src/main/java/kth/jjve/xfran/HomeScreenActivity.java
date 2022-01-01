@@ -79,13 +79,13 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.nav_workouts){
-            startActivity(new Intent(HomeScreenActivity.this, WorkoutsTabActivity.class));
+            startActivity(new Intent(HomeScreenActivity.this, WorkoutsListActivity.class));
         } else if (id == R.id.nav_login) {
             startActivity(new Intent(HomeScreenActivity.this, RegisterActivity.class));
         } else if (id == R.id.nav_profile) {
             startActivity(new Intent(HomeScreenActivity.this, ProfileActivity.class));
         } else if (id == R.id.nav_calendar){
-            startActivity(new Intent(HomeScreenActivity.this, CalendarViewActivity.class););
+            startActivity(new Intent(HomeScreenActivity.this, CalendarViewActivity.class));
         } else if (id == R.id.nav_logout){
             firebaseAuth.signOut();
             Toast.makeText(HomeScreenActivity.this, "Logged out", Toast.LENGTH_SHORT).show();

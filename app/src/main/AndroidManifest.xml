@@ -15,7 +15,7 @@
         android:theme="@style/Theme.XFran"
         android:name=".AppCtx">
         <activity
-            android:name=".WorkoutsTabActivity"
+            android:name=".WorkoutsListActivity"
             android:exported="false" />
         <activity
             android:name=".SaveResultsActivity"
