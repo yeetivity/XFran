@@ -142,12 +142,12 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/newEvent"
+                android:id="@+id/newEventInApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@null"
-                android:text="@string/newEvent"
+                android:text="@string/newEventInApp"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

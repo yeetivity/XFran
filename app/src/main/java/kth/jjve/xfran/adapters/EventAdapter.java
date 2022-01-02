@@ -20,29 +20,29 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 import kth.jjve.xfran.R;
-import kth.jjve.xfran.models.Event;
+import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
-public class EventAdapter extends ArrayAdapter<Event> {
+public class EventAdapter extends ArrayAdapter<EventInApp> {
 
 
-    public EventAdapter(@NonNull Context context, List<Event> events)
+    public EventAdapter(@NonNull Context context, List<EventInApp> eventInApps)
     {
-        super(context, 0, events);
+        super(context, 0, eventInApps);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
-        Event event = getItem(position);
+        EventInApp eventInApp = getItem(position);
 
         if (convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell, parent, false);
 
         TextView eventCellTV = convertView.findViewById(R.id.eventCellTV);
 
-        String eventTitle = event.getName() +" "+ CalendarUtils.cleanTime(event.getStartTime()) + " - " + CalendarUtils.cleanTime(event.getEndTime());
+        String eventTitle = eventInApp.getName() + " " + CalendarUtils.cleanTime(eventInApp.getStartTime()) + " - " + CalendarUtils.cleanTime(eventInApp.getEndTime());
         eventCellTV.setText(eventTitle); // output in recyclerview
         return convertView;
     }
