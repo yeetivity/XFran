@@ -1,4 +1,4 @@
-package kth.jjve.xfran;
+package kth.jjve.xfran.adapters;
 
 import android.app.Application;
 import android.content.Context;

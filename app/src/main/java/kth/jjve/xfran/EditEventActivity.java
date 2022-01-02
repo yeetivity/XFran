@@ -19,14 +19,14 @@ import java.time.LocalTime;
 import kth.jjve.xfran.models.Event;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
-public class EditEventActivity extends AppCompatActivity
-{
+public class EditEventActivity extends AppCompatActivity {
+
     private EditText eventName, eventStartTimeEdit, eventEndTimeEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_event);
+        setContentView(R.layout.act_calendar_editevent);
 
         /*------ HOOKS ------*/
         eventName = findViewById(R.id.eventName);
@@ -41,9 +41,7 @@ public class EditEventActivity extends AppCompatActivity
         eventDate.setText(s_date);
 
         /*-------- LISTENERS ------------*/
-        buttonSave.setOnClickListener(v -> {
-            saveEvent();
-        });
+        buttonSave.setOnClickListener(v -> saveEvent());
     }
 
     private void saveEvent(){

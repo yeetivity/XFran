@@ -10,7 +10,7 @@ import java.util.List;
 import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.repositories.WorkoutRepository;
 
-public class WorkoutsViewModel extends ViewModel {
+public class WorkoutsVM extends ViewModel {
     private MutableLiveData<List<Workout>> mWorkouts; //subclass of LiveData (mutable)
     private WorkoutRepository mRepo;
 

@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -21,21 +22,15 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Objects;
 
 import kth.jjve.xfran.adapters.WorkoutsRecyclerAdapter;
-import kth.jjve.xfran.viewmodels.WorkoutsViewModel;
+import kth.jjve.xfran.viewmodels.WorkoutsVM;
 
-public class WorkoutsTabActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, WorkoutsRecyclerAdapter.ListItemClickListener {
+public class WorkoutsActivity extends BaseActivity implements WorkoutsRecyclerAdapter.ListItemClickListener {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
     /*_________ VIEW MODEL _________*/
-    private WorkoutsViewModel mWorkoutsViewModel;
+    private WorkoutsVM mWorkoutsViewModel;
     private WorkoutsRecyclerAdapter mAdapter;
-
-    /*_________ VIEW _________*/
-    private RecyclerView mRecyclerView;
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private Toolbar toolbar;
 
     /*_________ INTENT _________*/
     public static String WORKOUT_ID="Workout ID";
@@ -44,67 +39,31 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workouts_tab);
+
+        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.act_workouts, contentFrameLayout);
+        navigationView.setCheckedItem(R.id.nav_workouts);
 
         /*------ HOOKS ------*/
-        drawerLayout = findViewById(R.id.drawerlayout_trainingdiary);
-        mRecyclerView = findViewById(R.id.rv_trainingdiary);
-        navigationView = findViewById(R.id.nav_view_diary);
-        toolbar = findViewById(R.id.diary_toolbar);
+        /*_________ VIEW _________*/
+        RecyclerView mRecyclerView = findViewById(R.id.rv_trainingdiary);
 
         /*----- VIEW MODEL -----*/
-        mWorkoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel.class);
+        mWorkoutsViewModel = ViewModelProviders.of(this).get(WorkoutsVM.class);
         mWorkoutsViewModel.init();
         mWorkoutsViewModel.getWorkouts().observe(this, workouts -> mAdapter.notifyDataSetChanged());
 
         /*------ INIT ------*/
-        setSupportActionBar(toolbar);
-        initNavMenu();
-        initRecyclerView();
+        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutsViewModel.getWorkouts().getValue(), this,this::onPlanButtonClick, this::onSaveButtonClick);
+        RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(lm);
+        mRecyclerView.setAdapter(mAdapter);
 
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        navigationView.setCheckedItem(R.id.nav_workouts);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        int id = menuItem.getItemId();
-        if (id == R.id.nav_home){
-            Intent intent = new Intent(WorkoutsTabActivity.this, HomeScreenActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    private void initRecyclerView(){
-        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutsViewModel.getWorkouts().getValue(), this,this::onPlanButtonClick, this::onSaveButtonClick);
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(lm);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-    private void initNavMenu(){
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                R.string.nav_open, R.string.nav_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_workouts);
     }
 
@@ -121,7 +80,6 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     public void onSaveButtonClick(int position){
         //start activity of workout saver
         Intent intent = new Intent (this, SaveResultsActivity.class);
-        //send the position and the workout object selected
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutsViewModel.getWorkouts().getValue()).get(position));
         Log.i(LOG_TAG, "workout sent: "+mWorkoutsViewModel.getWorkouts().getValue().get(position));

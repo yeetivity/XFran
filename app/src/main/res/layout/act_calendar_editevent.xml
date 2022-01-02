@@ -24,7 +24,9 @@
         android:layout_gravity="center"
         android:textSize="20sp"
         android:ems="10"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/eventDate"
@@ -56,7 +58,8 @@
         android:textSize="20sp"
         android:ems="10"
         android:inputType="time"
-        android:hint="@string/time_hint"/>
+        android:hint="@string/time_hint"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/eventEndTime"
@@ -77,7 +80,8 @@
         android:textSize="20sp"
         android:ems="10"
         android:inputType="time"
-        android:hint="@string/time_hint"/>
+        android:hint="@string/time_hint"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/eventSave"

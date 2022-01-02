@@ -10,21 +10,13 @@ import static kth.jjve.xfran.weeklycalendar.CalendarUtils.monthYearFromDate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.navigation.NavigationView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,12 +26,9 @@ import kth.jjve.xfran.models.Event;
 import kth.jjve.xfran.adapters.CalendarAdapter;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
-public class CalendarViewActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener, NavigationView.OnNavigationItemSelectedListener {
+public class CalendarViewActivity extends BaseActivity implements CalendarAdapter.OnItemListener {
 
     /*_________ VIEW _________*/
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private Toolbar toolbar;
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
@@ -47,22 +36,18 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weeklycalendar);
+
+        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.act_calendar_week, contentFrameLayout);
+        navigationView.setCheckedItem(R.id.nav_calendar);
 
         /*------ HOOKS ------*/
-        drawerLayout = findViewById(R.id.drawer_layout_weeklycalendar);
-        navigationView = findViewById(R.id.nav_view_weeklycalendar);
-        toolbar = findViewById(R.id.weeklycalendar_toolbar);
         Button buttonBack = findViewById(R.id.buttonBack);
         Button buttonNext = findViewById(R.id.buttonNext);
         Button buttonNewEvent = findViewById(R.id.newEvent);
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
-
-        /*------ INIT ------*/
-        setSupportActionBar(toolbar);   // Initialise toolbar
-        initNavMenu();                  // Initialise nav menu
 
         /*----- CALENDAR ------*/
         CalendarUtils.selectedDate = LocalDate.now(); //get today's date
@@ -109,32 +94,6 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
         EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
         eventListView.setAdapter(eventAdapter);
-    }
-
-
-    //TODO can this one be public in one of the classes?
-    private void initNavMenu(){
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-                R.string.nav_open, R.string.nav_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_calendar);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        // menu
-        int id = menuItem.getItemId();
-        if (id == R.id.nav_home){
-            finish();
-        } else if (id == R.id.nav_settings){
-            //Todo: create something towards settings
-            finish();
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     @Override

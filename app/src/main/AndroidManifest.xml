@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="kth.jjve.xfran">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".adapters.AppCtx"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.XFran"
-        android:name=".AppCtx">
+        android:theme="@style/Theme.XFran">
         <activity
-            android:name=".WorkoutsTabActivity"
+            android:name=".BaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WorkoutsActivity"
             android:exported="false" />
         <activity
             android:name=".SaveResultsActivity"
@@ -52,4 +54,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>
