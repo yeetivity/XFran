@@ -30,7 +30,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import kth.jjve.xfran.adapters.EventAdapter;
-import kth.jjve.xfran.models.Event;
+import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
@@ -55,7 +55,7 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
         toolbar = findViewById(R.id.weeklycalendar_toolbar);
         Button buttonBack = findViewById(R.id.buttonBack);
         Button buttonNext = findViewById(R.id.buttonNext);
-        Button buttonNewEvent = findViewById(R.id.newEvent);
+        Button buttonNewEvent = findViewById(R.id.newEventInApp);
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
@@ -106,8 +106,8 @@ public class CalendarViewActivity extends AppCompatActivity implements CalendarA
 
     private void setEventAdapter() {
         // takes the day's events from the list and outputs them
-        ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
-        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
+        ArrayList<EventInApp> dailyEventInApps = EventInApp.eventsForDate(CalendarUtils.selectedDate);
+        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEventInApps);
         eventListView.setAdapter(eventAdapter);
     }
 
