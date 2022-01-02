@@ -5,7 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/drawerlayout_trainingdiary"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".TrainingDiaryActivity"
+tools:context=".WorkoutsTabActivity"
 android:fitsSystemWindows="true">
 
 <com.google.android.material.navigation.NavigationView
