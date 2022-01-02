@@ -90,7 +90,7 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
         workoutItemSaveButton.setVisibility(GONE);
         workoutItemPlanButton.setVisibility(GONE);
 
-        //TODO finish this activity --> requires result object to create result fields
+        //TODO finish this activity --> work in progress
 
     }
 
@@ -134,7 +134,7 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
     }
 
     public void saveResult(){
-        // TODO save result object --> requires result object to save result
+        // TODO save result object --> work in progress
         Toast.makeText(this, "Save workout in development", Toast.LENGTH_SHORT).show();
     }
 
