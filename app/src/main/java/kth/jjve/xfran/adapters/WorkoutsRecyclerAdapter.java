@@ -67,10 +67,10 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         //Set the name of the 'Workout'
         ((ViewHolder) vh).mName.setText(mWorkouts.get(i).getTitle());
         //Set the details of the 'Workout'
-        ((ViewHolder) vh).mDescription.setText(mWorkouts.get(i).getType());
+        ((ViewHolder) vh).mDescription.setText(mWorkouts.get(i).getDescription());
         //Set the exercises of the 'Workout'
         String exercises = "";
-        ArrayList<String> exercisesArray = mWorkouts.get(i).getExercises();
+        ArrayList<String> exercisesArray = mWorkouts.get(i).getDetails();
         for (String s : exercisesArray) {
             exercises += s + "\n";
             // Todo: check if the following line works

@@ -32,14 +32,13 @@ public class WorkoutRepo {
 
     // Pretend to get data from a webservice or cage or online source
     public MutableLiveData<List<Workout>> getWorkouts() throws IOException {
-        setWorkouts(); //Todo: normally retrieve data from webservice or anything here
+        setWorkouts(); //Todo: save to firebase to allow custom workouts?
         MutableLiveData<List<Workout>> data = new MutableLiveData<>();
         data.setValue(dataSet);
         return data;
     }
 
     private void setWorkouts() throws IOException {
-        // This mimics what the database would normally do
         // For now it reads a json file with workout info
         // open json file
         InputStream workoutData = AppCtx.getContext().getResources().openRawResource(R.raw.workouts_data);
@@ -64,22 +63,30 @@ public class WorkoutRepo {
     public Workout readWorkout(JsonReader reader) throws IOException {
         // initialize workout parameters
         String title = null;
+        String tag = null;
         String type = null;
-        ArrayList<String> exercises = null;
+        String description = null;
+        ArrayList<String> details = null;
         // read workout info
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
             switch (name) {
-                case "name":
+                case "title":
                     title = reader.nextString();
                     break;
-                case "description":
+                case "tag":
+                    tag = reader.nextString();
+                    break;
+                case "type":
                     type = reader.nextString();
                     break;
-                case "exercises":
-                    // exercise is an array therefore requires a reader
-                    exercises = readExercises(reader);
+                case "description":
+                    description = reader.nextString();
+                    break;
+                case "details":
+                    // details is an array therefore requires a reader
+                    details = readDetails(reader);
                     break;
                 default:
                     reader.skipValue();
@@ -89,21 +96,22 @@ public class WorkoutRepo {
         reader.endObject();
         // create workout object from info read
         Workout workout = new Workout(title);
-        workout.setExercises(exercises);
+        workout.setDetails(details);
+        workout.setDescription(description);
         workout.setType(type);
+        workout.setTag(tag);
         return workout;
     }
 
-    public ArrayList<String> readExercises(JsonReader reader) throws IOException {
-        // exercises for each workout obj are stored in an ArrayList
-        ArrayList<String> exercises = new ArrayList<>();
-        // loop through exercises and read each of them
+    public ArrayList<String> readDetails(JsonReader reader) throws IOException {
+        // details for each workout obj are stored in an ArrayList
+        ArrayList<String> details = new ArrayList<>();
         reader.beginArray();
         while (reader.hasNext()) {
-            exercises.add(reader.nextString());
+            details.add(reader.nextString());
         }
         reader.endArray();
-        return exercises;
+        return details;
     }
 
 }

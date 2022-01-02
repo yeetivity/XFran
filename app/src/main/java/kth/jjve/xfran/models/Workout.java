@@ -2,7 +2,6 @@ package kth.jjve.xfran.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Workout constructor
@@ -10,11 +9,9 @@ import java.util.List;
 
 public class Workout implements Serializable {
 
-    private String title;
-    private String type;
-    private String timeCap;
-    private int rounds;
-    private ArrayList<String> exercises; //TODO substitute for exercises object
+    private String title, tag, type, description;
+    private ArrayList<String> details, equipment;
+    //Todo: exercise object --> needs exercise constructor
 
     public Workout(String title){
         this.title = title;
@@ -31,7 +28,15 @@ public class Workout implements Serializable {
         this.title = title;
     }
 
-    public String getType(){
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getType() {
         return type;
     }
 
@@ -39,28 +44,27 @@ public class Workout implements Serializable {
         this.type = type;
     }
 
-    public String getTimeCap() {
-        return timeCap;
+    public String getDescription(){
+        return description;
     }
 
-    public void setTimeCap(String timeCap) {
-        this.timeCap = timeCap;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public ArrayList<String> getExercises() {
-        return exercises;
+    public ArrayList<String> getDetails() {
+        return details;
     }
 
-    public void setExercises(ArrayList<String> exercises) {
-        this.exercises = exercises;
+    public void setDetails(ArrayList<String> details) {
+        this.details = details;
     }
 
-    public int getRounds() {
-        return rounds;
+    public ArrayList<String> getEquipment() {
+        return equipment;
     }
 
-    public void setRounds(int rounds) {
-        this.rounds = rounds;
+    public void setEquipment(ArrayList<String> equipment) {
+        this.equipment = equipment;
     }
-
 }
