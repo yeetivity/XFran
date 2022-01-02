@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import kth.jjve.xfran.adapters.EventAdapter;
-import kth.jjve.xfran.models.Event;
+import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
@@ -42,9 +43,9 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         navigationView.setCheckedItem(R.id.nav_calendar);
 
         /*------ HOOKS ------*/
-        Button buttonBack = findViewById(R.id.buttonBack);
-        Button buttonNext = findViewById(R.id.buttonNext);
-        Button buttonNewEvent = findViewById(R.id.newEvent);
+        ImageButton buttonBack = findViewById(R.id.buttonBack);
+        ImageButton buttonNext = findViewById(R.id.buttonNext);
+        Button buttonNewEvent = findViewById(R.id.newEventInApp);
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
@@ -91,8 +92,8 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
 
     private void setEventAdapter() {
         // takes the day's events from the list and outputs them
-        ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
-        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
+        ArrayList<EventInApp> dailyEventInApps = EventInApp.eventsForDate(CalendarUtils.selectedDate);
+        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEventInApps);
         eventListView.setAdapter(eventAdapter);
     }
 

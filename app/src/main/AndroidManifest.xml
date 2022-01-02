@@ -3,6 +3,9 @@
     package="kth.jjve.xfran">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
 
     <application
         android:name=".adapters.AppCtx"
@@ -17,7 +20,7 @@
             android:name=".BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".WorkoutsActivity"
+            android:name=".WorkoutsListActivity"
             android:exported="false" />
         <activity
             android:name=".SaveResultsActivity"
@@ -54,5 +57,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

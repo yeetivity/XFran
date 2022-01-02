@@ -9,7 +9,8 @@
     <string name="add_result">+ Result</string>
     <string name="time">Time:</string>
     <string name="reps">Num. of reps:</string>
-    <string name="date"> Date </string>
+    <string name="type">Score type:</string>
+    <string name="score">Score:</string>
     <string name="feel_score">How did it feel?</string>
     <string name="feel_comments">Comments:</string>
     <string name="garmin_connect">Sync Garmin activity:</string>
@@ -25,10 +26,15 @@
     <string name="time_hint">hh:mm</string>
     <string name="back">BACK</string>
     <string name="next">NEXT</string>
-    <string name="newEvent">NEW EVENT</string>
+    <string name="save">SAVE</string>
+    <string name="close">CLOSE</string>
+    <string name="export">export</string>
+    <string name="newEventInApp">NEW EVENT</string>
     <string name="startTime">Start time</string>
     <string name="endTime">End time</string>
-    <string name="nameEvent">Name of the event:</string>
+    <string name="date">Date</string>
+    <string name="nameEvent">Name of the Event:</string>
+    <string name="newEvent">NEW EVENT</string>
     <string name="menu_home">Home</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_trainingdiary">Training Diary</string>
@@ -46,7 +52,6 @@
     <string name="full_name">Full Name</string>
     <string name="reg_login">Already Registered?\nLogin Here</string>
     <string name="profilepicture">ProfilePicture</string>
-    <string name="btnchangepicture">btnChangePicture</string>
     <string name="profile_title">My Profile</string>
     <string name="test_name"> </string>
     <string name="testemail"> </string>
@@ -59,11 +64,12 @@
     <string name="testmeasurementdate"> - </string>
     <string name="measurement_description">Latest\nMeasurement</string>
     <string name="edit">edit</string>
-    <string name="save">SAVE</string>
     <string name="editprofile_title">Edit Profile</string>
     <string name="testpassword">testpassword</string>
     <string name="editProfile_firstname_hint">First Name</string>
     <string name="editProfile_lastname_hint">Last Name</string>
     <string name="editProfile_weight_hint">Weight [kg]</string>
     <string name="editProfile_height_hint">Height [cm]</string>
+    <string name="nohint" />
+    <string name="garmin_description">add_garmin_result</string>
 </resources>

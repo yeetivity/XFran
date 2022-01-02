@@ -10,16 +10,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Event {
+public class EventInApp {
 
-    public static ArrayList<Event> eventsList = new ArrayList<>();
+    public static ArrayList<EventInApp> eventsList = new ArrayList<>();
 
     private String name;
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
 
-    public Event(String name, LocalDate date, LocalTime startTime, LocalTime endTime) {
+    public EventInApp(String name, LocalDate date, LocalTime startTime, LocalTime endTime) {
         this.name = name;
         this.date = date;
         this.startTime = startTime;
@@ -40,17 +40,17 @@ public class Event {
 
     public LocalTime getEndTime() { return endTime; }
 
-    public void setEndTime(LocalTime time) { this.endTime = endTime; }
+    public void setEndTime(LocalTime time) { this.endTime = time; }
 
-    public static ArrayList<Event> eventsForDate(LocalDate date) {
-        ArrayList<Event> events = new ArrayList<>();
+    public static ArrayList<EventInApp> eventsForDate(LocalDate date) {
+        ArrayList<EventInApp> eventInApps = new ArrayList<>();
 
-        for(Event event : eventsList) {
-            if(event.getDate().equals(date))
-                events.add(event);
+        for(EventInApp eventInApp : eventsList) {
+            if(eventInApp.getDate().equals(date))
+                eventInApps.add(eventInApp);
         }
 
-        return events;
+        return eventInApps;
     }
 
 }
