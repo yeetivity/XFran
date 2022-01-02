@@ -21,14 +21,14 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.Objects;
 
 import kth.jjve.xfran.adapters.WorkoutsRecyclerAdapter;
-import kth.jjve.xfran.viewmodels.WorkoutsViewModel;
+import kth.jjve.xfran.viewmodels.WorkoutVM;
 
-public class WorkoutsTabActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, WorkoutsRecyclerAdapter.ListItemClickListener {
+public class WorkoutsListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, WorkoutsRecyclerAdapter.ListItemClickListener {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
     /*_________ VIEW MODEL _________*/
-    private WorkoutsViewModel mWorkoutsViewModel;
+    private WorkoutVM mWorkoutVM;
     private WorkoutsRecyclerAdapter mAdapter;
 
     /*_________ VIEW _________*/
@@ -53,9 +53,9 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
         toolbar = findViewById(R.id.diary_toolbar);
 
         /*----- VIEW MODEL -----*/
-        mWorkoutsViewModel = ViewModelProviders.of(this).get(WorkoutsViewModel.class);
-        mWorkoutsViewModel.init();
-        mWorkoutsViewModel.getWorkouts().observe(this, workouts -> mAdapter.notifyDataSetChanged());
+        mWorkoutVM = ViewModelProviders.of(this).get(WorkoutVM.class);
+        mWorkoutVM.init();
+        mWorkoutVM.getWorkouts().observe(this, workouts -> mAdapter.notifyDataSetChanged());
 
         /*------ INIT ------*/
         setSupportActionBar(toolbar);
@@ -83,7 +83,7 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         if (id == R.id.nav_home){
-            Intent intent = new Intent(WorkoutsTabActivity.this, HomeScreenActivity.class);
+            Intent intent = new Intent(WorkoutsListActivity.this, HomeScreenActivity.class);
             startActivity(intent);
             finish();
         }
@@ -92,7 +92,7 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
     }
 
     private void initRecyclerView(){
-        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutsViewModel.getWorkouts().getValue(), this,this::onPlanButtonClick, this::onSaveButtonClick);
+        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutVM.getWorkouts().getValue(), this,this::onPlanButtonClick, this::onSaveButtonClick);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(mAdapter);
@@ -123,8 +123,8 @@ public class WorkoutsTabActivity extends AppCompatActivity implements Navigation
         Intent intent = new Intent (this, SaveResultsActivity.class);
         //send the position and the workout object selected
         intent.putExtra(WORKOUT_ID, position);
-        intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutsViewModel.getWorkouts().getValue()).get(position));
-        Log.i(LOG_TAG, "workout sent: "+mWorkoutsViewModel.getWorkouts().getValue().get(position));
+        intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
+        Log.i(LOG_TAG, "workout sent: "+ mWorkoutVM.getWorkouts().getValue().get(position));
         startActivity(intent);
     }
 

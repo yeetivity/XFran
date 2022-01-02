@@ -9,7 +9,9 @@
     <string name="add_result">+ Result</string>
     <string name="time">Time:</string>
     <string name="reps">Num. of reps:</string>
-    <string name="date"> Date </string>
+    <string name="type">Score type:</string>
+    <string name="score">Score:</string>
+    <string name="date"> Date:</string>
     <string name="feel_score">How did it feel?</string>
     <string name="feel_comments">Comments:</string>
     <string name="garmin_connect">Sync Garmin activity:</string>

@@ -1,7 +1,7 @@
 [   {
         "name": "Fran",
         "description": "21-15-9 Reps for Time",
-        "excercises": [
+        "exercises": [
             "Thruster (95/65lbs)",
             "Pull-Ups"
         ],
@@ -13,9 +13,38 @@
         "permalink": "EDE3D2D7"
     },
     {
+        "name": "xYEET goes BIRL",
+        "description": "For Max Weight",
+        "exercises": [
+            "3x4 Power Clean",
+            "3x7 Back Squat",
+            "3x7 Box Step-Up",
+            "3x7 Bench Press",
+            "3x7 Deadlift"
+        ],
+        "equipment": [
+            "barbell",
+            "bench",
+            "boxjump"
+        ],
+        "tag": "",
+        "permalink": "Y69EE42T"
+    },
+    {
+        "name": "Merengue",
+        "description": "EMOM 20' alternating between",
+        "exercises": [
+            "Right arm merengue mix",
+            "Left arm merengue mix"
+        ],
+        "equipment": [],
+        "tag": "",
+        "permalink": "Y69EE42T"
+    },
+    {
         "name": "Dallas 5",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "1 Mile Run",
             "100 Elbow Plank Push-Ups",
             "150 Sit-Ups",
@@ -63,7 +92,7 @@
     {
         "name": "Orbison",
         "description": "EMOM 20 Minutes",
-        "excercises": [
+        "exercises": [
             "4 Burpees",
             "6 Air Squats",
             "8 Sit-Ups"
@@ -75,7 +104,7 @@
     {
         "name": "Angie",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "100 Pull-Ups",
             "100 Push-Ups",
             "100 Sit-Ups",
@@ -90,7 +119,7 @@
     {
         "name": "Barbara",
         "description": "5 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "20 Pull-Ups",
             "30 Push-Ups",
             "40 Sit-Ups",
@@ -105,7 +134,7 @@
     {
         "name": "Chelsea",
         "description": "EMOM 30 Minutes",
-        "excercises": [
+        "exercises": [
             "5 Pull-Ups",
             "10 Push-Ups",
             "15 Squats"
@@ -119,7 +148,7 @@
     {
         "name": "Cindy",
         "description": "AMRAP 20 Minutes",
-        "excercises": [
+        "exercises": [
             "5 Pull-Ups",
             "10 Push-Ups",
             "15 Squats"
@@ -133,7 +162,7 @@
     {
         "name": "Diane",
         "description": "21-15-9 Reps for Time",
-        "excercises": [
+        "exercises": [
             "Deadlift 225lbs",
             "Handstand Push-Ups"
         ],
@@ -146,7 +175,7 @@
     {
         "name": "Elizabeth",
         "description": "21-15-9 Reps for Time",
-        "excercises": [
+        "exercises": [
             "Clean 135lbs",
             "Ring Dips"
         ],
@@ -160,7 +189,7 @@
     {
         "name": "Grace",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "30 Clean and Jerk 135lbs"
         ],
         "equipment": [
@@ -172,7 +201,7 @@
     {
         "name": "Helen",
         "description": "3 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "400m Run",
             "21 Kettlebell Swings (1.5 pood)",
             "12 Pull-Ups"
@@ -188,7 +217,7 @@
     {
         "name": "Isabel",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "30 Snatches 135lbs"
         ],
         "equipment": [
@@ -200,7 +229,7 @@
     {
         "name": "Jackie",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "1000m Row",
             "50 Thrusters 45lbs",
             "30 Pull-Ups"
@@ -216,7 +245,7 @@
     {
         "name": "Karen",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "150 Wall-Balls"
         ],
         "equipment": [
@@ -228,7 +257,7 @@
     {
         "name": "Linda",
         "description": "10-9-8-7-6-5-4-3-2-1 Reps for Time",
-        "excercises": [
+        "exercises": [
             "Deadlift 1 1/2 BW",
             "Bench BW",
             "Clean 3/4 BW"
@@ -243,7 +272,7 @@
     {
         "name": "Mary",
         "description": "AMRAP 20 Minutes",
-        "excercises": [
+        "exercises": [
             "5 Handstand Push-Ups",
             "10 Pistolsquats",
             "15 Pull-Ups"
@@ -257,7 +286,7 @@
     {
         "name": "Nancy",
         "description": "5 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "400m Run",
             "15 Overhead Squats 95lbs"
         ],
@@ -271,7 +300,7 @@
     {
         "name": "Annie",
         "description": "50-40-30-20-10 Reps for Time",
-        "excercises": [
+        "exercises": [
             "Double-Unders",
             "Sit-Ups"
         ],
@@ -284,7 +313,7 @@
     {
         "name": "Eva",
         "description": "5 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "800m Run",
             "30 Kettlebell Swings (2 pood)",
             "30 Pull-Ups"
@@ -300,7 +329,7 @@
     {
         "name": "Kelly",
         "description": "5 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "400m Run",
             "30 Box Jumps (24 inch)",
             "30 Wall-Balls (20lbs)"
@@ -316,7 +345,7 @@
     {
         "name": "Lynne",
         "description": "5 Rounds for max Reps (No Time Cap)",
-        "excercises": [
+        "exercises": [
             "BW Bench Press",
             "Pull-Ups"
         ],
@@ -331,7 +360,7 @@
     {
         "name": "Nicole",
         "description": "AMRAP 20 Minutes",
-        "excercises": [
+        "exercises": [
             "400m Run",
             "Max-Rep Pull-Ups"
         ],
@@ -345,7 +374,7 @@
     {
         "name": "Triplet MGG",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "800m Row",
             "20 Squats",
             "20 Sit-Ups",
@@ -368,7 +397,7 @@
     {
         "name": "Gut Buster",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "150 Sit-Ups",
             "1000m Row",
             "150 Sit-Ups"
@@ -382,7 +411,7 @@
     {
         "name": "Row Cindy Row",
         "description": "AMRAP 20 Minutes",
-        "excercises": [
+        "exercises": [
             "5 Pull-Ups",
             "10 Push-Ups",
             "15 Squats",
@@ -398,7 +427,7 @@
     {
         "name": "Christine",
         "description": "3 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "500m Row",
             "12 Deadlifts",
             "21 Box Jumps"
@@ -414,7 +443,7 @@
     {
         "name": "San Fran Crippler",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "30 Back Squats",
             "1000m Row"
         ],
@@ -428,7 +457,7 @@
     {
         "name": "BCC Sanctional 19.1",
         "description": "5 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "500m Row",
             "100m Swim"
         ],
@@ -442,7 +471,7 @@
     {
         "name": "Holy lungs",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "30 Wall Balls",
             "500m Row",
             "30 Push-Ups",
@@ -464,7 +493,7 @@
     {
         "name": "Row sprints",
         "description": "20 Minute EMOM",
-        "excercises": [
+        "exercises": [
             "1min Row",
             "1min Rest"
         ],
@@ -477,7 +506,7 @@
     {
         "name": "Timed Row Intervals",
         "description": "10sec Rest between each Repeat",
-        "excercises": [
+        "exercises": [
             "10x2min Row"
         ],
         "equipment": [
@@ -489,7 +518,7 @@
     {
         "name": "Can't Walk",
         "description": "30min EMOM",
-        "excercises": [
+        "exercises": [
             "15 calorie Row",
             "Front Squats"
         ],
@@ -503,7 +532,7 @@
     {
         "name": "Boat Race",
         "description": "3 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "500m Row",
             "400m Run"
         ],
@@ -517,7 +546,7 @@
     {
         "name": "The 50s",
         "description": "Buy in: 1000m Row",
-        "excercises": [
+        "exercises": [
             "50 Burpees",
             "50 Air Squats",
             "50 Hollow Rocks",
@@ -532,7 +561,7 @@
     {
         "name": "60min Row",
         "description": "Maximum Distance",
-        "excercises": [
+        "exercises": [
             "60min Row"
         ],
         "equipment": [
@@ -544,7 +573,7 @@
     {
         "name": "Moreno",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "2000m Row",
             "56 Burpees"
         ],
@@ -557,7 +586,7 @@
     {
         "name": "Triple Sweat",
         "description": "24min EMOM",
-        "excercises": [
+        "exercises": [
             "15 cal Row",
             "15 Burpees",
             "30 Air Squats"
@@ -571,7 +600,7 @@
     {
         "name": "The Ghost",
         "description": "6 Rounds for Total Reps in 23mins",
-        "excercises": [
+        "exercises": [
             "1min Row (for calories)",
             "1min Burpees",
             "1min Double Unders",
@@ -587,7 +616,7 @@
     {
         "name": "Andrew Desperito",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "2000m Row",
             "50  Thrusters",
             "2000m Row"
@@ -602,7 +631,7 @@
     {
         "name": "Double Trouble",
         "description": "21-15-9 Calories For Time",
-        "excercises": [
+        "exercises": [
             "Airbike",
             "Row"
         ],
@@ -616,7 +645,7 @@
     {
         "name": "Caitlin",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "2000m Row",
             "120cal Airbike",
             "1mile Run"
@@ -632,7 +661,7 @@
     {
         "name": "Lactic Repeats",
         "description": "3 Rounds For Time",
-        "excercises": [
+        "exercises": [
             "250m Row",
             "15 Kettlebell Swings",
             "25 Burpees",
@@ -650,7 +679,7 @@
     {
         "name": "Alcatraz",
         "description": "6 Rounds for Time, 15min Timecap",
-        "excercises": [
+        "exercises": [
             "15cal Row",
             "15 Kettlebell Swings",
             "15 Hand-Release Push-Ups"
@@ -665,7 +694,7 @@
     {
         "name": "Shinners",
         "description": "Partner-AMRAP for 25mins",
-        "excercises": [
+        "exercises": [
             "30 Burpees",
             "1000m Row",
             "30 Kettlebell Swings"
@@ -680,7 +709,7 @@
     {
         "name": "Foundation Ten",
         "description": "5min AMRAP",
-        "excercises": [
+        "exercises": [
             "5 Overhead Squats",
             "15 cal Row"
         ],
@@ -694,7 +723,7 @@
     {
         "name": "Foundation Three",
         "description": "5min AMRAP",
-        "excercises": [
+        "exercises": [
             "10 Push Presses",
             "10 cal Row"
         ],
@@ -708,7 +737,7 @@
     {
         "name": "Easy Burpees",
         "description": "8min AMRAP",
-        "excercises": [
+        "exercises": [
             "Burpees"
         ],
         "equipment": [],
@@ -718,7 +747,7 @@
     {
         "name": "The Running Sandwich",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "400m Run",
             "30 Air Squats",
             "30 Sit-Ups",
@@ -736,7 +765,7 @@
     {
         "name": "Push - Pull - Run",
         "description": "5 Rounds For Time",
-        "excercises": [
+        "exercises": [
             "10 Push-Ups",
             "10 Pull-Ups",
             "800m Run"
@@ -751,7 +780,7 @@
     {
         "name": "Burpee Box Jumps",
         "description": "8min AMRAP",
-        "excercises": [
+        "exercises": [
             "8 Burpee Box Jumps",
             "16 Kettlebell Swings"
         ],
@@ -765,7 +794,7 @@
     {
         "name": "10 for 10",
         "description": "10min AMRAP",
-        "excercises": [
+        "exercises": [
             "10 Kettlebell Swings",
             "10 Box Jumps",
             "10 Ring Dips"
@@ -781,7 +810,7 @@
     {
         "name": "Dumbells and Jump Ropes",
         "description": "Max Reps",
-        "excercises": [
+        "exercises": [
             "3min Rope-Skipping",
             "1min Rest",
             "3min Weighted Sit-Ups",
@@ -800,7 +829,7 @@
     {
         "name": "Mini Murph",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "1mile Run",
             "100 Push-Ups",
             "200 Air-Squats",
@@ -815,7 +844,7 @@
     {
         "name": "Squats",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "300 Air Squats"
         ],
         "equipment": [],
@@ -825,7 +854,7 @@
     {
         "name": "Full-Body Sprint",
         "description": "7 Rounds For Time",
-        "excercises": [
+        "exercises": [
             "10 Push-Ups",
             "10 Air Squats",
             "200m Run"
@@ -839,7 +868,7 @@
     {
         "name": "One more home WOD",
         "description": "8 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "10 Push-Ups",
             "10 Air Squats",
             "10 Burpees",
@@ -852,7 +881,7 @@
     {
         "name": "Well Rounded",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "400m Run",
             "50 Air Squats",
             "400m Run",
@@ -870,7 +899,7 @@
     {
         "name": "Core Blaster",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "1mile Run",
             "100 Sit-Ups",
             "100 Superman",
@@ -885,7 +914,7 @@
     {
         "name": "Leg Blaster",
         "description": "10 Rounds AMRAMP",
-        "excercises": [
+        "exercises": [
             "30sec Max Reps Squat Jumps",
             "30sec Rest"
         ],
@@ -896,7 +925,7 @@
     {
         "name": "8min All-Out",
         "description": "For Max Reps",
-        "excercises": [
+        "exercises": [
             "2min Push-Ups",
             "1min Rest",
             "2min Sit-Ups",
@@ -910,7 +939,7 @@
     {
         "name": "Long Distance Burpees",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "800m Burpee Broad Jumps"
         ],
         "equipment": [],
@@ -920,7 +949,7 @@
     {
         "name": "Bodyweight Triplet",
         "description": "21-15-9 Reps for Time",
-        "excercises": [
+        "exercises": [
             "Sit-Ups",
             "Push-Ups",
             "Air Squats"
@@ -932,7 +961,7 @@
     {
         "name": "Fantastic 50s",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "50 Jump Tucks",
             "50 Push-Ups",
             "50 Air Squats",
@@ -949,7 +978,7 @@
     {
         "name": "5K",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "5K Run"
         ],
         "equipment": [
@@ -961,7 +990,7 @@
     {
         "name": "Burpee Sprints",
         "description": "5 2min Rounds for Max Reps",
-        "excercises": [
+        "exercises": [
             "10 Burpees",
             "200m Run",
             "Max-Rep Burpees",
@@ -976,7 +1005,7 @@
     {
         "name": "Durante Core",
         "description": "5 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "10 Hollow Rocks",
             "10 V-Ups",
             "10 Tuck Ups",
@@ -990,7 +1019,7 @@
     {
         "name": "Home abs killer",
         "description": "2 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "50 Sit-Ups",
             "100 Jump Ropes",
             "100 Flutter Kicks (per Leg)",
@@ -1009,7 +1038,7 @@
     {
         "name": "Home abs killer v2",
         "description": "4 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "30 V-Ups",
             "60 Bicycle-Crunches",
             "30 Weighted Sit-Ups",
@@ -1027,7 +1056,7 @@
     {
         "name": "Hold Tight!",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "2000m Row",
             "75 Kettlebell-Swings",
             "1500m Row",
@@ -1045,7 +1074,7 @@
     {
         "name": "Row 30/30 x4",
         "description": "4 Rounds for Max Distance",
-        "excercises": [
+        "exercises": [
             "30sec Rowing",
             "30sec Rest"
         ],
@@ -1058,7 +1087,7 @@
     {
         "name": "Basic Bitch Booty Blaster",
         "description": "15 Minute AMRAP",
-        "excercises": [
+        "exercises": [
             "20 Frog Pumps",
             "20 Single Glute Bridges (10 each leg)",
             "20 Air Squats",
@@ -1071,7 +1100,7 @@
     {
         "name": "Freddy Krueger",
         "description": "21-15-9 Reps For Time",
-        "excercises": [
+        "exercises": [
             "Kettlebell-Swings",
             "Burpees"
         ],
@@ -1084,7 +1113,7 @@
     {
         "name": "Death Row",
         "description": "20 Minute EMOM",
-        "excercises": [
+        "exercises": [
             "Odd Minutes: 20cal. Row",
             "Even Minutes: 15 Burpees"
         ],
@@ -1097,7 +1126,7 @@
     {
         "name": "Open 15.5",
         "description": "27-21-15-9 Reps For Time",
-        "excercises": [
+        "exercises": [
             "Row (calories)",
             "Thrusters"
         ],
@@ -1111,7 +1140,7 @@
     {
         "name": "190102",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "9 Thrusters",
             "1000m Row",
             "15 Thrusters",
@@ -1128,7 +1157,7 @@
     {
         "name": "Rowing Thrusters",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "1000m Row",
             "50 Thrusters",
             "40 Hand-Release Push-Ups",
@@ -1149,7 +1178,7 @@
     {
         "name": "Surfer on Acid",
         "description": "3 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "400m Run",
             "21 Burpees"
         ],
@@ -1162,7 +1191,7 @@
     {
         "name": "The General",
         "description": "5 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "35cal Row",
             "5 Deadlifts",
             "3 Power Cleans"
@@ -1177,7 +1206,7 @@
     {
         "name": "Lumpy",
         "description": "3 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "250m Row",
             "6 Power Cleans",
             "6 Thrusters",
@@ -1194,7 +1223,7 @@
     {
         "name": "Blake Dremann",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "1000m Row",
             "50 Push-Ups",
             "30 Bodyweight-Deadlifts",
@@ -1214,7 +1243,7 @@
     {
         "name": "Zachary Tellier",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "10 Burpees",
             "10 Burpess",
             "25 Push-Ups",
@@ -1238,7 +1267,7 @@
     {
         "name": "The Happening",
         "description": "For Time",
-        "excercises": [
+        "exercises": [
             "10-20-30-40-50-60-70-80-90-100 Alternating Lunges",
             "10 Burpees after each Set"
         ],
@@ -1249,7 +1278,7 @@
     {
         "name": "Bare Arsed",
         "description": "6 Rounds for Time",
-        "excercises": [
+        "exercises": [
             "20 Air Squats",
             "10 Hand Release Push-Ups",
             "20 Lunges",
@@ -1262,7 +1291,7 @@
     {
         "name": "AMBAP",
         "description": "5 Minute Partner AMRAP",
-        "excercises": [
+        "exercises": [
             "Burpees"
         ],
         "equipment": [],
@@ -1272,7 +1301,7 @@
     {
         "name": "The Climb",
         "description": "5 Rounds for Reps / 90sec AMRAP + 90sec Rest",
-        "excercises": [
+        "exercises": [
             "40 Mountain Climbers",
             "10 Sit-Ups",
             "Max Lunges"
@@ -1284,30 +1313,12 @@
     {
         "name": "Nicole Upside Down",
         "description": "20 Minute AMRAP",
-        "excercises": [
+        "exercises": [
             "Max unbroken Shoulder Taps",
             "400m Run"
         ],
         "equipment": [],
         "tag": "",
         "permalink": "67E2E5B8"
-    },
-    {
-        "name": "xYEET goes BIRL",
-        "description": "For Max Weight",
-        "excercises": [
-            "3x4 Power Clean",
-            "3x7 Back Squat",
-            "3x7 Box Step-Up",
-            "3x7 Bench Press",
-            "3x7 Deadlift"
-        ],
-        "equipment": [
-            "barbell",
-            "bench",
-            "boxjump"
-        ],
-        "tag": "",
-        "permalink": "Y69EE42T"
     }
 ]

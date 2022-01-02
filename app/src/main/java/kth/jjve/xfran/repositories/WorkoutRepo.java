@@ -18,14 +18,14 @@ import kth.jjve.xfran.models.Workout;
 /**
  * Singleton pattern
  */
-public class WorkoutRepository {
+public class WorkoutRepo {
 
-    private static WorkoutRepository instance;
+    private static WorkoutRepo instance;
     private ArrayList<Workout> dataSet = new ArrayList<>();
 
-    public static WorkoutRepository getInstance() {
+    public static WorkoutRepo getInstance() {
         if (instance == null) {
-            instance = new WorkoutRepository();
+            instance = new WorkoutRepo();
         }
         return instance;
     }
@@ -77,9 +77,8 @@ public class WorkoutRepository {
                 case "description":
                     type = reader.nextString();
                     break;
-                case "excercises":
+                case "exercises":
                     // exercise is an array therefore requires a reader
-                    // Todo: change the spelling to correct spelling
                     exercises = readExercises(reader);
                     break;
                 default:

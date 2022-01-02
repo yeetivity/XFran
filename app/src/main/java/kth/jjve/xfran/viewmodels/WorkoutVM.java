@@ -8,17 +8,17 @@ import java.io.IOException;
 import java.util.List;
 
 import kth.jjve.xfran.models.Workout;
-import kth.jjve.xfran.repositories.WorkoutRepository;
+import kth.jjve.xfran.repositories.WorkoutRepo;
 
-public class WorkoutsViewModel extends ViewModel {
+public class WorkoutVM extends ViewModel {
     private MutableLiveData<List<Workout>> mWorkouts; //subclass of LiveData (mutable)
-    private WorkoutRepository mRepo;
+    private WorkoutRepo mRepo;
 
     public void init() {
         if(mWorkouts != null){
             return;
         }
-        mRepo = WorkoutRepository.getInstance();
+        mRepo = WorkoutRepo.getInstance();
         try {
             mWorkouts = mRepo.getWorkouts();
         } catch (IOException e) {

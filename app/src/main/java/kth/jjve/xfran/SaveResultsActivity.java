@@ -1,10 +1,12 @@
 package kth.jjve.xfran;
+/*
+Activity to let the user save a result
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,8 +71,8 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
         /*------ INTENT ------*/
         //get selected workout position and object from intent
         Intent intent = getIntent();
-        position = intent.getIntExtra(WorkoutsTabActivity.WORKOUT_ID,1);
-        mWorkout = (Workout) intent.getSerializableExtra(WorkoutsTabActivity.WORKOUT_OBJ);
+        position = intent.getIntExtra(WorkoutsListActivity.WORKOUT_ID,1);
+        mWorkout = (Workout) intent.getSerializableExtra(WorkoutsListActivity.WORKOUT_OBJ);
         Log.i(LOG_TAG, "workout read: "+mWorkout);
 
         //fill the UI with workout info
@@ -88,7 +90,7 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
         workoutItemSaveButton.setVisibility(GONE);
         workoutItemPlanButton.setVisibility(GONE);
 
-        //TODO finish this activity --> requires result object to create result fields
+        //TODO finish this activity --> work in progress
 
     }
 
@@ -114,7 +116,7 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
             Intent intent = new Intent(SaveResultsActivity.this, HomeScreenActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_workouts){
-            Intent intent = new Intent(SaveResultsActivity.this, WorkoutsTabActivity.class);
+            Intent intent = new Intent(SaveResultsActivity.this, WorkoutsListActivity.class);
             startActivity(intent);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -132,13 +134,13 @@ public class SaveResultsActivity extends AppCompatActivity implements Navigation
     }
 
     public void saveResult(){
-        // TODO save result object --> requires result object to save result
+        // TODO save result object --> work in progress
         Toast.makeText(this, "Save workout in development", Toast.LENGTH_SHORT).show();
     }
 
     public void cancel(){
         //cancel
-        Intent intent = new Intent (this, WorkoutsTabActivity.class);
+        Intent intent = new Intent (this, WorkoutsListActivity.class);
         startActivity(intent);
     }
 }
