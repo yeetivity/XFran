@@ -24,7 +24,9 @@
         android:layout_gravity="center"
         android:textSize="20sp"
         android:ems="10"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/eventDate"
@@ -56,7 +58,8 @@
         android:textSize="20sp"
         android:ems="10"
         android:inputType="time"
-        android:hint="@string/time_hint"/>
+        android:hint="@string/time_hint"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/eventEndTime"
@@ -77,13 +80,18 @@
         android:textSize="20sp"
         android:ems="10"
         android:inputType="time"
-        android:hint="@string/time_hint"/>
+        android:hint="@string/time_hint"
+        android:importantForAutofill="no" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/close"
@@ -94,6 +102,10 @@
             android:textSize="20sp"
             android:text="@string/close" />
 
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"/>
+
         <Button
             android:id="@+id/eventSave"
             android:layout_width="wrap_content"
@@ -103,6 +115,10 @@
             android:textSize="20sp"
             android:layout_weight="1"/>
 
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"/>
+
         <Button
             android:id="@+id/savetogoogle"
             android:layout_width="wrap_content"
@@ -111,6 +127,10 @@
             android:textSize="20sp"
             android:text="@string/export"
             android:layout_weight="1"/>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

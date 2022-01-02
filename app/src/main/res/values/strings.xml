@@ -11,7 +11,6 @@
     <string name="reps">Num. of reps:</string>
     <string name="type">Score type:</string>
     <string name="score">Score:</string>
-    <string name="date"> Date:</string>
     <string name="feel_score">How did it feel?</string>
     <string name="feel_comments">Comments:</string>
     <string name="garmin_connect">Sync Garmin activity:</string>
@@ -36,8 +35,6 @@
     <string name="date">Date</string>
     <string name="nameEvent">Name of the Event:</string>
     <string name="newEvent">NEW EVENT</string>
-    <string name="startTime">Start time</string>
-    <string name="endTime">End time</string>
     <string name="menu_home">Home</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_trainingdiary">Training Diary</string>
@@ -73,4 +70,6 @@
     <string name="editProfile_lastname_hint">Last Name</string>
     <string name="editProfile_weight_hint">Weight [kg]</string>
     <string name="editProfile_height_hint">Height [cm]</string>
+    <string name="nohint" />
+    <string name="garmin_description">add_garmin_result</string>
 </resources>

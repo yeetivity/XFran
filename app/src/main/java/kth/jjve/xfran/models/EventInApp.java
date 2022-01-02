@@ -40,7 +40,7 @@ public class EventInApp {
 
     public LocalTime getEndTime() { return endTime; }
 
-    public void setEndTime(LocalTime time) { this.endTime = endTime; }
+    public void setEndTime(LocalTime time) { this.endTime = time; }
 
     public static ArrayList<EventInApp> eventsForDate(LocalDate date) {
         ArrayList<EventInApp> eventInApps = new ArrayList<>();

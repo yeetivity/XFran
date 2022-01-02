@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-import kth.jjve.xfran.AppCtx;
+import kth.jjve.xfran.adapters.AppCtx;
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.Workout;
 

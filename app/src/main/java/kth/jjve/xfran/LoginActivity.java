@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_login);
+        setContentView(R.layout.act_login);
 
         /*------------ HOOKS ------------*/
         mEmail = findViewById(R.id.log_email);

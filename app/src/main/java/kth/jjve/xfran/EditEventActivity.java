@@ -33,7 +33,7 @@ public class EditEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_event);
+        setContentView(R.layout.act_calendar_editevent);
 
         /*------ HOOKS ------*/
         eventName = findViewById(R.id.eventName);
@@ -50,8 +50,8 @@ public class EditEventActivity extends AppCompatActivity {
         eventDate.setText(s_date);
 
         /*-------- LISTENERS ------------*/
-        buttonClose.setOnClickListener(v -> finish());
         buttonSave.setOnClickListener(v -> saveEvent());
+        buttonClose.setOnClickListener(v -> finish());
         buttonExport.setOnClickListener(this::onClick);
     }
 

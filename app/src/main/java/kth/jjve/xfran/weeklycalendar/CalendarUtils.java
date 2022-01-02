@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CalendarUtils {
     public static LocalDate selectedDate;
@@ -38,7 +39,7 @@ public class CalendarUtils {
     public static ArrayList<LocalDate> daysInWeekArray(LocalDate selectedDate) {
         ArrayList<LocalDate> days = new ArrayList<>();
         LocalDate current = mondayForDate(selectedDate);
-        LocalDate endDate = current.plusWeeks(1);
+        LocalDate endDate = Objects.requireNonNull(current).plusWeeks(1);
 
         while (current.isBefore(endDate)) {
             days.add(current);

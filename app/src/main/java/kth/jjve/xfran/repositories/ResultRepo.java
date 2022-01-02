@@ -11,7 +11,7 @@ import kth.jjve.xfran.models.Result;
 
 public class ResultRepo {
 
-    private static final String LOG_TAG = ResultRepo.class.getSimpleName();;
+    private static final String LOG_TAG = ResultRepo.class.getSimpleName();
     private static ResultRepo instance;
     private ArrayList<Result> dataSet = new ArrayList<>();
 
