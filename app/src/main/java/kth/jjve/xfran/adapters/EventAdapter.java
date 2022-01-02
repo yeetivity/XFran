@@ -42,7 +42,7 @@ public class EventAdapter extends ArrayAdapter<EventInApp> {
 
         TextView eventCellTV = convertView.findViewById(R.id.eventCellTV);
 
-        String eventTitle = eventInApp.getName() +" "+ CalendarUtils.cleanTime(eventInApp.getStartTime()) + " - " + CalendarUtils.cleanTime(eventInApp.getEndTime());
+        String eventTitle = eventInApp.getName() + " " + CalendarUtils.cleanTime(eventInApp.getStartTime()) + " - " + CalendarUtils.cleanTime(eventInApp.getEndTime());
         eventCellTV.setText(eventTitle); // output in recyclerview
         return convertView;
     }

@@ -12,6 +12,7 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -49,16 +50,16 @@ public class EditEventActivity extends AppCompatActivity {
         eventDate.setText(s_date);
 
         /*-------- LISTENERS ------------*/
-        buttonClose.setOnClickListener(v -> { finish(); });
-        buttonSave.setOnClickListener(v -> { saveEvent(); });
-        buttonExport.setOnClickListener(v -> { saveEventToCalendar(); });
+        buttonClose.setOnClickListener(v -> finish());
+        buttonSave.setOnClickListener(v -> saveEvent());
+        buttonExport.setOnClickListener(this::onClick);
     }
 
     private void setEventInApp(){
         // method to obtain the events name and start/end time
-        s_eventName = eventName.getText().toString(); //given name
-        startTime = eventStartTimeEdit.getText().toString(); //start time
-        stopTime = eventEndTimeEdit.getText().toString(); //end time
+        s_eventName = eventName.getText().toString();
+        startTime = eventStartTimeEdit.getText().toString();
+        stopTime = eventEndTimeEdit.getText().toString();
 
         if (TextUtils.isEmpty(s_eventName)){
             eventName.setError("Event name is required");
@@ -126,4 +127,7 @@ public class EditEventActivity extends AppCompatActivity {
 
     }
 
+    private void onClick(View v) {
+        saveEventToCalendar();
+    }
 }
