@@ -18,7 +18,7 @@
         android:textColor="@color/black"/>
 
     <EditText
-        android:id="@+id/eventName"
+        android:id="@+id/eventNameET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -26,6 +26,15 @@
         android:ems="10"
         android:inputType="text"
         android:importantForAutofill="no"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/eventNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:ems="10"
         tools:ignore="LabelFor" />
 
     <TextView

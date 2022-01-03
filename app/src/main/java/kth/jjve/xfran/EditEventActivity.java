@@ -5,6 +5,7 @@ Activity to input and save the event
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
+import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import kth.jjve.xfran.models.EventInApp;
@@ -27,8 +30,12 @@ import kth.jjve.xfran.models.EventInApp;
 public class EditEventActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = EditEventActivity.class.getSimpleName();
-    private EditText eventName, eventStartTimeEdit, eventEndTimeEdit;
+    private EditText eventNameET, eventStartTimeEdit, eventEndTimeEdit;
     private String s_eventName, startTime, stopTime;
+
+    /*_________ INTENT _________*/
+    private Integer position;
+    private Workout mWorkout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +43,8 @@ public class EditEventActivity extends AppCompatActivity {
         setContentView(R.layout.act_calendar_editevent);
 
         /*------ HOOKS ------*/
-        eventName = findViewById(R.id.eventName);
+        eventNameET = findViewById(R.id.eventNameET);
+        TextView eventNameTV = findViewById(R.id.eventNameTV);
         TextView eventDate = findViewById(R.id.eventDate);
         TextView eventStartTime = findViewById(R.id.eventStartTime);
         TextView eventEndTime = findViewById(R.id.eventEndTime);
@@ -46,6 +54,8 @@ public class EditEventActivity extends AppCompatActivity {
         Button buttonClose = findViewById(R.id.close);
         Button buttonExport = findViewById(R.id.savetogoogle);
 
+        /*----- CALENDAR ------*/
+        CalendarUtils.selectedDate = LocalDate.now(); //get today's date
         String s_date = "Date: " + CalendarUtils.cleanDate(CalendarUtils.selectedDate);
         eventDate.setText(s_date);
 
@@ -53,16 +63,32 @@ public class EditEventActivity extends AppCompatActivity {
         buttonSave.setOnClickListener(v -> saveEvent());
         buttonClose.setOnClickListener(v -> finish());
         buttonExport.setOnClickListener(this::onClick);
+
+        /*------ INTENT ------*/
+        Intent intent = getIntent();
+        position = intent.getIntExtra(WorkoutsListActivity.WORKOUT_ID,1);
+        mWorkout = (Workout) intent.getSerializableExtra(WorkoutsListActivity.WORKOUT_OBJ);
+
+        /*----- VISIBILITY ------*/
+        if (mWorkout == null){
+            eventNameTV.setVisibility(View.INVISIBLE);
+        } else { //if accessing from WorkoutsListActivity (with intent)
+            eventNameET.setVisibility(View.INVISIBLE);
+            s_eventName = mWorkout.getTitle();
+            eventNameTV.setText(s_eventName);
+        }
     }
 
     private void setEventInApp(){
         // method to obtain the events name and start/end time
-        s_eventName = eventName.getText().toString();
+        if (mWorkout == null){
+            s_eventName = eventNameET.getText().toString();
+        }
         startTime = eventStartTimeEdit.getText().toString();
         stopTime = eventEndTimeEdit.getText().toString();
 
         if (TextUtils.isEmpty(s_eventName)){
-            eventName.setError("Event name is required");
+            eventNameET.setError("Event name is required");
             return;
         }
 
@@ -109,9 +135,11 @@ public class EditEventActivity extends AppCompatActivity {
     private void exportToExternalCalendar(){
         try {
             Calendar beginTime = Calendar.getInstance();
-            beginTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate), CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
+            beginTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate),
+                    CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
             Calendar endTime = Calendar.getInstance();
-            endTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate), CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
+            endTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate),
+                    CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
             Intent intent = new Intent(Intent.ACTION_INSERT)
                     .setData(CalendarContract.Events.CONTENT_URI)
                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
@@ -119,7 +147,7 @@ public class EditEventActivity extends AppCompatActivity {
                     .putExtra(CalendarContract.Events.TITLE, s_eventName)
                     .putExtra(CalendarContract.Events.DESCRIPTION, "Group class"); //TODO: add WO description here
             startActivity(intent);
-            //TODO come back to XRan from calendar app. see if doable?
+            //TODO come back to XFran from calendar app. see if doable?
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "couldn't export event", Toast.LENGTH_SHORT).show();
