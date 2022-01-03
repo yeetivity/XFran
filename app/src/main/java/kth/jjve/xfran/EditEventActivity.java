@@ -55,7 +55,6 @@ public class EditEventActivity extends AppCompatActivity {
         Button buttonExport = findViewById(R.id.savetogoogle);
 
         /*----- CALENDAR ------*/
-        CalendarUtils.selectedDate = LocalDate.now(); //get today's date
         String s_date = "Date: " + CalendarUtils.cleanDate(CalendarUtils.selectedDate);
         eventDate.setText(s_date);
 

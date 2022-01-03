@@ -5,11 +5,14 @@ Activity to set out the weekly calendar view and output the events
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
+import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_ID;
+import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_OBJ;
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.daysInWeekArray;
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.monthYearFromDate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -21,10 +24,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import kth.jjve.xfran.adapters.EventAdapter;
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
+import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 public class CalendarViewActivity extends BaseActivity implements CalendarAdapter.OnItemListener {
@@ -33,6 +38,10 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
+
+    /*_________ INTENT _________*/
+    private Integer position;
+    private Workout mWorkout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +63,11 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         CalendarUtils.selectedDate = LocalDate.now(); //get today's date
         setWeekView();
 
+        /*------ INTENT ------*/
+        Intent intentIn = getIntent();
+        position = intentIn.getIntExtra(WORKOUT_ID,1);
+        mWorkout = (Workout) intentIn.getSerializableExtra(WORKOUT_OBJ);
+
         /*-------- LISTENERS ------------*/
         buttonBack.setOnClickListener(v -> { //go to previous week
             CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
@@ -66,7 +80,10 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         });
 
         buttonNewEvent.setOnClickListener(v -> {
-            startActivity(new Intent(this, EditEventActivity.class));
+            Intent intent = new Intent(this, EditEventActivity.class);
+            intent.putExtra(WORKOUT_ID, position);
+            intent.putExtra(WORKOUT_OBJ, mWorkout);
+            startActivity(intent);
         });
     }
 
