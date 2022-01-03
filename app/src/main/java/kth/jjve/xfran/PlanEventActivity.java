@@ -13,7 +13,6 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,14 +21,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import kth.jjve.xfran.models.EventInApp;
 
-public class EditEventActivity extends AppCompatActivity {
+public class PlanEventActivity extends AppCompatActivity {
 
-    private static final String LOG_TAG = EditEventActivity.class.getSimpleName();
+    private static final String LOG_TAG = PlanEventActivity.class.getSimpleName();
     private EditText eventNameET, eventStartTimeEdit, eventEndTimeEdit;
     private String s_eventName, startTime, stopTime;
 
@@ -40,7 +38,7 @@ public class EditEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_calendar_editevent);
+        setContentView(R.layout.act_planevent);
 
         /*------ HOOKS ------*/
         eventNameET = findViewById(R.id.eventNameET);

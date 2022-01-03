@@ -12,7 +12,6 @@ import static kth.jjve.xfran.weeklycalendar.CalendarUtils.monthYearFromDate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -24,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import kth.jjve.xfran.adapters.EventAdapter;
 import kth.jjve.xfran.models.EventInApp;
@@ -80,7 +78,7 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         });
 
         buttonNewEvent.setOnClickListener(v -> {
-            Intent intent = new Intent(this, EditEventActivity.class);
+            Intent intent = new Intent(this, PlanEventActivity.class);
             intent.putExtra(WORKOUT_ID, position);
             intent.putExtra(WORKOUT_OBJ, mWorkout);
             startActivity(intent);
