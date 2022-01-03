@@ -10,10 +10,13 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -37,6 +40,8 @@ public class SaveResultsActivity extends BaseActivity {
     /*------ HOOKS ------*/
     private TextView mName, mDescription, mExercises;
     private EditText mDate, mScore, mComments;
+    private Switch mScaledSwitch;
+    private SeekBar mScoreSeekBar;
     private Button workoutItemSaveButton, workoutItemPlanButton, saveButton, cancelButton;
 
 
@@ -60,13 +65,14 @@ public class SaveResultsActivity extends BaseActivity {
         saveButton = findViewById(R.id.save_button);
         cancelButton = findViewById(R.id.cancel_save_button);
         mDate = findViewById(R.id.edit_date);
+        mScaledSwitch = findViewById(R.id.scaled_switch);
         mScore = findViewById(R.id.edit_score);
+        mScoreSeekBar = findViewById(R.id.score_bar);
         mComments = findViewById(R.id.edit_comments);
 
         /*-----  VM  -----*/
         mResultVM = ViewModelProviders.of(this).get(ResultVM.class);
         mResultVM.init();
-        //mResultVM.getResults().observe(this, this::setViews);
 
         /*------ LISTENERS ------*/
         cancelButton.setOnClickListener(v -> finish());
@@ -92,11 +98,12 @@ public class SaveResultsActivity extends BaseActivity {
         workoutItemSaveButton.setVisibility(GONE);
         workoutItemPlanButton.setVisibility(GONE);
 
+        //Todo: change score type text according to the current workout
+
         // Default workout date set to current date
+        // Todo: add something to get correct date format
         todayLocalDate = LocalDate.now();
         mDate.setText(todayLocalDate.toString());
-
-        //TODO finish this activity --> work in progress
 
     }
 
@@ -107,22 +114,30 @@ public class SaveResultsActivity extends BaseActivity {
     }
 
     public void saveResult(){
-        LocalDate date = LocalDate.parse(mDate.getText());
-        Log.i(LOG_TAG, "date is: " + date);
-        Log.i(LOG_TAG, "workout is: " + workout);
-
-        if (TextUtils.isEmpty(date.toString())){
-            mDate.setError("Date is required");
-            return;
-        }
-
+        //get all filled fields
         try{
-            mResultVM.addNewResult(workout, date);
+            LocalDate date = LocalDate.parse(mDate.getText());
+            Boolean scaled = mScaledSwitch.isChecked();
+            String score = String.valueOf(mScore.getText()); // Todo: change this to double --> needs to deal with rounds+reps
+            Integer rating = Math.round(mScoreSeekBar.getProgress());
+            String comments = mComments.getText().toString();
+
+            //error message if score is not filled
+            if (TextUtils.isEmpty(score.toString())){
+                mScore.setError("Score is required");
+                return;
+            }
+
+            //save results
+            mResultVM.addNewResult(workout, score, rating, comments, date, scaled);
             Toast.makeText(getApplicationContext(), "Result saved", Toast.LENGTH_SHORT).show();
             finish();
-        } catch (Exception e) {
+        }
+        catch(DateTimeParseException e ){
+            //error message if date format is not respected and parsing fails
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(), "Fill info to save workout", Toast.LENGTH_SHORT).show();
+            mDate.setError("Date format: yyyy-mm-dd");
+            return;
         }
     }
 }

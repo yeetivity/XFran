@@ -63,7 +63,6 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
 
     @Override
     public void onListItemClick(int position) {
-        //Todo: Do something on UI when the item is clicked
     }
 
     public void onPlan(int position){

@@ -10,16 +10,18 @@ import java.time.LocalDate;
 public class Result {
 
     private Workout workout;
-    private String scoreType;
-    private double score;
+    private String scoreType, comments, score; //Todo: change score to double --> needs to deal with rounds+reps
     private Integer feelScore;
-    private String comments;
     private LocalDate date;
-    private boolean empty;
+    private boolean scaled, empty;
 
-    public Result(Workout workout, LocalDate date){
+    public Result(Workout workout, String score, Integer feelScore, String comments, LocalDate date, boolean scaled){
         this.workout = workout;
+        this.score = score;
+        this.feelScore = feelScore;
+        this.comments = comments;
         this.date = date;
+        this.scaled = scaled;
         this.empty = false;
     }
 
@@ -42,11 +44,11 @@ public class Result {
         this.scoreType = scoreType;
     }
 
-    public double getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(String score) {
         this.score = score;
     }
 
@@ -64,6 +66,14 @@ public class Result {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public boolean isScaled() {
+        return scaled;
+    }
+
+    public void setScaled(boolean scaled) {
+        this.scaled = scaled;
     }
 
     public boolean checkEmpty(){return empty;}

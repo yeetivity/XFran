@@ -11,10 +11,16 @@ public class Workout implements Serializable {
 
     private String title, tag, type, description;
     private ArrayList<String> details, equipment;
-    //Todo: exercise object --> needs exercise constructor
+    //Todo: add exercise object --> needs exercise constructor
 
-    public Workout(String title){
+    public Workout(String title, String tag, String type, String description,
+                   ArrayList<String> details, ArrayList<String> equipment){
         this.title = title;
+        this.tag = tag;
+        this.type = type;
+        this.description = description;
+        this.details = details;
+        this.equipment = equipment;
     }
 
     public Workout(){

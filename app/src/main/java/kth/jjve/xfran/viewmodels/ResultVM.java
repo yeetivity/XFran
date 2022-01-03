@@ -42,10 +42,9 @@ public class ResultVM extends AndroidViewModel {
         return mResults;
     }
 
-    public void addNewResult(Workout workout, LocalDate date){
-        Log.i(LOG_TAG, "date is: " + date);
-        Log.i(LOG_TAG, "workout is: " + workout);
-        mRepo.addNewResult(workout, date);
+    public void addNewResult(Workout workout, String score, Integer rating,
+                             String comments, LocalDate date, boolean scaled){
+        mRepo.addNewResult(workout, score, rating, comments, date, scaled);
     }
 }
 

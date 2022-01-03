@@ -9,10 +9,11 @@
     <string name="add_result">+ Result</string>
     <string name="time">Time:</string>
     <string name="reps">Num. of reps:</string>
-    <string name="type">Score type:</string>
+    <string name="type">Score type</string>
     <string name="score">Score:</string>
-    <string name="feel_score">How did it feel?</string>
+    <string name="feel_score">How hard was it?</string>
     <string name="feel_comments">Comments:</string>
+    <string name="scaled">Scaled?</string>
     <string name="garmin_connect">Sync Garmin activity:</string>
     <string name="cancel">Cancel</string>
     <string name="new_result">Add new result</string>
@@ -71,5 +72,10 @@
     <string name="editProfile_weight_hint">Weight [kg]</string>
     <string name="editProfile_height_hint">Height [cm]</string>
     <string name="nohint" />
+    <string name="saveResult_date_hint">yyyy-mm-dd</string>
     <string name="garmin_description">add_garmin_result</string>
+    <string name="score_amrap">Enter the number of rounds + reps</string>
+    <string name="score_for_time">Enter the total time</string>
+    <string name="score_for_time_cap">Enter the total number of reps completed within the time cap</string>
+    <string name="score_for_weight">Enter the maximum weight for each exercise, separated by commas</string>
 </resources>

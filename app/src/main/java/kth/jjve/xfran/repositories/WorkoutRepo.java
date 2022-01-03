@@ -67,6 +67,7 @@ public class WorkoutRepo {
         String type = null;
         String description = null;
         ArrayList<String> details = null;
+        ArrayList<String> equipment = null;
         // read workout info
         reader.beginObject();
         while (reader.hasNext()) {
@@ -86,7 +87,11 @@ public class WorkoutRepo {
                     break;
                 case "details":
                     // details is an array therefore requires a reader
-                    details = readDetails(reader);
+                    details = readArrayList(reader);
+                    break;
+                case "equipment":
+                    // equipment is an array therefore requires a reader
+                    equipment = readArrayList(reader);
                     break;
                 default:
                     reader.skipValue();
@@ -95,23 +100,19 @@ public class WorkoutRepo {
         }
         reader.endObject();
         // create workout object from info read
-        Workout workout = new Workout(title);
-        workout.setDetails(details);
-        workout.setDescription(description);
-        workout.setType(type);
-        workout.setTag(tag);
+        Workout workout = new Workout(title, tag, type, description, details, equipment);
         return workout;
     }
 
-    public ArrayList<String> readDetails(JsonReader reader) throws IOException {
-        // details for each workout obj are stored in an ArrayList
-        ArrayList<String> details = new ArrayList<>();
+    public ArrayList<String> readArrayList(JsonReader reader) throws IOException {
+        // ArrayList reader
+        ArrayList<String> stringArrayList = new ArrayList<>();
         reader.beginArray();
         while (reader.hasNext()) {
-            details.add(reader.nextString());
+            stringArrayList.add(reader.nextString());
         }
         reader.endArray();
-        return details;
+        return stringArrayList;
     }
 
 }

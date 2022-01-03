@@ -47,10 +47,9 @@ public class ResultRepo {
         return data;
     }
 
-    public void addNewResult(Workout workout, LocalDate date) {
-        Log.i(LOG_TAG, "date is: " + date);
-        Log.i(LOG_TAG, "workout is: " + workout);
-        result = new Result(workout, date);
+    public void addNewResult(Workout workout, String score, Integer rating,
+                             String comments, LocalDate date, boolean scaled){
+        result = new Result(workout, score, rating, comments, date, scaled);
         resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
         if (up != null) up.setValue(result);   //Add the result to the mutable data list
 
@@ -64,7 +63,7 @@ public class ResultRepo {
             Map<String, Object> resultData = new HashMap<>();
             resultData.put("workout", result.getWorkout());
             resultData.put("date", result.getDate().toString());
-            resultData.put("scoreType", result.getScoreType());
+            resultData.put("scaled", result.isScaled());
             resultData.put("score", result.getScore());
             resultData.put("feelScore", result.getFeelScore());
             resultData.put("comments", result.getComments());
@@ -72,6 +71,5 @@ public class ResultRepo {
         } else {
             Log.i("ResultRepo", "User is not logged in");
         }
-
     }
 }
