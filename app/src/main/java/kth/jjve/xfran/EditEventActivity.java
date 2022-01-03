@@ -5,6 +5,8 @@ Activity to input and save the event
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
+import kth.jjve.xfran.repositories.EventRepo;
+import kth.jjve.xfran.viewmodels.EventVM;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 import android.content.Intent;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import java.time.LocalTime;
 
@@ -29,6 +32,8 @@ public class EditEventActivity extends AppCompatActivity {
     private static final String LOG_TAG = EditEventActivity.class.getSimpleName();
     private EditText eventName, eventStartTimeEdit, eventEndTimeEdit;
     private String s_eventName, startTime, stopTime;
+    private EventRepo mEventRepo;
+    private EventVM mEventVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,10 @@ public class EditEventActivity extends AppCompatActivity {
 
         String s_date = "Date: " + CalendarUtils.cleanDate(CalendarUtils.selectedDate);
         eventDate.setText(s_date);
+
+        /*-----  VM  -----*/
+        mEventVM = ViewModelProviders.of(this).get(EventVM.class);
+        mEventVM.init();
 
         /*-------- LISTENERS ------------*/
         buttonSave.setOnClickListener(v -> saveEvent());
@@ -99,6 +108,7 @@ public class EditEventActivity extends AppCompatActivity {
             EventInApp newEventInApp = new EventInApp(s_eventName, CalendarUtils.selectedDate, LocalTime.parse(startTime), LocalTime.parse(stopTime));
             EventInApp.eventsList.add(newEventInApp);
             Toast.makeText(getApplicationContext(), "event saved", Toast.LENGTH_SHORT).show();
+            mEventVM.addNewEvent(s_eventName, CalendarUtils.selectedDate, LocalTime.parse(startTime), LocalTime.parse(stopTime));
             finish();
         } catch (Exception e) {
             e.printStackTrace();

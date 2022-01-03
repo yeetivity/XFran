@@ -26,6 +26,9 @@ public class EventInApp {
         this.endTime = endTime;
     }
 
+    public EventInApp() {
+    }
+
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }

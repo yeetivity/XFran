@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,8 +24,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import kth.jjve.xfran.adapters.EventAdapter;
+import kth.jjve.xfran.adapters.WorkoutsRecyclerAdapter;
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
+import kth.jjve.xfran.viewmodels.EventVM;
+import kth.jjve.xfran.viewmodels.WorkoutVM;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 public class CalendarViewActivity extends BaseActivity implements CalendarAdapter.OnItemListener {
