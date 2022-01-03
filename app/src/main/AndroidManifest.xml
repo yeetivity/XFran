@@ -41,7 +41,7 @@
             android:name=".CalendarViewActivity"
             android:exported="false" />
         <activity
-            android:name=".EditEventActivity"
+            android:name=".PlanEventActivity"
             android:exported="false" />
         <activity
             android:name=".HomeScreenActivity"
