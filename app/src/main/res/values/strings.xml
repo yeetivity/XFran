@@ -72,4 +72,7 @@
     <string name="editProfile_height_hint">Height [cm]</string>
     <string name="nohint" />
     <string name="garmin_description">add_garmin_result</string>
+    <string name="wod">WOD</string>
+    <string name="planned_today">Planned today</string>
+    <string name="logged_in_as">Logged in as:</string>
 </resources>
