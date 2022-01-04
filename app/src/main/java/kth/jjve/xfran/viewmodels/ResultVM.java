@@ -31,19 +31,19 @@ public class ResultVM extends AndroidViewModel {
     }
 
     public void init() {
-        if(mResults != null){
+        if (mResults != null) {
             return;
         }
         mRepo = ResultRepo.getInstance();
         mResults = mRepo.getResults();
     }
 
-    public LiveData<List<Result>> getResults(){
+    public LiveData<List<Result>> getResults() {
         return mResults;
     }
 
     public void addNewResult(Workout workout, String score, Integer rating,
-                             String comments, LocalDate date, boolean scaled){
+                             String comments, LocalDate date, boolean scaled) {
         mRepo.addNewResult(workout, score, rating, comments, date, scaled);
     }
 }

@@ -2,10 +2,9 @@ package kth.jjve.xfran.models;
 
 import java.time.LocalDate;
 
-/**
+/*
  * Result constructor
  */
-
 
 public class Result {
 
@@ -15,7 +14,7 @@ public class Result {
     private LocalDate date;
     private boolean scaled, empty;
 
-    public Result(Workout workout, String score, Integer feelScore, String comments, LocalDate date, boolean scaled){
+    public Result(Workout workout, String score, Integer feelScore, String comments, LocalDate date, boolean scaled) {
         this.workout = workout;
         this.score = score;
         this.feelScore = feelScore;
@@ -25,7 +24,7 @@ public class Result {
         this.empty = false;
     }
 
-    public Result(){
+    public Result() {
     }
 
     public Workout getWorkout() {
@@ -76,5 +75,7 @@ public class Result {
         this.scaled = scaled;
     }
 
-    public boolean checkEmpty(){return empty;}
+    public boolean checkEmpty() {
+        return empty;
+    }
 }

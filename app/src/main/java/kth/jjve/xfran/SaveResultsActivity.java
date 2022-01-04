@@ -30,7 +30,6 @@ public class SaveResultsActivity extends BaseActivity {
 
     private final String LOG_TAG = getClass().getSimpleName();
     private LocalDate todayLocalDate;
-    private Result mResult;
     private ResultVM mResultVM;
 
     /*_________ INTENT _________*/
@@ -80,14 +79,14 @@ public class SaveResultsActivity extends BaseActivity {
 
         /*------ INTENT ------*/
         Intent intent = getIntent();
-        position = intent.getIntExtra(WorkoutsListActivity.WORKOUT_ID,1);
+        position = intent.getIntExtra(WorkoutsListActivity.WORKOUT_ID, 1);
         workout = (Workout) intent.getSerializableExtra(WorkoutsListActivity.WORKOUT_OBJ);
-        Log.i(LOG_TAG, "workout read: "+ workout);
+        Log.i(LOG_TAG, "workout read: " + workout);
 
         // Build a string with exercises
         StringBuilder exercises = new StringBuilder();
         ArrayList<String> exercisesArray = workout.getDetails();
-        for (String s : exercisesArray){
+        for (String s : exercisesArray) {
             exercises.append(s).append("\n");
         }
 
@@ -98,7 +97,7 @@ public class SaveResultsActivity extends BaseActivity {
         workoutItemSaveButton.setVisibility(GONE);
         workoutItemPlanButton.setVisibility(GONE);
 
-        //Todo: change score type text according to the current workout
+        //Todo: change score_type text according to the current workout
 
         // Default workout date set to current date
         // Todo: add something to get correct date format
@@ -108,22 +107,22 @@ public class SaveResultsActivity extends BaseActivity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         navigationView.setCheckedItem(R.id.nav_workouts);
     }
 
-    public void saveResult(){
+    public void saveResult() {
         //get all filled fields
-        try{
+        try {
             LocalDate date = LocalDate.parse(mDate.getText());
-            Boolean scaled = mScaledSwitch.isChecked();
+            boolean scaled = mScaledSwitch.isChecked();
             String score = String.valueOf(mScore.getText()); // Todo: change this to double --> needs to deal with rounds+reps
             Integer rating = Math.round(mScoreSeekBar.getProgress());
             String comments = mComments.getText().toString();
 
             //error message if score is not filled
-            if (TextUtils.isEmpty(score.toString())){
+            if (TextUtils.isEmpty(score.toString())) {
                 mScore.setError("Score is required");
                 return;
             }
@@ -132,12 +131,10 @@ public class SaveResultsActivity extends BaseActivity {
             mResultVM.addNewResult(workout, score, rating, comments, date, scaled);
             Toast.makeText(getApplicationContext(), "Result saved", Toast.LENGTH_SHORT).show();
             finish();
-        }
-        catch(DateTimeParseException e ){
+        } catch (DateTimeParseException e) {
             //error message if date format is not respected and parsing fails
             e.printStackTrace();
             mDate.setError("Date format: yyyy-mm-dd");
-            return;
         }
     }
 }

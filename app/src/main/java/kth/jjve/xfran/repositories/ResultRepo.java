@@ -32,8 +32,8 @@ public class ResultRepo {
 
     private ArrayList<Result> dataSet = new ArrayList<>();
 
-    public static ResultRepo getInstance(){
-        if(instance == null){
+    public static ResultRepo getInstance() {
+        if (instance == null) {
             instance = new ResultRepo();
         }
         return instance;
@@ -48,7 +48,7 @@ public class ResultRepo {
     }
 
     public void addNewResult(Workout workout, String score, Integer rating,
-                             String comments, LocalDate date, boolean scaled){
+                             String comments, LocalDate date, boolean scaled) {
         result = new Result(workout, score, rating, comments, date, scaled);
         resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
         if (up != null) up.setValue(result);   //Add the result to the mutable data list
