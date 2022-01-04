@@ -41,7 +41,7 @@ public class HomeScreenActivity extends BaseActivity {
 
         /*-----  VM  -----*/
         homeVM = ViewModelProviders.of(this).get(HomeVM.class);
-        homeVM.init();
+        homeVM.init(getApplicationContext());
         homeVM.getUserName().observe(this, s -> Username.setText(s));
         homeVM.getWODTitle().observe(this, s -> WODTitle.setText(s));
         homeVM.getWODDescription().observe(this, s -> WODDescription.setText(s));
