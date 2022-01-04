@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Result {
 
     private Workout workout;
-    private String scoreType, comments, score; //Todo: change score to double --> needs to deal with rounds+reps
+    private String scoreType, comments, score; //Todo: deal better with different type of scores
     private Integer feelScore;
     private LocalDate date;
     private boolean scaled, empty;

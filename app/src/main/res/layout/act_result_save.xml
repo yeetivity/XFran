@@ -133,7 +133,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/date_text" />
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/scaled_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -152,18 +152,20 @@
                 android:layout_marginEnd="40dp"
                 android:ems="10"
                 android:hint="@string/nohint"
+                android:digits="0123456789:,+."
                 android:importantForAutofill="no"
                 android:minHeight="48dp"
                 android:textAlignment="textEnd"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/score_text" />
+                app:layout_constraintTop_toTopOf="@id/score_text"
+                android:inputType="text" />
 
             <TextView
                 android:id="@+id/type_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:text="@string/type"
+                android:text="@string/score_type"
                 android:textAlignment="textEnd"
                 android:layout_marginTop="-4dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
@@ -178,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:max="4"
                 android:stepSize="1"
-                android:progress="3"
+                android:progress="2"
                 android:layout_marginEnd="40dp"
                 android:layout_marginStart="20dp"
                 app:layout_constraintEnd_toEndOf="parent"

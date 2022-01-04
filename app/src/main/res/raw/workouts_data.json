@@ -3,7 +3,7 @@
     "title": "Fran",
     "tag": "benchmark",
     "type": "for-time",
-    "description": "21-15-9 Reps for time of:",
+    "description": "21-15-9 reps for time of:",
     "details": [
       "Thrusters (95/65 lbs)",
       "Pull-ups"
@@ -30,8 +30,8 @@
   {
     "title": "xYEET goes BIRL",
     "tag": "custom",
-    "type": "for-weight",
-    "description": "For Max Weight:",
+    "type": "sets",
+    "description": "For max weight in all sets:",
     "details": [
       "3x4 Power cleans",
       "3x7 Back squats",
@@ -164,7 +164,7 @@
     "title": "Karen",
     "tag": "benchmark",
     "type": "for-time",
-    "description": "For Time:",
+    "description": "For time:",
     "details": [
       "150 Wall-balls (20/14 lbs)"
     ],

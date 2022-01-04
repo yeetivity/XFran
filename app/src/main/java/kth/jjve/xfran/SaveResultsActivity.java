@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +18,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.lifecycle.ViewModelProviders;
-import kth.jjve.xfran.models.Result;
 import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.utils.ResultUtils;
+import kth.jjve.xfran.utils.WorkoutUtils;
 import kth.jjve.xfran.viewmodels.ResultVM;
 
 import static android.view.View.GONE;
@@ -37,9 +38,9 @@ public class SaveResultsActivity extends BaseActivity {
     private Workout workout;
 
     /*------ HOOKS ------*/
-    private TextView mName, mDescription, mExercises;
+    private TextView mName, mDescription, mExercises, mScoreType;
     private EditText mDate, mScore, mComments;
-    private Switch mScaledSwitch;
+    private SwitchCompat mScaledSwitch;
     private SeekBar mScoreSeekBar;
     private Button workoutItemSaveButton, workoutItemPlanButton, saveButton, cancelButton;
 
@@ -61,13 +62,14 @@ public class SaveResultsActivity extends BaseActivity {
         workoutItemSaveButton = findViewById(R.id.button_save_wod);
         workoutItemPlanButton = findViewById(R.id.button_plan_wod);
         //save results
+        mDate = findViewById(R.id.edit_date);
+        mScore = findViewById(R.id.edit_score);
+        mComments = findViewById(R.id.edit_comments);
+        mScoreType = findViewById(R.id.type_text);
+        mScaledSwitch = findViewById(R.id.scaled_switch);
+        mScoreSeekBar = findViewById(R.id.score_bar);
         saveButton = findViewById(R.id.save_button);
         cancelButton = findViewById(R.id.cancel_save_button);
-        mDate = findViewById(R.id.edit_date);
-        mScaledSwitch = findViewById(R.id.scaled_switch);
-        mScore = findViewById(R.id.edit_score);
-        mScoreSeekBar = findViewById(R.id.score_bar);
-        mComments = findViewById(R.id.edit_comments);
 
         /*-----  VM  -----*/
         mResultVM = ViewModelProviders.of(this).get(ResultVM.class);
@@ -84,23 +86,29 @@ public class SaveResultsActivity extends BaseActivity {
         Log.i(LOG_TAG, "workout read: " + workout);
 
         // Build a string with exercises
-        StringBuilder exercises = new StringBuilder();
-        ArrayList<String> exercisesArray = workout.getDetails();
-        for (String s : exercisesArray) {
-            exercises.append(s).append("\n");
-        }
+        String exercises = WorkoutUtils.buildExerciseString(workout);
 
         // Fill the UI with workout info
         mName.setText(workout.getTitle());
         mDescription.setText(workout.getDescription());
-        mExercises.setText(exercises.toString());
+        mExercises.setText(exercises);
         workoutItemSaveButton.setVisibility(GONE);
         workoutItemPlanButton.setVisibility(GONE);
 
-        //Todo: change score_type text according to the current workout
+        //change score_type text according to the current workout
+        String scoreType = ResultUtils.setScoreType(workout);
+        mScoreType.setText(scoreType);
+
+        //change edit_score hint according to the current workout
+        String scoreTypeHint = ResultUtils.setScoreTypeHint(workout);
+        //Todo: see why this doesnt work
+        mScore.setHint(scoreTypeHint);
+
+        //change edit_score input type according to the current workout
+        Integer scoreInputType = ResultUtils.setScoreInputType(workout);
+        mScore.setInputType(scoreInputType);
 
         // Default workout date set to current date
-        // Todo: add something to get correct date format
         todayLocalDate = LocalDate.now();
         mDate.setText(todayLocalDate.toString());
 
@@ -117,13 +125,23 @@ public class SaveResultsActivity extends BaseActivity {
         try {
             LocalDate date = LocalDate.parse(mDate.getText());
             boolean scaled = mScaledSwitch.isChecked();
-            String score = String.valueOf(mScore.getText()); // Todo: change this to double --> needs to deal with rounds+reps
+            String score = String.valueOf(mScore.getText()); // Todo: deal better with different type of scores
             Integer rating = Math.round(mScoreSeekBar.getProgress());
             String comments = mComments.getText().toString();
 
             //error message if score is not filled
-            if (TextUtils.isEmpty(score.toString())) {
+            if (TextUtils.isEmpty(score)) {
                 mScore.setError("Score is required");
+                return;
+            }
+            //error message if score has wrong format
+            if (ResultUtils.isWrongScore(workout, score)){
+                mScore.setError("Score is required");
+                return;
+            }
+            //error message user enters date in the future
+            if(date.isAfter(LocalDate.now())){
+                mDate.setError("You are not a clairvoyant");
                 return;
             }
 

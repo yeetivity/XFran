@@ -9,7 +9,7 @@
     <string name="add_result">+ Result</string>
     <string name="time">Time:</string>
     <string name="reps">Num. of reps:</string>
-    <string name="type">Score type</string>
+    <string name="score_type">Time (mm:ss), rounds + reps (rds+reps) or max weight (lbs)</string>
     <string name="score">Score:</string>
     <string name="feel_score">How hard was it?</string>
     <string name="feel_comments">Comments:</string>
@@ -32,7 +32,7 @@
     <string name="export">export</string>
     <string name="newEventInApp">NEW EVENT</string>
     <string name="startTime">Start time</string>
-    <string name="endTime">End time</string>
+    <string name="endTime">End time (</string>
     <string name="date">Date</string>
     <string name="nameEvent">Name of the Event:</string>
     <string name="newEvent">NEW EVENT</string>
@@ -74,8 +74,15 @@
     <string name="nohint" />
     <string name="saveResult_date_hint">yyyy-mm-dd</string>
     <string name="garmin_description">add_garmin_result</string>
-    <string name="score_amrap">Enter the number of rounds + reps</string>
-    <string name="score_for_time">Enter the total time</string>
-    <string name="score_for_time_cap">Enter the total number of reps completed within the time cap</string>
-    <string name="score_for_weight">Enter the maximum weight for each exercise, separated by commas</string>
+    <string name="score_amrap">Enter nº of rounds + reps (rds+reps)</string>
+    <string name="score_for_time">Enter total time (mm:ss)</string>
+    <string name="score_for_weight">Enter maximum weight (lbs)</string>
+    <string name="score_emom">Enter n° of rounds FULLY completed</string>
+    <string name="score_sets">Enter weight for each exercise (lbs) separated by commas</string>
+    <string name="score_amrap_hint">0+0</string>
+    <string name="score_for_time_hint">mm:ss</string>
+    <string name="score_for_weight_hint">0.0</string>
+    <string name="score_emom_hint">00</string>
+    <string name="score_sets_hint">0.0, 0.0, 0.0, …</string>
+
 </resources>

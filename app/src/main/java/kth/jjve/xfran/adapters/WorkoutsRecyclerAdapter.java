@@ -17,6 +17,7 @@ import java.util.List;
 
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.utils.WorkoutUtils;
 
 /**
  * Adapter for Workouts tab
@@ -69,13 +70,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         //Set the details of the 'Workout'
         ((ViewHolder) vh).mDescription.setText(mWorkouts.get(i).getDescription());
         //Set the exercises of the 'Workout'
-        String exercises = "";
-        ArrayList<String> exercisesArray = mWorkouts.get(i).getDetails();
-        for (String s : exercisesArray) {
-            exercises += s + "\n";
-            // Todo: check if the following line works
-            // exercises.append(s).append("\n");
-        }
+        String exercises = WorkoutUtils.buildExerciseString(mWorkouts.get(i));
         ((ViewHolder) vh).mExercises.setText(exercises);
 
         //Set workout item view to collapsed/expanded according to ArrayList value
@@ -136,13 +131,11 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             planButton.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 mPlanClickListener.onPlanButtonClick(position);
-                Log.i(LOG_TAG, "you clicked plan in WOD " + position);
             });
 
             saveButton.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 mSaveClickListener.onSaveButtonClick(position);
-                Log.i(LOG_TAG, "you clicked save in WOD " + position);
             });
         }
     }

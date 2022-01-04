@@ -14,6 +14,7 @@ import java.util.List;
 import kth.jjve.xfran.adapters.AppCtx;
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.utils.WorkoutUtils;
 
 /**
  * Singleton pattern
@@ -45,74 +46,10 @@ public class WorkoutRepo {
         // initialize reader
         JsonReader reader = new JsonReader(new InputStreamReader(workoutData, StandardCharsets.UTF_8));
         try {
-            parseWorkouts(reader);
+            WorkoutUtils.parseWorkouts(reader, dataSet);
         } finally {
             reader.close();
         }
-    }
-
-    public void parseWorkouts(JsonReader reader) throws IOException {
-        // read json array, loop through workouts on dataSet and read each of them
-        reader.beginArray();
-        while (reader.hasNext()) {
-            dataSet.add(readWorkout(reader));
-        }
-        reader.endArray();
-    }
-
-    public Workout readWorkout(JsonReader reader) throws IOException {
-        // initialize workout parameters
-        String title = null;
-        String tag = null;
-        String type = null;
-        String description = null;
-        ArrayList<String> details = null;
-        ArrayList<String> equipment = null;
-        // read workout info
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String name = reader.nextName();
-            switch (name) {
-                case "title":
-                    title = reader.nextString();
-                    break;
-                case "tag":
-                    tag = reader.nextString();
-                    break;
-                case "type":
-                    type = reader.nextString();
-                    break;
-                case "description":
-                    description = reader.nextString();
-                    break;
-                case "details":
-                    // details is an array therefore requires a reader
-                    details = readArrayList(reader);
-                    break;
-                case "equipment":
-                    // equipment is an array therefore requires a reader
-                    equipment = readArrayList(reader);
-                    break;
-                default:
-                    reader.skipValue();
-                    break;
-            }
-        }
-        reader.endObject();
-        // create workout object from info read
-        Workout workout = new Workout(title, tag, type, description, details, equipment);
-        return workout;
-    }
-
-    public ArrayList<String> readArrayList(JsonReader reader) throws IOException {
-        // ArrayList reader
-        ArrayList<String> stringArrayList = new ArrayList<>();
-        reader.beginArray();
-        while (reader.hasNext()) {
-            stringArrayList.add(reader.nextString());
-        }
-        reader.endArray();
-        return stringArrayList;
     }
 
 }

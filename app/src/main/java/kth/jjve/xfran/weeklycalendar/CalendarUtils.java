@@ -63,7 +63,7 @@ public class CalendarUtils {
     }
 
     /* ------------ METHODS FOR EXPORTING EVENTS ------------ */
-    //methds to change the date and time into a format accepted by the calendar provider API
+    //methods to change the date and time into a format accepted by the calendar provider API
 
     public static int exportMinutes(String time){
         return Integer.parseInt(time.substring(time.length() - 2));
