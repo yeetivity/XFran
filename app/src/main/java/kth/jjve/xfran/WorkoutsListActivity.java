@@ -25,8 +25,8 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
     private WorkoutsRecyclerAdapter mAdapter;
 
     /*_________ INTENT _________*/
-    public static String WORKOUT_ID="Workout ID";
-    public static String WORKOUT_OBJ="Workout Obj";
+    public static String WORKOUT_ID = "Workout ID";
+    public static String WORKOUT_OBJ = "Workout Obj";
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -48,7 +48,7 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
         mWorkoutVM.getWorkouts().observe(this, workouts -> mAdapter.notifyDataSetChanged());
 
         /*------ INIT ------*/
-        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutVM.getWorkouts().getValue(), this,this::onPlan, this::onSave);
+        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutVM.getWorkouts().getValue(), this, this::onPlan, this::onSave);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(mAdapter);
@@ -56,7 +56,7 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         navigationView.setCheckedItem(R.id.nav_workouts);
     }
@@ -65,17 +65,17 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
     public void onListItemClick(int position) {
     }
 
-    public void onPlan(int position){
+    public void onPlan(int position) {
         //TODO start activity of workout planner
         Toast.makeText(this, "Plan workout in development", Toast.LENGTH_SHORT).show();
     }
 
-    public void onSave(int position){
+    public void onSave(int position) {
         //start activity of workout saver
-        Intent intent = new Intent (this, SaveResultsActivity.class);
+        Intent intent = new Intent(this, SaveResultsActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
-        Log.i(LOG_TAG, "workout sent: "+ mWorkoutVM.getWorkouts().getValue().get(position));
+        Log.i(LOG_TAG, "workout sent: " + mWorkoutVM.getWorkouts().getValue().get(position));
         startActivity(intent);
     }
 

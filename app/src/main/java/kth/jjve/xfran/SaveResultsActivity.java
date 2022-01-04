@@ -6,6 +6,7 @@ Activity to let the user save a result
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.DigitsKeyListener;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +17,6 @@ import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.lifecycle.ViewModelProviders;
@@ -101,12 +101,11 @@ public class SaveResultsActivity extends BaseActivity {
 
         //change edit_score hint according to the current workout
         String scoreTypeHint = ResultUtils.setScoreTypeHint(workout);
-        //Todo: see why this doesnt work
         mScore.setHint(scoreTypeHint);
 
-        //change edit_score input type according to the current workout
-        Integer scoreInputType = ResultUtils.setScoreInputType(workout);
-        mScore.setInputType(scoreInputType);
+        //change edit_score digits according to the current workout
+        String scoreDigits = ResultUtils.setScoreDigits(workout);
+        mScore.setKeyListener(DigitsKeyListener.getInstance(scoreDigits));
 
         // Default workout date set to current date
         todayLocalDate = LocalDate.now();
@@ -125,7 +124,7 @@ public class SaveResultsActivity extends BaseActivity {
         try {
             LocalDate date = LocalDate.parse(mDate.getText());
             boolean scaled = mScaledSwitch.isChecked();
-            String score = String.valueOf(mScore.getText()); // Todo: deal better with different type of scores
+            String score = String.valueOf(mScore.getText()); // Todo: deal better with different types of scores
             Integer rating = Math.round(mScoreSeekBar.getProgress());
             String comments = mComments.getText().toString();
 
@@ -135,12 +134,12 @@ public class SaveResultsActivity extends BaseActivity {
                 return;
             }
             //error message if score has wrong format
-            if (ResultUtils.isWrongScore(workout, score)){
+            if (ResultUtils.isWrongScore(workout, score)) {
                 mScore.setError("Score is required");
                 return;
             }
             //error message user enters date in the future
-            if(date.isAfter(LocalDate.now())){
+            if (date.isAfter(LocalDate.now())) {
                 mDate.setError("You are not a clairvoyant");
                 return;
             }

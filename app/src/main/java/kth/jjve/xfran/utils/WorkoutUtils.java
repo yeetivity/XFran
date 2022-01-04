@@ -20,7 +20,7 @@ public class WorkoutUtils {
     }
 
     /* ------------ METHODS FOR PARSING WORKOUT LIST ------------ */
-    public static void parseWorkouts(JsonReader reader, ArrayList<Workout>dataSet) throws IOException {
+    public static void parseWorkouts(JsonReader reader, ArrayList<Workout> dataSet) throws IOException {
         // read json array, loop through workouts on dataSet and read each of them
         reader.beginArray();
         while (reader.hasNext()) {

@@ -152,13 +152,11 @@
                 android:layout_marginEnd="40dp"
                 android:ems="10"
                 android:hint="@string/nohint"
-                android:digits="0123456789:,+."
                 android:importantForAutofill="no"
                 android:minHeight="48dp"
                 android:textAlignment="textEnd"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/score_text"
-                android:inputType="text" />
+                app:layout_constraintTop_toTopOf="@id/score_text"/>
 
             <TextView
                 android:id="@+id/type_text"

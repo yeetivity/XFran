@@ -4,12 +4,14 @@ import kth.jjve.xfran.R;
 import kth.jjve.xfran.adapters.AppCtx;
 import kth.jjve.xfran.models.Workout;
 
+import static android.text.InputType.TYPE_DATETIME_VARIATION_TIME;
+
 public class ResultUtils {
 
     //sets the score type text depending on the type of workout
-    public static String setScoreType(Workout workout){
+    public static String setScoreType(Workout workout) {
         String workoutType = workout.getType();
-        switch (workoutType){
+        switch (workoutType) {
             case "for-time":
                 return AppCtx.getContext().getResources().getString(R.string.score_for_time);
             case "amrap":
@@ -27,7 +29,7 @@ public class ResultUtils {
 
     public static String setScoreTypeHint(Workout workout) {
         String workoutType = workout.getType();
-        switch (workoutType){
+        switch (workoutType) {
             case "for-time":
                 return AppCtx.getContext().getResources().getString(R.string.score_for_time_hint);
             case "amrap":
@@ -44,9 +46,9 @@ public class ResultUtils {
     }
 
     public static boolean isWrongScore(Workout workout, String score) {
-        //Todo: finish this
+        //Todo: finish this safety feature in case input info is crap
         String workoutType = workout.getType();
-        switch (workoutType){
+        switch (workoutType) {
             case "for-time":
                 return false;
             case "amrap":
@@ -62,22 +64,21 @@ public class ResultUtils {
         }
     }
 
-    public static Integer setScoreInputType(Workout workout) {
-        //Todo: finish this
+    public static String setScoreDigits(Workout workout) {
         String workoutType = workout.getType();
         switch (workoutType) {
             case "for-time":
-                return 32;
+                return "0123456789:";
             case "amrap":
-                return 1;
+                return "0123456789-";
             case "emom":
-                return 2;
+                return "0123456789";
             case "for-weight":
-                return 2;
+                return "0123456789.";
             case "sets":
-                return 1;
+                return "0123456789.-";
             default:
-                return 1;
+                return "0123456789:.-";
         }
     }
 }
