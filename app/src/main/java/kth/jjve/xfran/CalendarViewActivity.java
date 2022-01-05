@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import kth.jjve.xfran.adapters.EventAdapter;
@@ -55,18 +56,15 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         eventListView = findViewById(R.id.eventListView);
 
         /*----- CALENDAR ------*/
-        CalendarUtils.selectedDate = LocalDate.now(); //get today's date
-        setWeekView();
+        setWeekView(LocalDate.now());
 
         /*-------- LISTENERS ------------*/
         buttonBack.setOnClickListener(v -> { //go to previous week
-            CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
-            setWeekView();
+            setWeekView(CalendarUtils.selectedDate.minusWeeks(1));
         });
 
         buttonNext.setOnClickListener(v -> { // go to next week
-            CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
-            setWeekView();
+            setWeekView(CalendarUtils.selectedDate.plusWeeks(1));
         });
 
         buttonNewEvent.setOnClickListener(v -> {
@@ -82,35 +80,40 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         navigationView.setCheckedItem(R.id.nav_calendar);
     }
 
-    private void setWeekView() {
-        // makes the week view with the correct days visible and sets events in the recycler view
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate)); //outputs month and year
-        ArrayList<LocalDate> days = daysInWeekArray(CalendarUtils.selectedDate);
-
-        CalendarAdapter calendarAdapter = new CalendarAdapter(days, this);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
-        calendarRecyclerView.setLayoutManager(layoutManager);
-        calendarRecyclerView.setAdapter(calendarAdapter);
-        setEventAdapter(); //events made visible
+    @Override
+    public void onItemClick(int position, LocalDate date) {
+        setWeekView(date);
     }
 
-    private void setEventAdapter() {
-        // takes the day's events from the list and outputs them
+    private void setWeekView(LocalDate date) {
+        // makes the week view with the correct days visible and sets events in the recycler view
+
+        CalendarUtils.selectedDate = date; // update the selected date
+        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate)); // shows user current month and year
+
+        // find which days are in the week the user is looking at
+        ArrayList<LocalDate> daysInWeekArray = daysInWeekArray(CalendarUtils.selectedDate);
+        // use a grid layout with width 7 (7 days in a week)
+        calendarRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 7));
+        // set the adapter using the days that are in the particular week
+        calendarRecyclerView.setAdapter(new CalendarAdapter(daysInWeekArray, this));
+
+        // clear the list of planned workouts
+        eventListView.setAdapter(new EventAdapter(getApplicationContext(), new ArrayList<>()));
+
+        // using the view model
         EventVM eventVM = ViewModelProviders.of(this).get(EventVM.class);
         eventVM.init(CalendarUtils.selectedDate);
         eventVM.getEvents().observe(this, this::setRecyclerView);
     }
 
     private void setRecyclerView(List<EventInApp> eventList) {
-        ArrayList<EventInApp> dailyEventInApps = new ArrayList<EventInApp>(eventList);
+        // convert the list into an arraylist
+        ArrayList<EventInApp> dailyEventInApps = new ArrayList<>(eventList);
 
-        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEventInApps);
-        eventListView.setAdapter(eventAdapter);
+        // set the adapter, using a list of planned events
+        eventListView.setAdapter(new EventAdapter(getApplicationContext(), dailyEventInApps));
     }
 
-    @Override
-    public void onItemClick(int position, LocalDate date) {
-        CalendarUtils.selectedDate = date;
-        setWeekView();
-    }
+
 }
