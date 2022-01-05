@@ -45,6 +45,7 @@ public class EventInApp {
 
     public void setEndTime(LocalTime time) { this.endTime = time; }
 
+    /*
     public static ArrayList<EventInApp> eventsForDate(LocalDate date) {
         ArrayList<EventInApp> eventInApps = new ArrayList<>();
 
@@ -54,6 +55,6 @@ public class EventInApp {
         }
 
         return eventInApps;
-    }
+    } */
 
 }

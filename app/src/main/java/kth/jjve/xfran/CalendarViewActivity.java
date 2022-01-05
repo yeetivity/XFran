@@ -22,13 +22,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import kth.jjve.xfran.adapters.EventAdapter;
-import kth.jjve.xfran.adapters.WorkoutsRecyclerAdapter;
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
+import kth.jjve.xfran.repositories.EventRepo;
 import kth.jjve.xfran.viewmodels.EventVM;
-import kth.jjve.xfran.viewmodels.WorkoutVM;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 public class CalendarViewActivity extends BaseActivity implements CalendarAdapter.OnItemListener {
@@ -96,7 +96,14 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
 
     private void setEventAdapter() {
         // takes the day's events from the list and outputs them
-        ArrayList<EventInApp> dailyEventInApps = EventInApp.eventsForDate(CalendarUtils.selectedDate);
+        EventVM eventVM = ViewModelProviders.of(this).get(EventVM.class);
+        eventVM.init(CalendarUtils.selectedDate);
+        eventVM.getEvents().observe(this, this::setRecyclerView);
+    }
+
+    private void setRecyclerView(List<EventInApp> eventList) {
+        ArrayList<EventInApp> dailyEventInApps = new ArrayList<EventInApp>(eventList);
+
         EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEventInApps);
         eventListView.setAdapter(eventAdapter);
     }

@@ -11,17 +11,19 @@ import java.util.List;
 
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.repositories.EventRepo;
+import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 public class EventVM extends ViewModel {
     private MutableLiveData<List<EventInApp>> mEvents; //subclass of LiveData (mutable)
     private EventRepo mRepo;
 
-    public void init() {
+    public void init(LocalDate date) {
         if(mEvents != null){
+            mEvents = mRepo.getEvents(date);
             return;
         }
         mRepo = EventRepo.getInstance();
-        mEvents = mRepo.getEvents();
+        mEvents = mRepo.getEvents(date);
     }
 
     public void addNewEvent(String name, LocalDate date, LocalTime startTime, LocalTime endTime) {

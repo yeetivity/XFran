@@ -56,7 +56,7 @@ public class EditEventActivity extends AppCompatActivity {
 
         /*-----  VM  -----*/
         mEventVM = ViewModelProviders.of(this).get(EventVM.class);
-        mEventVM.init();
+        mEventVM.init(CalendarUtils.selectedDate);
 
         /*-------- LISTENERS ------------*/
         buttonSave.setOnClickListener(v -> saveEvent());
@@ -105,10 +105,10 @@ public class EditEventActivity extends AppCompatActivity {
     private void createEventInApp(){
         // method to create the event and output it in the app
         try {
-            EventInApp newEventInApp = new EventInApp(s_eventName, CalendarUtils.selectedDate, LocalTime.parse(startTime), LocalTime.parse(stopTime));
-            EventInApp.eventsList.add(newEventInApp);
-            Toast.makeText(getApplicationContext(), "event saved", Toast.LENGTH_SHORT).show();
+            //EventInApp newEventInApp = new EventInApp(s_eventName, CalendarUtils.selectedDate, LocalTime.parse(startTime), LocalTime.parse(stopTime));
+            //EventInApp.eventsList.add(newEventInApp);
             mEventVM.addNewEvent(s_eventName, CalendarUtils.selectedDate, LocalTime.parse(startTime), LocalTime.parse(stopTime));
+            Toast.makeText(getApplicationContext(), "event saved", Toast.LENGTH_SHORT).show();
             finish();
         } catch (Exception e) {
             e.printStackTrace();
