@@ -6,7 +6,7 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
 import kth.jjve.xfran.models.Workout;
-import kth.jjve.xfran.weeklycalendar.CalendarUtils;
+import kth.jjve.xfran.calendar.CalendarUtils;
 
 import android.content.Intent;
 import android.icu.util.Calendar;

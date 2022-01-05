@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
-
     <application
         android:name=".adapters.AppCtx"
         android:allowBackup="true"
@@ -16,6 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.XFran">
+        <activity
+            android:name=".MontlyCalendarActivity"
+            android:exported="false" />
         <activity
             android:name=".BaseActivity"
             android:exported="false" />
@@ -57,4 +59,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>
