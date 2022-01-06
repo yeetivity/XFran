@@ -5,7 +5,7 @@ Activity to set out the weekly calendar view and output the events
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
-import static kth.jjve.xfran.calendar.CalendarUtils.monthYearFromDate;
+import static kth.jjve.xfran.utils.CalendarUtils.monthYearFromDate;
 
 import android.os.Bundle;
 import android.widget.FrameLayout;
@@ -13,27 +13,25 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import kth.jjve.xfran.adapters.CalendarAdapter;
 import kth.jjve.xfran.adapters.MontlyCalendarAdapter;
 import kth.jjve.xfran.models.Workout;
-import kth.jjve.xfran.calendar.CalendarUtils;
+import kth.jjve.xfran.utils.CalendarUtils;
+import kth.jjve.xfran.viewmodels.CalendarVM;
 
 public class MontlyCalendarActivity extends BaseActivity implements MontlyCalendarAdapter.OnItemListener {
 
-    /*_________ VIEW _________*/
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-    private LocalDate selectedDate;
 
-    /*_________ INTENT _________*/
-    private Integer position;
-    private Workout mWorkout;
+    private ArrayList<Integer> workoutDays;
+    private CalendarVM calendarVM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,24 +48,20 @@ public class MontlyCalendarActivity extends BaseActivity implements MontlyCalend
         calendarRecyclerView = findViewById(R.id.calendarMonthRecyclerView);
 
         /*----- CALENDAR ------*/
-        CalendarUtils.selectedDate = LocalDate.now();
-        setMonthView();
+        calendarVM = ViewModelProviders.of(this).get(CalendarVM.class);
+        setMonthView(LocalDate.now());
+        calendarVM.getWorkoutDays().observe(this, integers -> {
+            workoutDays = integers;
+            setMonthView(CalendarUtils.selectedDate);
+        });
 
 
-        //Todo: instantiate a VM with observer to the list
-        //Todo: if the list is renewed, setMonthView with the list
+
+
 
         /*-------- LISTENERS ------------*/
-        buttonBack.setOnClickListener(v -> { //go to previous week
-            CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusMonths(1);
-            setMonthView();
-
-        });
-
-        buttonNext.setOnClickListener(v -> { // go to next week
-            CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
-            setMonthView();
-        });
+        buttonBack.setOnClickListener(v -> setMonthView(CalendarUtils.selectedDate.minusMonths(1)));
+        buttonNext.setOnClickListener(v -> setMonthView(CalendarUtils.selectedDate.plusMonths(1)));
     }
 
     @Override
@@ -76,16 +70,19 @@ public class MontlyCalendarActivity extends BaseActivity implements MontlyCalend
         navigationView.setCheckedItem(R.id.nav_calendar);
     }
 
-    private void setMonthView() {
-        // makes the week view with the correct days visible and sets events in the recycler view
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate)); //outputs month and year
+    private void setMonthView(LocalDate date) {
+        calendarVM.init(date);
+
+        CalendarUtils.selectedDate = date; // update the selected date
+        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate)); // shows user month and year
+
+        // find which days are in the month, and when empty cells need to be published
         ArrayList<String> daysInMonth = CalendarUtils.daysInMonthArray(CalendarUtils.selectedDate);
 
-        MontlyCalendarAdapter montlyCalendarAdapter = new MontlyCalendarAdapter(daysInMonth, this);
-
-        RecyclerView.LayoutManager lm = new GridLayoutManager(getApplicationContext(), 7);
-        calendarRecyclerView.setLayoutManager(lm);
-        calendarRecyclerView.setAdapter(montlyCalendarAdapter);
+        // use a grid layout with width 7
+        calendarRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 7));
+        // set the adapter based on days in the month
+        calendarRecyclerView.setAdapter(new MontlyCalendarAdapter(daysInMonth, this, workoutDays));
     }
 
     @Override

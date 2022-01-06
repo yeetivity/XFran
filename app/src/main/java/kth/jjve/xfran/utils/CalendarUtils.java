@@ -1,4 +1,4 @@
-package kth.jjve.xfran.calendar;
+package kth.jjve.xfran.utils;
 
 /*
 Function: useful methods for the calendar

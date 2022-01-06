@@ -7,8 +7,8 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
 
 import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_ID;
 import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_OBJ;
-import static kth.jjve.xfran.calendar.CalendarUtils.daysInWeekArray;
-import static kth.jjve.xfran.calendar.CalendarUtils.monthYearFromDate;
+import static kth.jjve.xfran.utils.CalendarUtils.daysInWeekArray;
+import static kth.jjve.xfran.utils.CalendarUtils.monthYearFromDate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +30,8 @@ import kth.jjve.xfran.adapters.EventAdapter;
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
 import kth.jjve.xfran.models.Workout;
-import kth.jjve.xfran.calendar.CalendarUtils;
+import kth.jjve.xfran.utils.CalendarUtils;
+import kth.jjve.xfran.viewmodels.EventVM;
 
 public class CalendarViewActivity extends BaseActivity implements CalendarAdapter.OnItemListener {
 

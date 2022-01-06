@@ -7,7 +7,6 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
 based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
  */
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,25 +14,21 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
-import kth.jjve.xfran.MontlyCalendarActivity;
 import kth.jjve.xfran.R;
-import kth.jjve.xfran.calendar.CalendarUtils;
-import kth.jjve.xfran.calendar.CalendarViewHolder;
-import kth.jjve.xfran.calendar.MontlyCalendarViewHolder;
-import kth.jjve.xfran.repositories.ResultRepo;
+import kth.jjve.xfran.viewholders.MontlyCalendarViewHolder;
 
 public class MontlyCalendarAdapter extends RecyclerView.Adapter<MontlyCalendarViewHolder>{
 
     private final ArrayList<String> daysOfMonth;
+    private final ArrayList<Integer> workoutDays;
     private final OnItemListener onItemListener;
 
-    public MontlyCalendarAdapter(ArrayList<String> days, OnItemListener onItemListener) {
+    public MontlyCalendarAdapter(ArrayList<String> days, OnItemListener onItemListener, ArrayList<Integer> workoutdays) {
         this.daysOfMonth = days;
         this.onItemListener = onItemListener;
+        this.workoutDays = workoutdays;
     }
 
     @NonNull
@@ -50,8 +45,13 @@ public class MontlyCalendarAdapter extends RecyclerView.Adapter<MontlyCalendarVi
     public void onBindViewHolder(@NonNull MontlyCalendarViewHolder holder, int position) {
         holder.dayOfMonth.setText(daysOfMonth.get(position));
 
-        setDot(holder, position); // Decide if the dot has to be shown
-
+        if (!daysOfMonth.get(position).equals("")){
+            if (workoutDays != null){
+                if (workoutDays.contains(Integer.parseInt(daysOfMonth.get(position)))){
+                    holder.dotOfDay.setVisibility(View.VISIBLE);
+                }
+            }
+        }
     }
 
     @Override
@@ -61,17 +61,5 @@ public class MontlyCalendarAdapter extends RecyclerView.Adapter<MontlyCalendarVi
 
     public interface  OnItemListener {
         void onItemClick(int position, String dayText);
-    }
-
-    public void setDot(@NonNull MontlyCalendarViewHolder holder, int position){
-
-        // see if this one can observe some mutable data list or something
-        List<Integer> list = (List<Integer>) ResultRepo.getFakeDataList(CalendarUtils.selectedDate);
-
-        if (!daysOfMonth.get(position).equals("")){
-            if (list.contains(Integer.parseInt(daysOfMonth.get(position)))){
-                holder.dotOfDay.setVisibility(View.VISIBLE);
-            }
-        }
     }
 }

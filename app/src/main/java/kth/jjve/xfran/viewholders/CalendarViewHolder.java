@@ -1,4 +1,4 @@
-package kth.jjve.xfran.calendar;
+package kth.jjve.xfran.viewholders;
 
 /*
 Function: viewholder for the weekly calendar
