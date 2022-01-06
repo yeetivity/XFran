@@ -21,7 +21,6 @@ public class Result {
         this.comments = comments;
         this.date = date;
         this.scaled = scaled;
-        this.empty = false;
     }
 
     public Result() {
@@ -75,7 +74,4 @@ public class Result {
         this.scaled = scaled;
     }
 
-    public boolean checkEmpty() {
-        return empty;
-    }
 }

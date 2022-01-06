@@ -32,7 +32,7 @@
     <string name="export">export</string>
     <string name="newEventInApp">NEW EVENT</string>
     <string name="startTime">Start time</string>
-    <string name="endTime">End time (</string>
+    <string name="endTime">End time</string>
     <string name="date">Date</string>
     <string name="nameEvent">Name of the Event:</string>
     <string name="newEvent">NEW EVENT</string>

@@ -99,11 +99,11 @@ public class SaveResultsActivity extends BaseActivity {
         String scoreType = ResultUtils.setScoreType(workout);
         mScoreType.setText(scoreType);
 
-        //change edit_score hint according to the current workout
+        //change hint of score input field according to workout type
         String scoreTypeHint = ResultUtils.setScoreTypeHint(workout);
         mScore.setHint(scoreTypeHint);
 
-        //change edit_score digits according to the current workout
+        //change digits accepted on score input field according to workout type
         String scoreDigits = ResultUtils.setScoreDigits(workout);
         mScore.setKeyListener(DigitsKeyListener.getInstance(scoreDigits));
 

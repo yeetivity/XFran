@@ -28,7 +28,7 @@ public class ResultRepo {
     String userID;
     String resultID;
     private Result result = new Result();
-    private MutableLiveData<Result> up;
+    private MutableLiveData<Result> res;
 
     private ArrayList<Result> dataSet = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public class ResultRepo {
                              String comments, LocalDate date, boolean scaled) {
         result = new Result(workout, score, rating, comments, date, scaled);
         resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
-        if (up != null) up.setValue(result);   //Add the result to the mutable data list
+        if (res != null) res.setValue(result);   //Add the result to the mutable data list
 
         //Save the data to the database
         firebaseAuth = FirebaseAuth.getInstance();

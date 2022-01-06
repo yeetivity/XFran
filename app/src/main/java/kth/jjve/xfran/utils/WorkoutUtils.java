@@ -68,13 +68,11 @@ public class WorkoutUtils {
             }
         }
         reader.endObject();
-        // create workout object from info read
         Workout workout = new Workout(title, tag, type, description, details, equipment);
         return workout;
     }
 
     public static ArrayList<String> readArrayList(JsonReader reader) throws IOException {
-        // ArrayList reader
         ArrayList<String> stringArrayList = new ArrayList<>();
         reader.beginArray();
         while (reader.hasNext()) {
