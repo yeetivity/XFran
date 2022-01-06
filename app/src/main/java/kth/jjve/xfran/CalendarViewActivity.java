@@ -66,7 +66,6 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         });
 
         buttonNewEvent.setOnClickListener(v -> {
-            //TODO make it a popup window, not a new activity
             startActivity(new Intent(this, EditEventActivity.class));
         });
     }

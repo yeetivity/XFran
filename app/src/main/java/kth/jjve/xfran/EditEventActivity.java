@@ -14,8 +14,10 @@ import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +26,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import java.time.LocalTime;
 
-public class EditEventActivity extends AppCompatActivity {
+public class EditEventActivity extends BaseActivity {
 
     private static final String LOG_TAG = EditEventActivity.class.getSimpleName();
     private EditText eventName, eventStartTimeEdit, eventEndTimeEdit;
@@ -34,7 +36,10 @@ public class EditEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_calendar_editevent);
+
+        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.act_calendar_editevent, contentFrameLayout);
+        navigationView.setCheckedItem(R.id.nav_calendar);
 
         /*------ HOOKS ------*/
         eventName = findViewById(R.id.eventName);
