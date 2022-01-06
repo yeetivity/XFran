@@ -5,6 +5,8 @@ Activity to set out the weekly calendar view and output the events
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
+import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_ID;
+import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_OBJ;
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.daysInWeekArray;
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.monthYearFromDate;
 
@@ -27,6 +29,7 @@ import java.util.List;
 import kth.jjve.xfran.adapters.EventAdapter;
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
+import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.viewmodels.EventVM;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
@@ -36,6 +39,10 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
+
+    /*_________ INTENT _________*/
+    private Integer position;
+    private Workout mWorkout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,11 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         /*----- CALENDAR ------*/
         setWeekView(LocalDate.now());
 
+        /*------ INTENT ------*/
+        Intent intentIn = getIntent();
+        position = intentIn.getIntExtra(WORKOUT_ID,1);
+        mWorkout = (Workout) intentIn.getSerializableExtra(WORKOUT_OBJ);
+
         /*-------- LISTENERS ------------*/
         buttonBack.setOnClickListener(v -> { //go to previous week
             setWeekView(CalendarUtils.selectedDate.minusWeeks(1));
@@ -66,7 +78,11 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         });
 
         buttonNewEvent.setOnClickListener(v -> {
-            startActivity(new Intent(this, EditEventActivity.class));
+            startActivity(new Intent(this, PlanEventActivity.class));
+            Intent intent = new Intent(this, PlanEventActivity.class);
+            intent.putExtra(WORKOUT_ID, position);
+            intent.putExtra(WORKOUT_OBJ, mWorkout);
+            startActivity(intent);
         });
     }
 
