@@ -6,6 +6,7 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
 import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.viewmodels.EventVM;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 import android.content.Intent;
@@ -14,22 +15,24 @@ import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 
 import java.time.LocalTime;
 
-import kth.jjve.xfran.models.EventInApp;
-
-public class PlanEventActivity extends AppCompatActivity {
+public class PlanEventActivity extends BaseActivity {
 
     private static final String LOG_TAG = PlanEventActivity.class.getSimpleName();
     private EditText eventNameET, eventStartTimeEdit, eventEndTimeEdit;
     private String s_eventName, startTime, stopTime;
+    private EventVM mEventVM;
 
     /*_________ INTENT _________*/
     private Integer position;
@@ -38,7 +41,10 @@ public class PlanEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_planevent);
+
+        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
+        getLayoutInflater().inflate(R.layout.act_planevent, contentFrameLayout);
+        navigationView.setCheckedItem(R.id.nav_calendar);
 
         /*------ HOOKS ------*/
         eventNameET = findViewById(R.id.eventNameET);
@@ -55,6 +61,10 @@ public class PlanEventActivity extends AppCompatActivity {
         /*----- CALENDAR ------*/
         String s_date = "Date: " + CalendarUtils.cleanDate(CalendarUtils.selectedDate);
         eventDate.setText(s_date);
+
+        /*-----  VM  -----*/
+        mEventVM = ViewModelProviders.of(this).get(EventVM.class);
+        mEventVM.init(CalendarUtils.selectedDate);
 
         /*-------- LISTENERS ------------*/
         buttonSave.setOnClickListener(v -> saveEvent());
@@ -97,30 +107,27 @@ public class PlanEventActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(stopTime)){
             eventEndTimeEdit.setError("End time is required");
-            return;
         }
     }
 
-    private void saveEvent(){
+    private void saveEvent() {
         //method to save the name, start and end time of an event into a list, called by save button
         setEventInApp();
         createEventInApp();
     }
     //TODO delete event
-    //TODO save events into repository
 
-    private void saveEventToCalendar(){
+    private void saveEventToCalendar() {
         // method to save the event in the calendar in the app and in the calendar provider, called by export buttom
         setEventInApp();
         exportToExternalCalendar();
         createEventInApp();
     }
 
-    private void createEventInApp(){
+    private void createEventInApp() {
         // method to create the event and output it in the app
         try {
-            EventInApp newEventInApp = new EventInApp(s_eventName, CalendarUtils.selectedDate, LocalTime.parse(startTime), LocalTime.parse(stopTime));
-            EventInApp.eventsList.add(newEventInApp);
+            mEventVM.addNewEvent(s_eventName, CalendarUtils.selectedDate, LocalTime.parse(startTime), LocalTime.parse(stopTime));
             Toast.makeText(getApplicationContext(), "event saved", Toast.LENGTH_SHORT).show();
             finish();
         } catch (Exception e) {
@@ -129,7 +136,7 @@ public class PlanEventActivity extends AppCompatActivity {
         }
     }
 
-    private void exportToExternalCalendar(){
+    private void exportToExternalCalendar() {
         try {
             Calendar beginTime = Calendar.getInstance();
             beginTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate),
@@ -144,12 +151,10 @@ public class PlanEventActivity extends AppCompatActivity {
                     .putExtra(CalendarContract.Events.TITLE, s_eventName)
                     .putExtra(CalendarContract.Events.DESCRIPTION, "Group class"); //TODO: add WO description here
             startActivity(intent);
-            //TODO come back to XFran from calendar app. see if doable?
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "couldn't export event", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private void onClick(View v) {
