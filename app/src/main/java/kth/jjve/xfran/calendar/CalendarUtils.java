@@ -83,8 +83,21 @@ public class CalendarUtils {
         return null;
     }
 
+    /* ----------- METHODS FOR REPO -------------- */
+    // methods used to change date and time format for storing in firbase
+
+    public static LocalDate dateFromString(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(date, formatter);
+    }
+
+    public static LocalTime timeFromString(String time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return LocalTime.parse(time, formatter);
+    }
+
     /* ------------ METHODS FOR EXPORTING EVENTS ------------ */
-    //methds to change the date and time into a format accepted by the calendar provider API
+    //methods to change the date and time into a format accepted by the calendar provider API
 
     public static int exportMinutes(String time){
         return Integer.parseInt(time.substring(time.length() - 2));

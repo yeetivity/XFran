@@ -2,60 +2,52 @@ package kth.jjve.xfran.models;
 
 import java.time.LocalDate;
 
-/**
+/*
  * Result constructor
  */
-
 
 public class Result {
 
     private Workout workout;
-    private String resultType;
-    private double time;
-    private double reps;
-    private double weight;
+    private String scoreType, comments, score; //Todo: deal better with different types of scores
     private Integer feelScore;
-    private String comments;
     private LocalDate date;
+    private boolean scaled, empty;
 
-    public Result(Workout workout, LocalDate date){
+    public Result(Workout workout, String score, Integer feelScore, String comments, LocalDate date, boolean scaled) {
         this.workout = workout;
+        this.score = score;
+        this.feelScore = feelScore;
+        this.comments = comments;
         this.date = date;
+        this.scaled = scaled;
     }
 
-    public Result(){
+    public Result() {
     }
 
-    public String getResultType() {
-        return resultType;
+    public Workout getWorkout() {
+        return workout;
     }
 
-    public void setResultType(String resultType) {
-        this.resultType = resultType;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public double getReps() {
-        return reps;
+    public String getScoreType() {
+        return scoreType;
     }
 
-    public void setReps(double reps) {
-        this.reps = reps;
+    public void setScoreType(String scoreType) {
+        this.scoreType = scoreType;
     }
 
-    public double getTime() {
-        return time;
+    public String getScore() {
+        return score;
     }
 
-    public void setTime(double time) {
-        this.time = time;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setScore(String score) {
+        this.score = score;
     }
 
     public Integer getFeelScore() {
@@ -73,4 +65,13 @@ public class Result {
     public void setComments(String comments) {
         this.comments = comments;
     }
+
+    public boolean isScaled() {
+        return scaled;
+    }
+
+    public void setScaled(boolean scaled) {
+        this.scaled = scaled;
+    }
+
 }
