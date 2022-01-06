@@ -2,9 +2,8 @@ package kth.jjve.xfran.weeklycalendar;
 
 /*
 Function: useful methods for the calendar
-Activity: CalendarViewActivity
+Activity: CalendarViewActivity & EditEventActivity
 Jitse van Esch, Elisa Perini & Mariah Sabioni
-based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
  */
 
 import java.time.DayOfWeek;
@@ -37,6 +36,7 @@ public class CalendarUtils {
     }
 
     public static ArrayList<LocalDate> daysInWeekArray(LocalDate selectedDate) {
+        //based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
         ArrayList<LocalDate> days = new ArrayList<>();
         LocalDate current = mondayForDate(selectedDate);
         LocalDate endDate = Objects.requireNonNull(current).plusWeeks(1);
@@ -50,6 +50,7 @@ public class CalendarUtils {
 
     private static LocalDate mondayForDate(LocalDate current) {
         // also sets monday as 1st day of the week
+        //based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
         LocalDate oneWeekAgo = current.minusWeeks(1);
 
         while (current.isAfter(oneWeekAgo)) {
@@ -81,8 +82,7 @@ public class CalendarUtils {
     public static int exportMonth(LocalDate date){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM");
         int month = Integer.parseInt(date.format(formatter));
-        // /!\ 0 = january!!!!!
-        return month-1;
+        return month-1; // /!\ 0 = january!!!!!
     }
 
     public static int exportDay(LocalDate date){

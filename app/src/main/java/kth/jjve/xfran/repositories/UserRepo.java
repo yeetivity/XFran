@@ -23,6 +23,7 @@ public class UserRepo {
     String userID;
     private UserProfile userProfile = new UserProfile();
     private MutableLiveData<UserProfile> up;
+    private MutableLiveData<String> un;
 
     public static UserRepo getInstance() {
         if (instance == null) {
@@ -33,8 +34,7 @@ public class UserRepo {
 
     public MutableLiveData<UserProfile> getUserProfile() {
         up = new MutableLiveData<>();
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseFirestore = FirebaseFirestore.getInstance();
+        initFirebase();
 
         if (userProfile.checkEmpty() || !userID.equals(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid())) {
             if (firebaseAuth.getCurrentUser() != null) {
@@ -82,6 +82,40 @@ public class UserRepo {
         up.setValue(userProfile);
 
         return up;
+    }
+
+    public MutableLiveData<String> getUserName(){
+        un = new MutableLiveData<>();
+        initFirebase();
+
+        if (firebaseAuth.getCurrentUser() != null){
+            //authenticate user
+            userID = firebaseAuth.getCurrentUser().getUid();
+
+            //get reference to user data
+            DocumentReference documentReference = firebaseFirestore.collection("users").document(userID);
+            documentReference.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    assert document != null;
+                    // get username
+                    try {
+                        un.setValue(document.getString("firstName"));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.i("UserRep", "No firstName found");
+                    }
+                }
+            });
+        } else {
+            un.setValue("not logged in");
+        }
+        return un;
+    }
+
+    private void initFirebase(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
     }
 
     public void setUserProfile(String fn, String ln, String e, double w, int l) {

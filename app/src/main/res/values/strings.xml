@@ -84,5 +84,7 @@
     <string name="score_for_weight_hint">0.0</string>
     <string name="score_emom_hint">rounds</string>
     <string name="score_sets_hint">weight1-weight2-…</string>
-
+    <string name="wod">WOD</string>
+    <string name="planned_today">Planned today</string>
+    <string name="logged_in_as">Logged in as:</string>
 </resources>
