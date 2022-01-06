@@ -64,6 +64,7 @@ public class CalendarUtils {
     }
 
     /* ----------- METHODS FOR REPO -------------- */
+    // methods used to change date and time format for storing in firbase
 
     public static LocalDate dateFromString(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

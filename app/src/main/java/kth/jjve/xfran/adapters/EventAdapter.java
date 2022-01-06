@@ -26,15 +26,13 @@ import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 public class EventAdapter extends ArrayAdapter<EventInApp> {
 
 
-    public EventAdapter(@NonNull Context context, List<EventInApp> eventInApps)
-    {
+    public EventAdapter(@NonNull Context context, List<EventInApp> eventInApps) {
         super(context, 0, eventInApps);
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
-    {
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         EventInApp eventInApp = getItem(position);
 
         if (convertView == null)

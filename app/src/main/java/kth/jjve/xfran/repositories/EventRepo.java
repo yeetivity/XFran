@@ -1,7 +1,7 @@
 package kth.jjve.xfran.repositories;
 
 /*
-Function: repository for events
+Function: repository for events, read and write data from firebase
 Activity: PlanEventActivity & WeeklyCalendarActivity
 Jitse van Esch, Mariah Sabioni & Elisa Perini
  */
@@ -53,7 +53,6 @@ public class EventRepo {
 
     public MutableLiveData<List<EventInApp>> getEvents(LocalDate date) {
         ev = new MutableLiveData<>();
-
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -65,7 +64,6 @@ public class EventRepo {
             filenumber = 1;
 
             ev = readMultipleDocument(date);
-
             ev.setValue(eventList);
         }
         return ev;

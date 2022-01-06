@@ -9,7 +9,7 @@ public class UserProfile {
     private Integer userHeight;
     private boolean empty;
 
-    public UserProfile(String firstName, String lastName, String email, double weight, int height){
+    public UserProfile(String firstName, String lastName, String email, double weight, int height) {
         this.userFirstName = firstName;
         this.userLastName = lastName;
         this.userEmail = email;
@@ -18,7 +18,7 @@ public class UserProfile {
         this.empty = false;
     }
 
-    public UserProfile(String fullName, String email){
+    public UserProfile(String fullName, String email) {
         String[] nameParts = fullName.split(" ", 2);
         this.userFirstName = nameParts[0];
         this.userLastName = nameParts[1];

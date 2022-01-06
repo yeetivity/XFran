@@ -22,13 +22,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import kth.jjve.xfran.adapters.EventAdapter;
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
-import kth.jjve.xfran.repositories.EventRepo;
 import kth.jjve.xfran.viewmodels.EventVM;
 import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
