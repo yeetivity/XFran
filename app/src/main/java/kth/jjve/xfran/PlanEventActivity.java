@@ -86,6 +86,12 @@ public class PlanEventActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.setCheckedItem(R.id.nav_calendar);
+    }
+
     private void setEventInApp(){
         // method to obtain the events name and start/end time
         if (mWorkout == null){

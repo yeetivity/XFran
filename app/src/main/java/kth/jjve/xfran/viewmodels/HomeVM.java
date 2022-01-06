@@ -134,7 +134,7 @@ public class HomeVM extends AndroidViewModel {
 
         mWODTitle.setValue(wod.getTitle());
         mWODDescription.setValue(wod.getType());
-        mWODExercises.setValue(wod.getExercises());
+        mWODExercises.setValue(wod.getDetails());
     }
 
     public LiveData<String> getUserName() {
