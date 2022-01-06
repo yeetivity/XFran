@@ -53,8 +53,9 @@ public class MontlyCalendarActivity extends BaseActivity implements MontlyCalend
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
 
-        /*------ INTENT ------*/
 
+        //Todo: instantiate a VM with observer to the list
+        //Todo: if the list is renewed, setMonthView with the list
 
         /*-------- LISTENERS ------------*/
         buttonBack.setOnClickListener(v -> { //go to previous week

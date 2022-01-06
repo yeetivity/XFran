@@ -64,7 +64,9 @@ public class MontlyCalendarAdapter extends RecyclerView.Adapter<MontlyCalendarVi
     }
 
     public void setDot(@NonNull MontlyCalendarViewHolder holder, int position){
-        List<Integer> list = ResultRepo.getFakeDataList();
+
+        // see if this one can observe some mutable data list or something
+        List<Integer> list = (List<Integer>) ResultRepo.getFakeDataList(CalendarUtils.selectedDate);
 
         if (!daysOfMonth.get(position).equals("")){
             if (list.contains(Integer.parseInt(daysOfMonth.get(position)))){

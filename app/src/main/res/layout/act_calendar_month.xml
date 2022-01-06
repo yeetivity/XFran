@@ -39,13 +39,10 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendarMonthRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:orientation="horizontal">
 
         <TextView
@@ -99,5 +96,11 @@
             android:textColor="@color/grey"
             android:textSize="16sp"/>
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendarMonthRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 </LinearLayout>
