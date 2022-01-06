@@ -1,6 +1,7 @@
 package kth.jjve.xfran.calendar;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,11 +17,13 @@ import kth.jjve.xfran.adapters.MontlyCalendarAdapter;
 
 public class MontlyCalendarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public final TextView dayOfMonth;
+    public final ImageView dotOfDay;
     private final MontlyCalendarAdapter.OnItemListener onItemListener;
 
     public MontlyCalendarViewHolder(@NonNull View itemView, MontlyCalendarAdapter.OnItemListener onItemListener) {
         super(itemView);
-        dayOfMonth = itemView.findViewById(R.id.cellDayText);
+        dayOfMonth = itemView.findViewById(R.id.month_cellDayText);
+        dotOfDay = itemView.findViewById(R.id.month_dot);
         this.onItemListener = onItemListener;
 
         itemView.setOnClickListener(this);

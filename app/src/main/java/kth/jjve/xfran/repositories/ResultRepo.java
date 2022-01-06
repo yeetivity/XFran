@@ -30,8 +30,20 @@ public class ResultRepo {
         return data;
     }
 
-    private void setResults() throws IOException {
+    private void setResults() {
         // Todo: Add result to the mutable data list & save result to firebase
+    }
+
+    public static List<Integer> getFakeDataList() {
+        List<Integer> list = new ArrayList<>();
+        MutableLiveData<List<String>> m = new MutableLiveData<>();
+
+        list.add(8);
+        list.add(10);
+        list.add(14);
+
+
+        return list;
     }
 
 }
