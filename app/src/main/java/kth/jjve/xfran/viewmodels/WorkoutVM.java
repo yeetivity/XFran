@@ -15,7 +15,7 @@ public class WorkoutVM extends ViewModel {
     private WorkoutRepo mRepo;
 
     public void init() {
-        if(mWorkouts != null){
+        if (mWorkouts != null) {
             return;
         }
         mRepo = WorkoutRepo.getInstance();
@@ -26,7 +26,7 @@ public class WorkoutVM extends ViewModel {
         }
     }
 
-    public LiveData<List<Workout>> getWorkouts(){
+    public LiveData<List<Workout>> getWorkouts() {
         /*
         LiveData can only be observed, not mutable
         Therefore it will not change during a state change of the fragment
