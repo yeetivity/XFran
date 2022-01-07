@@ -8,14 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import kth.jjve.xfran.R;
-import kth.jjve.xfran.adapters.MontlyCalendarAdapter;
+import kth.jjve.xfran.adapters.MonthlyCalendarAdapter;
 
 public class MontlyCalendarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public final TextView dayOfMonth;
     public final ImageView dotOfDay;
-    private final MontlyCalendarAdapter.OnItemListener onItemListener;
+    private final MonthlyCalendarAdapter.OnItemListener onItemListener;
 
-    public MontlyCalendarViewHolder(@NonNull View itemView, MontlyCalendarAdapter.OnItemListener onItemListener) {
+    public MontlyCalendarViewHolder(@NonNull View itemView, MonthlyCalendarAdapter.OnItemListener onItemListener) {
         super(itemView);
         dayOfMonth = itemView.findViewById(R.id.month_cellDayText);
         dotOfDay = itemView.findViewById(R.id.month_dot);

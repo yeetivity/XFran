@@ -20,17 +20,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import kth.jjve.xfran.adapters.MontlyCalendarAdapter;
-import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.adapters.MonthlyCalendarAdapter;
 import kth.jjve.xfran.utils.CalendarUtils;
 import kth.jjve.xfran.viewmodels.CalendarVM;
 
-public class MontlyCalendarActivity extends BaseActivity implements MontlyCalendarAdapter.OnItemListener {
+public class MontlyCalendarActivity extends BaseActivity implements MonthlyCalendarAdapter.OnItemListener {
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
     private ArrayList<Integer> workoutDays;
+    private ArrayList<Integer> feelScores;
     private CalendarVM calendarVM;
 
     @Override
@@ -50,14 +50,11 @@ public class MontlyCalendarActivity extends BaseActivity implements MontlyCalend
         /*----- CALENDAR ------*/
         calendarVM = ViewModelProviders.of(this).get(CalendarVM.class);
         setMonthView(LocalDate.now());
-        calendarVM.getWorkoutDays().observe(this, integers -> {
-            workoutDays = integers;
+        calendarVM.getWorkoutDays().observe(this, results -> {
+            workoutDays = results.get(0);
+            feelScores = results.get(1);
             setMonthView(CalendarUtils.selectedDate);
         });
-
-
-
-
 
         /*-------- LISTENERS ------------*/
         buttonBack.setOnClickListener(v -> setMonthView(CalendarUtils.selectedDate.minusMonths(1)));
@@ -65,7 +62,7 @@ public class MontlyCalendarActivity extends BaseActivity implements MontlyCalend
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         navigationView.setCheckedItem(R.id.nav_calendar);
     }
@@ -82,12 +79,12 @@ public class MontlyCalendarActivity extends BaseActivity implements MontlyCalend
         // use a grid layout with width 7
         calendarRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 7));
         // set the adapter based on days in the month
-        calendarRecyclerView.setAdapter(new MontlyCalendarAdapter(daysInMonth, this, workoutDays));
+        calendarRecyclerView.setAdapter(new MonthlyCalendarAdapter(daysInMonth, this, workoutDays, feelScores));
     }
 
     @Override
     public void onItemClick(int position, String dayText) {
-        if(!dayText.equals("")){
+        if (!dayText.equals("")) {
             String message = "Selected Date " + dayText + " " + monthYearFromDate(CalendarUtils.selectedDate);
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }

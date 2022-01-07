@@ -15,15 +15,15 @@ import kth.jjve.xfran.repositories.ResultRepo;
 public class CalendarVM  extends AndroidViewModel {
 
     private ResultRepo mResultRepo;
-    private MutableLiveData<ArrayList<Integer>> mWorkoutDays;
+    private MutableLiveData<ArrayList<ArrayList<Integer>>> mCalendarResults;
 
     public CalendarVM(@NonNull Application application){super(application);}
 
     public void init(LocalDate date){
         mResultRepo = ResultRepo.getInstance();
-        mWorkoutDays = mResultRepo.getListOfDates(date);
+        mCalendarResults = mResultRepo.getListOfDates(date);
 
     }
 
-    public LiveData<ArrayList<Integer>> getWorkoutDays(){ return mWorkoutDays;}
+    public LiveData<ArrayList<ArrayList<Integer>>> getWorkoutDays(){ return mCalendarResults;}
 }

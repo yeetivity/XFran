@@ -21,9 +21,9 @@
 
     <ImageView
         android:id="@+id/month_dot"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:srcCompat="@drawable/dot"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/dot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
