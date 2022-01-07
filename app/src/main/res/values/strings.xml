@@ -5,8 +5,14 @@
     <string name="workout_title">Workout title</string>
     <string name="workout_description">Workout description</string>
     <string name="workout_exercises">Workout exercises</string>
+    <string name="result_date">Date</string>
+    <string name="result_score">Score</string>
+    <string name="result_scaling">Scaling</string>
+    <string name="result_feel_score">Difficulty</string>
+    <string name="result_comments">Comments</string>
     <string name="add_plan">+ Plan</string>
     <string name="add_result">+ Result</string>
+    <string name="compare_result">View Results</string>
     <string name="time">Time:</string>
     <string name="reps">Num. of reps:</string>
     <string name="score_type">Time (mm:ss), rounds + reps (rds-reps) or max weight (lbs)</string>

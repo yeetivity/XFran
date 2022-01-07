@@ -1,4 +1,7 @@
 package kth.jjve.xfran;
+/*
+Activity to let the user view workouts
+ */
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,7 +12,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -40,7 +42,7 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
 
         /*------ HOOKS ------*/
         /*_________ VIEW _________*/
-        RecyclerView mRecyclerView = findViewById(R.id.rv_trainingdiary);
+        RecyclerView mRecyclerView = findViewById(R.id.rv_workoutlist);
 
         /*----- VIEW MODEL -----*/
         mWorkoutVM = ViewModelProviders.of(this).get(WorkoutVM.class);

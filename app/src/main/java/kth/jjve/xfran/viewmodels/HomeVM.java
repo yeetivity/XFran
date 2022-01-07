@@ -133,7 +133,7 @@ public class HomeVM extends AndroidViewModel {
         mWODExercises = new MutableLiveData<>();
 
         mWODTitle.setValue(wod.getTitle());
-        mWODDescription.setValue(wod.getType());
+        mWODDescription.setValue(wod.getDescription());
         mWODExercises.setValue(wod.getDetails());
     }
 

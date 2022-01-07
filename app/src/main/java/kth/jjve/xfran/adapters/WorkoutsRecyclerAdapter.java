@@ -1,4 +1,7 @@
 package kth.jjve.xfran.adapters;
+/*
+Adapter for Workouts tab
+ */
 
 import android.content.Context;
 import android.util.Log;
@@ -19,21 +22,15 @@ import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.utils.WorkoutUtils;
 
-/**
- * Adapter for Workouts tab
- */
-
 public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final String LOG_TAG = getClass().getSimpleName();
     /*------ LISTENERS ------*/
-    //expand/collapse workout item
     private final ListItemClickListener mItemClickListener;
     private final PlanButtonClickListener mPlanClickListener;
     /*
     ArrayList saves a boolean for each workout item (false-->collapsed view/ true-->expanded view)
     The position on the array corresponds to the position on the mWorkouts list
-    This is built locally not to interact with the repo (unnecessary mix of concerns)
      */
     private final SaveButtonClickListener mSaveClickListener;
     private Context mContext;
@@ -46,7 +43,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                                    SaveButtonClickListener onSaveButtonClickListener) {
         mWorkouts = workouts;
         mContext = context;
-        //set all workout items to collapsed view when adapter is constructed (ArrayList of false)
+        //set all workout items to collapsed view when adapter is constructed
         mExpandedStatus.clear();
         mExpandedStatus.addAll(Collections.nCopies(mWorkouts.size(), false));
 
@@ -65,11 +62,8 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder vh, int i) {
 
-        //Set the name of the 'Workout'
         ((ViewHolder) vh).mName.setText(mWorkouts.get(i).getTitle());
-        //Set the details of the 'Workout'
         ((ViewHolder) vh).mDescription.setText(mWorkouts.get(i).getDescription());
-        //Set the exercises of the 'Workout'
         String exercises = WorkoutUtils.buildExerciseString(mWorkouts.get(i));
         ((ViewHolder) vh).mExercises.setText(exercises);
 
@@ -118,7 +112,6 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             /*------ LISTENERS ------*/
             //listener for item click
             itemView.setOnClickListener(v -> {
-                //get position of clicked item
                 int position = getAdapterPosition();
                 mItemClickListener.onListItemClick(position);
                 Log.i(LOG_TAG, "clicked: " + position);
