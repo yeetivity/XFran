@@ -16,9 +16,6 @@ import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.utils.WorkoutUtils;
 
-/**
- * Singleton pattern
- */
 public class WorkoutRepo {
 
     private static WorkoutRepo instance;

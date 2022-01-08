@@ -67,11 +67,11 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
     public void onListItemClick(int position) {
     }
 
-    public void onPlan(int position){
+    public void onPlan(int position) {
         Intent intent = new Intent(this, CalendarViewActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
-        Log.i(LOG_TAG, "workout sent: "+ mWorkoutVM.getWorkouts().getValue().get(position));
+        Log.i(LOG_TAG, "workout sent: " + mWorkoutVM.getWorkouts().getValue().get(position));
         startActivity(intent);
     }
 

@@ -7,9 +7,9 @@
     <string name="workout_exercises">Workout exercises</string>
     <string name="result_date">Date</string>
     <string name="result_score">Score</string>
-    <string name="result_scaling">Scaling</string>
-    <string name="result_feel_score">Difficulty</string>
-    <string name="result_comments">Comments</string>
+    <string name="result_scaling">Scaled the workout?</string>
+    <string name="result_feel_score">How hard was it?</string>
+    <string name="result_comments">Comments:</string>
     <string name="add_plan">+ Plan</string>
     <string name="add_result">+ Result</string>
     <string name="compare_result">View Results</string>

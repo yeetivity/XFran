@@ -37,7 +37,7 @@
                 android:text="@string/add_plan" />
 
             <Button
-                android:id="@+id/button_compare_wod"
+                android:id="@+id/button_view_results"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/result_comments"

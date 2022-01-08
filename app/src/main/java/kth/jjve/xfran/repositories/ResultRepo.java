@@ -3,10 +3,16 @@ package kth.jjve.xfran.repositories;
 
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.time.LocalDate;
@@ -14,9 +20,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+import kth.jjve.xfran.LoginActivity;
+import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.models.Result;
 import kth.jjve.xfran.models.Workout;
+
+import static kth.jjve.xfran.weeklycalendar.CalendarUtils.dateFromString;
+import static kth.jjve.xfran.weeklycalendar.CalendarUtils.timeFromString;
 
 public class ResultRepo {
 
@@ -27,10 +39,10 @@ public class ResultRepo {
     FirebaseFirestore firebaseFirestore;
     String userID;
     String resultID;
+    private List<Result> resultList = new ArrayList<Result>();
+    ;
     private Result result = new Result();
-    private MutableLiveData<Result> res;
-
-    private ArrayList<Result> dataSet = new ArrayList<>();
+    private MutableLiveData<List<Result>> res;
 
     public static ResultRepo getInstance() {
         if (instance == null) {
@@ -39,23 +51,59 @@ public class ResultRepo {
         return instance;
     }
 
-    // Pretend to get data from a webservice or cage or online source
     public MutableLiveData<List<Result>> getResults() {
-        //Todo: read from firebase
-        MutableLiveData<List<Result>> data = new MutableLiveData<>();
-        data.setValue(dataSet);
-        return data;
+        res = new MutableLiveData<>();
+        initFirebase();
+        if (firebaseAuth.getCurrentUser() != null) {
+            userID = firebaseAuth.getCurrentUser().getUid();
+
+            //resultList = new ArrayList<>();
+            //res = readAllCollection();
+            resultList = readAllCollection();
+            res.setValue(resultList);
+            Log.d(LOG_TAG, "res is: " + res);
+            res.setValue(resultList);
+        }
+        //res.setValue(resultList);
+        return res;
     }
 
-    public void addNewResult(Workout workout, String score, Integer rating,
-                             String comments, LocalDate date, boolean scaled) {
-        result = new Result(workout, score, rating, comments, date, scaled);
-        resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
-        if (res != null) res.setValue(result);   //Add the result to the mutable data list
 
-        //Save the data to the database
+    private void initFirebase() {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
+    }
+
+    private List<Result> readAllCollection() {
+        resultList = new ArrayList<>();
+        firebaseFirestore.collection("users").document(userID).collection("results")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                            Log.d(LOG_TAG, document.getId() + " => " + document.getData());
+                            resultList.add(document.toObject(Result.class));
+                            Log.d(LOG_TAG, "resultList is => " + resultList);
+                            Log.d(LOG_TAG, "result created => " + document.toObject(Result.class));
+                        }
+                    } else {
+                        Log.d(LOG_TAG, "Error getting documents: ", task.getException());
+                    }
+                });
+        //res.setValue(resultList);
+        Log.d(LOG_TAG, "resultList created => " + resultList);
+        return resultList;
+    }
+
+
+    public void addNewResult(Workout workout, String score, Integer rating,
+                             String comments, String date, boolean scaled) {
+        result = new Result(workout, score, rating, comments, date, scaled);
+        resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
+        //if (res != null) res.setValue(result);   //Add the result to the mutable data list
+
+        //Save the data to the database
+        initFirebase();
 
         if (firebaseAuth.getCurrentUser() != null) {
             userID = firebaseAuth.getCurrentUser().getUid();

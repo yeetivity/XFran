@@ -11,10 +11,10 @@ public class Result {
     private Workout workout;
     private String scoreType, comments, score; //Todo: deal better with different types of scores
     private Integer feelScore;
-    private LocalDate date;
+    private String date;
     private boolean scaled, empty;
 
-    public Result(Workout workout, String score, Integer feelScore, String comments, LocalDate date, boolean scaled) {
+    public Result(Workout workout, String score, Integer feelScore, String comments, String date, boolean scaled) {
         this.workout = workout;
         this.score = score;
         this.feelScore = feelScore;
@@ -30,7 +30,7 @@ public class Result {
         return workout;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 

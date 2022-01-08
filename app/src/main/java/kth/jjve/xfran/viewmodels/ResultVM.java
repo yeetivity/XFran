@@ -22,7 +22,6 @@ public class ResultVM extends AndroidViewModel {
 
     private static final String LOG_TAG = ResultVM.class.getSimpleName();
 
-    private Result mNewResult;
     private MutableLiveData<List<Result>> mResults; //subclass of LiveData (mutable)
     private ResultRepo mRepo;
 
@@ -32,10 +31,12 @@ public class ResultVM extends AndroidViewModel {
 
     public void init() {
         if (mResults != null) {
+            mResults = mRepo.getResults();
             return;
         }
         mRepo = ResultRepo.getInstance();
         mResults = mRepo.getResults();
+        Log.d(LOG_TAG, "mResults is: " + mResults.getValue().size() + " elements");
     }
 
     public LiveData<List<Result>> getResults() {
@@ -43,7 +44,7 @@ public class ResultVM extends AndroidViewModel {
     }
 
     public void addNewResult(Workout workout, String score, Integer rating,
-                             String comments, LocalDate date, boolean scaled) {
+                             String comments, String date, boolean scaled) {
         mRepo.addNewResult(workout, score, rating, comments, date, scaled);
     }
 }

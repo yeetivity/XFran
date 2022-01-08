@@ -145,7 +145,7 @@ public class SaveResultsActivity extends BaseActivity {
             }
 
             //save results
-            mResultVM.addNewResult(workout, score, rating, comments, date, scaled);
+            mResultVM.addNewResult(workout, score, rating, comments, date.toString(), scaled);
             Toast.makeText(getApplicationContext(), "Result saved", Toast.LENGTH_SHORT).show();
             finish();
         } catch (DateTimeParseException e) {
