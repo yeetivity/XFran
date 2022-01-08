@@ -57,14 +57,12 @@ public class ResultRepo {
         if (firebaseAuth.getCurrentUser() != null) {
             userID = firebaseAuth.getCurrentUser().getUid();
 
-            //resultList = new ArrayList<>();
             //res = readAllCollection();
             resultList = readAllCollection();
             res.setValue(resultList);
             Log.d(LOG_TAG, "res is: " + res);
             res.setValue(resultList);
         }
-        //res.setValue(resultList);
         return res;
     }
 
@@ -84,14 +82,12 @@ public class ResultRepo {
                             Log.d(LOG_TAG, document.getId() + " => " + document.getData());
                             resultList.add(document.toObject(Result.class));
                             Log.d(LOG_TAG, "resultList is => " + resultList);
-                            Log.d(LOG_TAG, "result created => " + document.toObject(Result.class));
                         }
+                        res.setValue(resultList);
                     } else {
                         Log.d(LOG_TAG, "Error getting documents: ", task.getException());
                     }
                 });
-        //res.setValue(resultList);
-        Log.d(LOG_TAG, "resultList created => " + resultList);
         return resultList;
     }
 
