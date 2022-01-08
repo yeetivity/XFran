@@ -23,6 +23,7 @@
             android:layout_below="@id/item_title"
             android:layout_alignStart="@id/item_title"
             android:layout_alignEnd="@id/item_title"
+            android:layout_marginTop="8dp"
             android:orientation="vertical"
             android:padding="4dp">
 
@@ -56,8 +57,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/workout_description"
-                android:textSize="16sp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/workout_exercises"
@@ -69,8 +70,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/workout_exercises"
-                android:textSize="16sp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/result_scaling"
@@ -122,10 +123,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/result_date"
-                android:textSize="20sp"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/workout_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -134,15 +135,12 @@
                 android:id="@+id/workout_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:maxWidth="120dp"
                 android:text="@string/workout_title"
                 android:textAlignment="center"
-                android:textSize="20sp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -151,12 +149,12 @@
                 android:id="@+id/result_score"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:text="@string/result_score"
                 android:textAlignment="textEnd"
-                android:textSize="20sp"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/workout_name"
                 app:layout_constraintTop_toTopOf="parent" />

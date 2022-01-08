@@ -57,11 +57,9 @@ public class ResultRepo {
         if (firebaseAuth.getCurrentUser() != null) {
             userID = firebaseAuth.getCurrentUser().getUid();
 
-            //res = readAllCollection();
-            resultList = readAllCollection();
+            res = readAllCollection();
             res.setValue(resultList);
             Log.d(LOG_TAG, "res is: " + res);
-            res.setValue(resultList);
         }
         return res;
     }
@@ -72,7 +70,7 @@ public class ResultRepo {
         firebaseFirestore = FirebaseFirestore.getInstance();
     }
 
-    private List<Result> readAllCollection() {
+    private MutableLiveData<List<Result>> readAllCollection() {
         resultList = new ArrayList<>();
         firebaseFirestore.collection("users").document(userID).collection("results")
                 .get()
@@ -88,7 +86,7 @@ public class ResultRepo {
                         Log.d(LOG_TAG, "Error getting documents: ", task.getException());
                     }
                 });
-        return resultList;
+        return res;
     }
 
 
@@ -96,7 +94,9 @@ public class ResultRepo {
                              String comments, String date, boolean scaled) {
         result = new Result(workout, score, rating, comments, date, scaled);
         resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
-        //if (res != null) res.setValue(result);   //Add the result to the mutable data list
+
+        //resultList.add(result);
+        //if (res != null) res.setValue(resultList);   //Add the result to the mutable data list
 
         //Save the data to the database
         initFirebase();

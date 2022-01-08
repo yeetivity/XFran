@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.Result;
+import kth.jjve.xfran.utils.ResultUtils;
 import kth.jjve.xfran.utils.WorkoutUtils;
 
 public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -61,15 +62,18 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder vh, int i) {
 
-        //TODO finish
-        ((ResultsRecyclerAdapter.ViewHolder) vh).mName.setText(mResults.get(i).getWorkout().getTitle());
-        ((ResultsRecyclerAdapter.ViewHolder) vh).mDescription.setText(mResults.get(i).getWorkout().getDescription());
-        String exercises = WorkoutUtils.buildExerciseString(mResults.get(i).getWorkout());
-        ((ResultsRecyclerAdapter.ViewHolder) vh).mExercises.setText(exercises);
+        ((ViewHolder) vh).mName.setText(mResults.get(i).getWorkout().getTitle());
+        ((ViewHolder) vh).mDescription.setText(mResults.get(i).getWorkout().getDescription());
+        ((ViewHolder) vh).mExercises.setText(WorkoutUtils.buildExerciseString(mResults.get(i).getWorkout()));
+        ((ViewHolder) vh).mScaled.setText(ResultUtils.scalingString(mResults.get(i)));
+        ((ViewHolder) vh).mFeelScore.setText(ResultUtils.feelScoreString(mResults.get(i)));
+        ((ViewHolder) vh).mComments.setText(ResultUtils.commentsString(mResults.get(i)));
+        ((ViewHolder) vh).mDate.setText(ResultUtils.dateString(mResults.get(i)));
+        ((ViewHolder) vh).mScore.setText(mResults.get(i).getScore()); // Todo: add score interpreter
 
         //Set workout item view to collapsed/expanded according to ArrayList value
         boolean expanded = mExpandedStatus.get(i);
-        ((ResultsRecyclerAdapter.ViewHolder) vh).mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
+        ((ViewHolder) vh).mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
         mExpandedStatus.set(i, (!expanded));
     }
 
@@ -94,7 +98,7 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private class ViewHolder extends RecyclerView.ViewHolder {
 
         /*------ HOOKS ------*/
-        private TextView mName, mDescription, mExercises, mScaled, mFeelScore, mComments, mDate;
+        private TextView mName, mDescription, mExercises, mScaled, mFeelScore, mComments, mDate, mScore;
         private View mExpandedView;
         private Button planButton, viewButton;
 
@@ -110,11 +114,11 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             mFeelScore = itemView.findViewById(R.id.result_feel_score);
             mComments = itemView.findViewById(R.id.result_comments);
             mDate = itemView.findViewById(R.id.result_date);
+            mScore = itemView.findViewById(R.id.result_score);
             planButton = itemView.findViewById(R.id.button_plan_wod);
             viewButton = itemView.findViewById(R.id.button_view_results);
 
             /*------ LISTENERS ------*/
-            //listener for item click
             itemView.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 mItemClickListener.onListItemClick(position);

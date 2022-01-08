@@ -1,7 +1,11 @@
 package kth.jjve.xfran.utils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.adapters.AppCtx;
+import kth.jjve.xfran.models.Result;
 import kth.jjve.xfran.models.Workout;
 
 import static android.text.InputType.TYPE_DATETIME_VARIATION_TIME;
@@ -79,6 +83,56 @@ public class ResultUtils {
                 return "0123456789.-";
             default:
                 return "0123456789:.-";
+        }
+    }
+
+    public static String scalingString(Result mResult) {
+        String isScaledStr = "No";
+        if (mResult.isScaled()) {
+            isScaledStr = "Yes";
+        }
+        String scaledStr = AppCtx.getContext().getResources().getString(R.string.scaled) + " " + isScaledStr;
+        return scaledStr;
+    }
+
+    public static String feelScoreString(Result mResult) {
+        int feelScore = mResult.getFeelScore();
+        String feelScoreStr;
+        switch (feelScore) {
+            case 1:
+                feelScoreStr = "Very easy (1/5)";
+                break;
+            case 2:
+                feelScoreStr = "Easy (2/5)";
+                break;
+            case 3:
+                feelScoreStr = "Medium (3/5)";
+                break;
+            case 4:
+                feelScoreStr = "Hard (4/5)";
+                break;
+            case 5:
+                feelScoreStr = "Very hard (5/5)";
+                break;
+            default:
+                feelScoreStr = "No score";
+        }
+        return AppCtx.getContext().getResources().getString(R.string.result_feel_score) + " " + feelScoreStr;
+    }
+
+    public static String commentsString(Result mResult) {
+        return AppCtx.getContext().getResources().getString(R.string.result_comments) + " " + mResult.getComments();
+    }
+
+    public static String dateString(Result mResult) {
+        // changes format of date from 2021-12-23 to 21/12/23
+        try {
+            LocalDate date = LocalDate.parse(mResult.getDate());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM\nyyyy");
+            return date.format(formatter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

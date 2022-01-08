@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,15 +45,12 @@ public class ResultsListActivity extends BaseActivity implements ResultsRecycler
 
         navigationView.setCheckedItem(R.id.nav_results);
 
-        /*------ HOOKS ------*/
         /*_________ VIEW _________*/
         mRecyclerView = findViewById(R.id.rv_resultlist);
 
         /*----- VIEW MODEL -----*/
         mResultVM = ViewModelProviders.of(this).get(ResultVM.class);
         mResultVM.init();
-
-        Log.d(LOG_TAG, "Result list has " + mResultVM.getResults().getValue().size() + "elements");
 
         /*------ INIT ------*/
         mAdapter = new ResultsRecyclerAdapter(this, mResultVM.getResults().getValue(), this, this::onPlan, this::onView);
