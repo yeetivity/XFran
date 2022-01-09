@@ -39,13 +39,23 @@ public class ResultVM extends AndroidViewModel {
         Log.d(LOG_TAG, "mResults is: " + mResults.getValue().size() + " elements");
     }
 
+    public void initFiltered(String workoutName) {
+        if (mResults != null) {
+            mResults = mRepo.getFilteredResults(workoutName);
+            return;
+        }
+        mRepo = ResultRepo.getInstance();
+        mResults = mRepo.getFilteredResults(workoutName);
+        Log.d(LOG_TAG, "mResults is: " + mResults.getValue().size() + " elements");
+    }
+
     public LiveData<List<Result>> getResults() {
         return mResults;
     }
 
-    public void addNewResult(Workout workout, String score, Integer rating,
+    public void addNewResult(Workout workout, String wodName, String score, Integer rating,
                              String comments, String date, boolean scaled) {
-        mRepo.addNewResult(workout, score, rating, comments, date, scaled);
+        mRepo.addNewResult(workout, wodName, score, rating, comments, date, scaled);
     }
 }
 

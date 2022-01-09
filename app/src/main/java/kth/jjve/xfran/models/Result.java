@@ -9,13 +9,14 @@ import java.time.LocalDate;
 public class Result {
 
     private Workout workout;
-    private String scoreType, comments, score; //Todo: deal better with different types of scores
+    private String scoreType, comments, score, wodName; //Todo: deal better with different types of scores
     private Integer feelScore;
     private String date;
     private boolean scaled, empty;
 
-    public Result(Workout workout, String score, Integer feelScore, String comments, String date, boolean scaled) {
+    public Result(Workout workout, String wodName, String score, Integer feelScore, String comments, String date, boolean scaled) {
         this.workout = workout;
+        this.wodName = wodName;
         this.score = score;
         this.feelScore = feelScore;
         this.comments = comments;
@@ -28,6 +29,10 @@ public class Result {
 
     public Workout getWorkout() {
         return workout;
+    }
+
+    public String getWodName() {
+        return wodName;
     }
 
     public String getDate() {

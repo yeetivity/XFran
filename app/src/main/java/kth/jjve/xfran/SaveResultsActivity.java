@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
 
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.lifecycle.ViewModelProviders;
@@ -36,13 +37,15 @@ public class SaveResultsActivity extends BaseActivity {
     /*_________ INTENT _________*/
     private Integer position;
     private Workout workout;
+    public static String WORKOUT_ID = "Workout ID";
+    public static String WORKOUT_OBJ = "Workout Obj";
 
     /*------ HOOKS ------*/
     private TextView mName, mDescription, mExercises, mScoreType;
     private EditText mDate, mScore, mComments;
     private SwitchCompat mScaledSwitch;
     private SeekBar mScoreSeekBar;
-    private Button workoutItemSaveButton, workoutItemPlanButton, saveButton, cancelButton;
+    private Button workoutItemSaveButton, workoutItemPlanButton, workoutItemViewButton, saveButton, cancelButton;
 
 
     @Override
@@ -61,6 +64,7 @@ public class SaveResultsActivity extends BaseActivity {
         mExercises = findViewById(R.id.workout_exercises);
         workoutItemSaveButton = findViewById(R.id.button_save_wod);
         workoutItemPlanButton = findViewById(R.id.button_plan_wod);
+        workoutItemViewButton = findViewById(R.id.button_view_wod_results);
         //save results
         mDate = findViewById(R.id.edit_date);
         mScore = findViewById(R.id.edit_score);
@@ -94,6 +98,7 @@ public class SaveResultsActivity extends BaseActivity {
         mExercises.setText(exercises);
         workoutItemSaveButton.setVisibility(GONE);
         workoutItemPlanButton.setVisibility(GONE);
+        workoutItemViewButton.setVisibility(GONE);
 
         //change score_type text according to the current workout
         String scoreType = ResultUtils.setScoreType(workout);
@@ -145,9 +150,14 @@ public class SaveResultsActivity extends BaseActivity {
             }
 
             //save results
-            mResultVM.addNewResult(workout, score, rating, comments, date.toString(), scaled);
+            mResultVM.addNewResult(workout, workout.getTitle(),score, rating, comments, date.toString(), scaled);
             Toast.makeText(getApplicationContext(), "Result saved", Toast.LENGTH_SHORT).show();
-            finish();
+            //go to result list of the workout saved
+            Intent intent = new Intent(this, ResultsListWODActivity.class);
+            intent.putExtra(WORKOUT_ID, position);
+            intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(workout));
+            Log.i(LOG_TAG, "workout sent: " + workout);
+            startActivity(intent);
         } catch (DateTimeParseException e) {
             //error message if date format is not respected and parsing fails
             e.printStackTrace();

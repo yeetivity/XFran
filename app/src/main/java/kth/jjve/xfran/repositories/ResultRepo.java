@@ -64,7 +64,6 @@ public class ResultRepo {
         return res;
     }
 
-
     private void initFirebase() {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -90,9 +89,9 @@ public class ResultRepo {
     }
 
 
-    public void addNewResult(Workout workout, String score, Integer rating,
+    public void addNewResult(Workout workout, String wodName, String score, Integer rating,
                              String comments, String date, boolean scaled) {
-        result = new Result(workout, score, rating, comments, date, scaled);
+        result = new Result(workout, wodName, score, rating, comments, date, scaled);
         resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
 
         //resultList.add(result);
@@ -106,6 +105,7 @@ public class ResultRepo {
             DocumentReference documentReference = firebaseFirestore.collection("users").document(userID).collection("results").document(resultID);
             Map<String, Object> resultData = new HashMap<>();
             resultData.put("workout", result.getWorkout());
+            resultData.put("wodName", result.getWodName());
             resultData.put("date", result.getDate().toString());
             resultData.put("scaled", result.isScaled());
             resultData.put("score", result.getScore());
@@ -116,4 +116,39 @@ public class ResultRepo {
             Log.i("ResultRepo", "User is not logged in");
         }
     }
+
+    public MutableLiveData<List<Result>> getFilteredResults(String workoutName) {
+        res = new MutableLiveData<>();
+        initFirebase();
+        if (firebaseAuth.getCurrentUser() != null) {
+            userID = firebaseAuth.getCurrentUser().getUid();
+
+            res = readFilteredCollection(workoutName);
+            res.setValue(resultList);
+            Log.d(LOG_TAG, "res is: " + res);
+        }
+        return res;
+    }
+
+    private MutableLiveData<List<Result>> readFilteredCollection(String workoutName) {
+        resultList = new ArrayList<>();
+        firebaseFirestore.collection("users").document(userID).collection("results")
+                .whereEqualTo("wodName",workoutName)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                            Log.d(LOG_TAG, document.getId() + " => " + document.getData());
+                            resultList.add(document.toObject(Result.class));
+                            Log.d(LOG_TAG, "resultList is => " + resultList);
+                        }
+                        res.setValue(resultList);
+                    } else {
+                        Log.d(LOG_TAG, "Error getting documents: ", task.getException());
+                    }
+                });
+        return res;
+    }
+
+
 }

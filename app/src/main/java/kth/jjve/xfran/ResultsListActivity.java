@@ -58,7 +58,6 @@ public class ResultsListActivity extends BaseActivity implements ResultsRecycler
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(mAdapter);
         mResultVM.getResults().observe(this, this::setRecyclerView);
-        //mResultVM.getResults().observe(this, results -> mAdapter.notifyDataSetChanged());
     }
 
     private void setRecyclerView(List<Result> resultList) {
@@ -87,14 +86,12 @@ public class ResultsListActivity extends BaseActivity implements ResultsRecycler
 
     public void onView(int position) {
         //start activity to view all results of the workout
-        /*
-        Intent intent = new Intent(this, SaveResultsActivity.class);
+        Intent intent = new Intent(this, ResultsListWODActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mResultVM.getResults().getValue().get(position).getWorkout()));
         Log.i(LOG_TAG, "workout sent: " + mResultVM.getResults().getValue().get(position).getWorkout());
         startActivity(intent);
 
-         */
     }
 
 }

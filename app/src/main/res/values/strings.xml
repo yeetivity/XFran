@@ -10,9 +10,9 @@
     <string name="result_scaling">Scaled the workout?</string>
     <string name="result_feel_score">How hard was it?</string>
     <string name="result_comments">Comments:</string>
-    <string name="add_plan">Plan WOD</string>
-    <string name="add_result">Add Result</string>
-    <string name="compare_result">View Results</string>
+    <string name="add_plan">Plan</string>
+    <string name="add_result">+Result</string>
+    <string name="compare_result">All Results</string>
     <string name="time">Time:</string>
     <string name="reps">Num. of reps:</string>
     <string name="score_type">Time (mm:ss), rounds + reps (rds-reps) or max weight (lbs)</string>
@@ -93,4 +93,5 @@
     <string name="wod">WOD</string>
     <string name="planned_today">Planned today</string>
     <string name="logged_in_as">Logged in as:</string>
+    <string name="view_wod_results">WOD Results</string>
 </resources>
