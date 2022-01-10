@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
@@ -38,7 +39,8 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
     /*_________ VIEW _________*/
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-    private ListView eventListView;
+    private RecyclerView eventListView;
+    private Button saveResult;
 
     /*_________ INTENT _________*/
     private Integer position;
@@ -60,6 +62,7 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
 
+
         /*----- CALENDAR ------*/
         setWeekView(LocalDate.now());
 
@@ -78,7 +81,7 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         });
 
         buttonNewEvent.setOnClickListener(v -> {
-            startActivity(new Intent(this, PlanEventActivity.class));
+            startActivity(new Intent(this, PlanEventActivity.class)); // TODO delete this probs!!!!
             Intent intent = new Intent(this, PlanEventActivity.class);
             intent.putExtra(WORKOUT_ID, position);
             intent.putExtra(WORKOUT_OBJ, mWorkout);
@@ -111,8 +114,8 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         // set the adapter using the days that are in the particular week
         calendarRecyclerView.setAdapter(new CalendarAdapter(daysInWeekArray, this));
 
-        // clear the list of planned workouts
-        eventListView.setAdapter(new EventAdapter(getApplicationContext(), new ArrayList<>()));
+        eventListView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        eventListView.setAdapter(new EventAdapter(getApplicationContext(), new ArrayList<>(), this::onAddResult));
 
         // using the view model
         EventVM eventVM = ViewModelProviders.of(this).get(EventVM.class);
@@ -120,13 +123,19 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         eventVM.getEvents().observe(this, this::setRecyclerView);
     }
 
+    public void onAddResult(int position) {
+        Intent intent = new Intent(this, WorkoutsListActivity.class);
+        startActivity(intent);
+    }
+
     private void setRecyclerView(List<EventInApp> eventList) {
         // convert the list into an arraylist
         ArrayList<EventInApp> dailyEventInApps = new ArrayList<>(eventList);
 
         // set the adapter, using a list of planned events
-        eventListView.setAdapter(new EventAdapter(getApplicationContext(), dailyEventInApps));
+        eventListView.setAdapter(new EventAdapter(getApplicationContext(), dailyEventInApps, this::onAddResult));
     }
+
 
 
 }
