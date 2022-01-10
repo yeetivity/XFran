@@ -78,9 +78,9 @@ public class PlanEventActivity extends BaseActivity {
 
         /*----- VISIBILITY ------*/
         if (mWorkout == null){
-            eventNameTV.setVisibility(View.INVISIBLE);
+            eventNameTV.setVisibility(View.GONE);
         } else { //if accessing from WorkoutsListActivity (with intent)
-            eventNameET.setVisibility(View.INVISIBLE);
+            eventNameET.setVisibility(View.GONE);
             s_eventName = mWorkout.getTitle();
             eventNameTV.setText(s_eventName);
         }
