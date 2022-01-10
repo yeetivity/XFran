@@ -1,4 +1,7 @@
 package kth.jjve.xfran.repositories;
+/*
+Repository for workout objects
+ */
 
 import android.util.JsonReader;
 
@@ -31,15 +34,15 @@ public class WorkoutRepo {
     // Pretend to get data from a webservice or cage or online source
     public MutableLiveData<List<Workout>> getWorkouts() throws IOException {
         dataSet = new ArrayList<>();
-        setWorkouts(); //Todo: save to firebase to allow custom workouts?
+        setWorkouts();
         MutableLiveData<List<Workout>> data = new MutableLiveData<>();
         data.setValue(dataSet);
         return data;
     }
 
     private void setWorkouts() throws IOException {
+        // Todo: save to firebase to allow use to add custom workouts
         // For now it reads a json file with workout info
-        // open json file
         InputStream workoutData = AppCtx.getContext().getResources().openRawResource(R.raw.workouts_data);
         // initialize reader
         JsonReader reader = new JsonReader(new InputStreamReader(workoutData, StandardCharsets.UTF_8));

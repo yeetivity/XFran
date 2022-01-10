@@ -26,12 +26,12 @@ public class ResultsListActivity extends BaseActivity implements ResultsRecycler
 
     private final String LOG_TAG = getClass().getSimpleName();
 
-    /*_________ VIEW MODEL _________*/
+    /*------ VIEW MODEL ------*/
     private ResultVM mResultVM;
     private ResultsRecyclerAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    /*_________ INTENT _________*/
+    /*------ INTENT ------*/
     public static String WORKOUT_ID = "Workout ID";
     public static String WORKOUT_OBJ = "Workout Obj";
 
@@ -45,22 +45,23 @@ public class ResultsListActivity extends BaseActivity implements ResultsRecycler
 
         navigationView.setCheckedItem(R.id.nav_results);
 
-        /*_________ VIEW _________*/
+        /*------ VIEW ------*/
         mRecyclerView = findViewById(R.id.rv_resultlist);
 
-        /*----- VIEW MODEL -----*/
+        /*------ VIEW MODEL ------*/
         mResultVM = ViewModelProviders.of(this).get(ResultVM.class);
         mResultVM.init();
+        mResultVM.getResults().observe(this, this::setRecyclerView);
 
         /*------ INIT ------*/
         mAdapter = new ResultsRecyclerAdapter(this, mResultVM.getResults().getValue(), this, this::onPlan, this::onView);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(mAdapter);
-        mResultVM.getResults().observe(this, this::setRecyclerView);
     }
 
     private void setRecyclerView(List<Result> resultList) {
+        // update UI with data retrieved from firebase
         mRecyclerView.setAdapter(new ResultsRecyclerAdapter(this, resultList, this, this::onPlan, this::onView));
         Log.d(LOG_TAG, "new adapter set for new resultList: " + resultList);
     }

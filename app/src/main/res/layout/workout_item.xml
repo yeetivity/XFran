@@ -34,69 +34,67 @@
             android:layout_below="@id/workout_name"
             android:orientation="vertical"
             android:padding="4dp">
+            <!-- Todo: make this more pretty (change text?) -->
 
             <Button
                 android:id="@+id/button_plan_wod"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/button_save_wod"
-                app:layout_constraintBottom_toBottomOf="@id/button_save_wod"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toStartOf="@id/button_save_wod"
                 android:text="@string/add_plan"
-                android:textSize="12sp" />
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/button_save_wod"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/button_save_wod"
+                app:layout_constraintEnd_toStartOf="@id/button_save_wod"/>
 
             <Button
                 android:id="@+id/button_save_wod"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/workout_exercises"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:gravity="center_horizontal"
-                app:layout_constraintStart_toEndOf="@+id/button_plan_wod"
-                app:layout_constraintEnd_toStartOf="@id/button_view_wod_results"
                 android:text="@string/add_result"
-                android:textSize="12sp" />
+                android:textSize="11sp"
+                app:layout_constraintStart_toEndOf="@+id/button_plan_wod"
+                app:layout_constraintTop_toBottomOf="@id/workout_exercises"
+                app:layout_constraintEnd_toStartOf="@id/button_view_wod_results"/>
 
             <Button
                 android:id="@+id/button_view_wod_results"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@id/button_save_wod"
-                app:layout_constraintBottom_toBottomOf="@id/button_save_wod"
-                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintStart_toEndOf="@+id/button_save_wod"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/compare_result"
-                android:textSize="12sp" />
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/button_save_wod"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_save_wod"
+                app:layout_constraintTop_toTopOf="@id/button_save_wod" />
 
             <TextView
                 android:id="@+id/workout_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/workout_description"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/workout_exercises"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/workout_description"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/workout_exercises"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workout_description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

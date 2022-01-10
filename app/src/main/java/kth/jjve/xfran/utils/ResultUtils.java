@@ -1,4 +1,7 @@
 package kth.jjve.xfran.utils;
+/*
+Utilities for result object
+ */
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,6 +34,7 @@ public class ResultUtils {
         }
     }
 
+    //sets the score hint depending on the type of workout
     public static String setScoreTypeHint(Workout workout) {
         String workoutType = workout.getType();
         switch (workoutType) {
@@ -50,7 +54,7 @@ public class ResultUtils {
     }
 
     public static boolean isWrongScore(Workout workout, String score) {
-        //Todo: finish this safety feature in case input info is crap
+        //Todo: finish this safety feature in case input has wrong format
         String workoutType = workout.getType();
         switch (workoutType) {
             case "for-time":
@@ -68,6 +72,7 @@ public class ResultUtils {
         }
     }
 
+    //sets the allowed digits on score edit text depending on the type of workout
     public static String setScoreDigits(Workout workout) {
         String workoutType = workout.getType();
         switch (workoutType) {
@@ -86,6 +91,7 @@ public class ResultUtils {
         }
     }
 
+    //prettifier for displaying scaling field
     public static String scalingString(Result mResult) {
         String isScaledStr = "No";
         if (mResult.isScaled()) {
@@ -95,6 +101,7 @@ public class ResultUtils {
         return scaledStr;
     }
 
+    //prettifier for displaying feelScore field
     public static String feelScoreString(Result mResult) {
         int feelScore = mResult.getFeelScore();
         String feelScoreStr;
@@ -120,10 +127,12 @@ public class ResultUtils {
         return AppCtx.getContext().getResources().getString(R.string.result_feel_score) + " " + feelScoreStr;
     }
 
+    //prettifier for displaying comments field
     public static String commentsString(Result mResult) {
         return AppCtx.getContext().getResources().getString(R.string.result_comments) + " " + mResult.getComments();
     }
 
+    //prettifier for displaying date field
     public static String dateString(Result mResult) {
         // changes format of date from 2021-12-23 to 21/12/23
         try {

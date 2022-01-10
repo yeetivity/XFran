@@ -34,7 +34,7 @@ public class SaveResultsActivity extends BaseActivity {
     private LocalDate todayLocalDate;
     private ResultVM mResultVM;
 
-    /*_________ INTENT _________*/
+    /*------ INTENT ------*/
     private Integer position;
     private Workout workout;
     public static String WORKOUT_ID = "Workout ID";
@@ -46,7 +46,6 @@ public class SaveResultsActivity extends BaseActivity {
     private SwitchCompat mScaledSwitch;
     private SeekBar mScoreSeekBar;
     private Button workoutItemSaveButton, workoutItemPlanButton, workoutItemViewButton, saveButton, cancelButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +74,7 @@ public class SaveResultsActivity extends BaseActivity {
         saveButton = findViewById(R.id.save_button);
         cancelButton = findViewById(R.id.cancel_save_button);
 
-        /*-----  VM  -----*/
+        /*------  VM  ------*/
         mResultVM = ViewModelProviders.of(this).get(ResultVM.class);
         mResultVM.init();
 
@@ -100,15 +99,15 @@ public class SaveResultsActivity extends BaseActivity {
         workoutItemPlanButton.setVisibility(GONE);
         workoutItemViewButton.setVisibility(GONE);
 
-        //change score_type text according to the current workout
+        //  Change score_type text according to the current workout
         String scoreType = ResultUtils.setScoreType(workout);
         mScoreType.setText(scoreType);
 
-        //change hint of score input field according to workout type
+        // Change hint of score input field according to workout type
         String scoreTypeHint = ResultUtils.setScoreTypeHint(workout);
         mScore.setHint(scoreTypeHint);
 
-        //change digits accepted on score input field according to workout type
+        // Change digits accepted on score input field according to workout type
         String scoreDigits = ResultUtils.setScoreDigits(workout);
         mScore.setKeyListener(DigitsKeyListener.getInstance(scoreDigits));
 
@@ -125,7 +124,7 @@ public class SaveResultsActivity extends BaseActivity {
     }
 
     public void saveResult() {
-        //get all filled fields
+        //Get all filled fields
         try {
             LocalDate date = LocalDate.parse(mDate.getText());
             boolean scaled = mScaledSwitch.isChecked();
@@ -133,31 +132,33 @@ public class SaveResultsActivity extends BaseActivity {
             Integer rating = Math.round(mScoreSeekBar.getProgress());
             String comments = mComments.getText().toString();
 
-            //error message if score is not filled
+            // Error message if score is not filled
             if (TextUtils.isEmpty(score)) {
                 mScore.setError("Score is required");
                 return;
             }
-            //error message if score has wrong format
+            // Error message if score has wrong format
             if (ResultUtils.isWrongScore(workout, score)) {
                 mScore.setError("Score is required");
                 return;
             }
-            //error message user enters date in the future
+            // Error message user enters date in the future
             if (date.isAfter(LocalDate.now())) {
                 mDate.setError("You are not a clairvoyant");
                 return;
             }
 
-            //save results
+            // Save results
             mResultVM.addNewResult(workout, workout.getTitle(),score, rating, comments, date.toString(), scaled);
             Toast.makeText(getApplicationContext(), "Result saved", Toast.LENGTH_SHORT).show();
-            //go to result list of the workout saved
+
+            //Go to result list of the workout saved
             Intent intent = new Intent(this, ResultsListWODActivity.class);
             intent.putExtra(WORKOUT_ID, position);
             intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(workout));
             Log.i(LOG_TAG, "workout sent: " + workout);
             startActivity(intent);
+
         } catch (DateTimeParseException e) {
             //error message if date format is not respected and parsing fails
             e.printStackTrace();

@@ -1,6 +1,6 @@
 package kth.jjve.xfran;
 /*
-Activity to let the user view workouts
+Activity to let the user view workout list
  */
 
 import androidx.lifecycle.ViewModelProviders;
@@ -22,11 +22,11 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
 
     private final String LOG_TAG = getClass().getSimpleName();
 
-    /*_________ VIEW MODEL _________*/
+    /*------ VIEW MODEL ------*/
     private WorkoutVM mWorkoutVM;
     private WorkoutsRecyclerAdapter mAdapter;
 
-    /*_________ INTENT _________*/
+    /*------ INTENT ------*/
     public static String WORKOUT_ID = "Workout ID";
     public static String WORKOUT_OBJ = "Workout Obj";
 
@@ -40,11 +40,10 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
 
         navigationView.setCheckedItem(R.id.nav_workouts);
 
-        /*------ HOOKS ------*/
-        /*_________ VIEW _________*/
+        /*------ VIEW ------*/
         RecyclerView mRecyclerView = findViewById(R.id.rv_workoutlist);
 
-        /*----- VIEW MODEL -----*/
+        /*------ VIEW MODEL ------*/
         mWorkoutVM = ViewModelProviders.of(this).get(WorkoutVM.class);
         mWorkoutVM.init();
         mWorkoutVM.getWorkouts().observe(this, workouts -> mAdapter.notifyDataSetChanged());
@@ -68,26 +67,26 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
     }
 
     public void onPlan(int position) {
+        // plan selected workout
         Intent intent = new Intent(this, CalendarViewActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
-        Log.i(LOG_TAG, "workout sent: " + mWorkoutVM.getWorkouts().getValue().get(position));
         startActivity(intent);
     }
 
     public void onSave(int position) {
+        // save new result for selected workout
         Intent intent = new Intent(this, SaveResultsActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
-        Log.i(LOG_TAG, "workout sent: " + mWorkoutVM.getWorkouts().getValue().get(position));
         startActivity(intent);
     }
 
     public void onView(int position) {
+        // view all saved results for selected workout
         Intent intent = new Intent(this, ResultsListWODActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
-        Log.i(LOG_TAG, "workout sent: " + mWorkoutVM.getWorkouts().getValue().get(position));
         startActivity(intent);
     }
 

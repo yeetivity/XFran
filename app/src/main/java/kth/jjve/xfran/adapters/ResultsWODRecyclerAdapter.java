@@ -1,4 +1,7 @@
 package kth.jjve.xfran.adapters;
+/*
+Adapter for Results list for a given wod
+ */
 
 import android.content.Context;
 import android.util.Log;

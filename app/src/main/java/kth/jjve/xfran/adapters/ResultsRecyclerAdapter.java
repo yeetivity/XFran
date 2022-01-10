@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,13 +29,13 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     /*------ LISTENERS ------*/
     private final ResultsRecyclerAdapter.ListItemClickListener mItemClickListener;
     private final ResultsRecyclerAdapter.PlanButtonClickListener mPlanClickListener;
-    /*
-    ArrayList saves a boolean for each workout item (false-->collapsed view/ true-->expanded view)
-    The position on the array corresponds to the position on the mWorkouts list
-     */
     private final ResultsRecyclerAdapter.SaveButtonClickListener mViewClickListener;
     private Context mContext;
     private List<Result> mResults = new ArrayList<>();
+    /*
+    ArrayList saves a boolean for each result item (false-->collapsed view/ true-->expanded view)
+    The position on the array corresponds to the position on the mResults list
+     */
     private ArrayList<Boolean> mExpandedStatus = new ArrayList<>();
 
     public ResultsRecyclerAdapter(Context context, List<Result> results,
@@ -45,7 +46,11 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         mContext = context;
         //set all result items to collapsed view when adapter is constructed
         mExpandedStatus.clear();
-        mExpandedStatus.addAll(Collections.nCopies(mResults.size(), false));
+        try {
+            mExpandedStatus.addAll(Collections.nCopies(mResults.size(), true));
+        } catch (Exception e) {
+            Toast.makeText(AppCtx.getContext(), "No results available", Toast.LENGTH_SHORT).show();
+        }
 
         this.mItemClickListener = onItemClickListener;
         this.mPlanClickListener = onPlanButtonClickListener;
@@ -71,19 +76,19 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         ((ViewHolder) vh).mDate.setText(ResultUtils.dateString(mResults.get(i)));
         ((ViewHolder) vh).mScore.setText(mResults.get(i).getScore()); // Todo: add score interpreter
 
-        //Set workout item view to collapsed/expanded according to ArrayList value
-        boolean expanded = mExpandedStatus.get(i);
-        ((ViewHolder) vh).mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
-        mExpandedStatus.set(i, (!expanded));
     }
 
     @Override
     public int getItemCount() {
-        return mResults.size();
+        try {
+            return mResults.size();
+        } catch (NullPointerException e) {
+            return 0;
+        }
     }
 
     public interface ListItemClickListener {
-        //interface to expand workout item
+        //interface to expand result item
         void onListItemClick(int position);
     }
 
@@ -117,6 +122,8 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             mScore = itemView.findViewById(R.id.result_score);
             planButton = itemView.findViewById(R.id.button_plan_wod);
             viewButton = itemView.findViewById(R.id.button_view_results);
+
+            mExpandedView.setVisibility(View.GONE);
 
             /*------ LISTENERS ------*/
             itemView.setOnClickListener(v -> {

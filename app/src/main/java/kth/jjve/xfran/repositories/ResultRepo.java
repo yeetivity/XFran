@@ -1,5 +1,7 @@
 package kth.jjve.xfran.repositories;
-
+/*
+Repository for result objects
+ */
 
 import android.util.Log;
 
@@ -40,7 +42,6 @@ public class ResultRepo {
     String userID;
     String resultID;
     private List<Result> resultList = new ArrayList<Result>();
-    ;
     private Result result = new Result();
     private MutableLiveData<List<Result>> res;
 
@@ -51,25 +52,25 @@ public class ResultRepo {
         return instance;
     }
 
+    private void initFirebase() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+    }
+
     public MutableLiveData<List<Result>> getResults() {
         res = new MutableLiveData<>();
         initFirebase();
         if (firebaseAuth.getCurrentUser() != null) {
             userID = firebaseAuth.getCurrentUser().getUid();
-
-            res = readAllCollection();
+            res = readAllCollection(); //gets all the results on firebase for the logged user
             res.setValue(resultList);
             Log.d(LOG_TAG, "res is: " + res);
         }
         return res;
     }
 
-    private void initFirebase() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseFirestore = FirebaseFirestore.getInstance();
-    }
-
     private MutableLiveData<List<Result>> readAllCollection() {
+        //reads all the documents in a collection
         resultList = new ArrayList<>();
         firebaseFirestore.collection("users").document(userID).collection("results")
                 .get()
@@ -88,18 +89,48 @@ public class ResultRepo {
         return res;
     }
 
+    public MutableLiveData<List<Result>> getFilteredResults(String workoutName) {
+        res = new MutableLiveData<>();
+        initFirebase();
+        if (firebaseAuth.getCurrentUser() != null) {
+            userID = firebaseAuth.getCurrentUser().getUid();
+            res = readFilteredCollection(workoutName); //get results on firebase that match the workout name for the logged user
+            res.setValue(resultList);
+            Log.d(LOG_TAG, "res is: " + res);
+        }
+        return res;
+    }
+
+    private MutableLiveData<List<Result>> readFilteredCollection(String workoutName) {
+        //reads the documents in a collection that match the workout name for the logged user
+        resultList = new ArrayList<>();
+        firebaseFirestore.collection("users").document(userID).collection("results")
+                .whereEqualTo("wodName", workoutName)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                            Log.d(LOG_TAG, document.getId() + " => " + document.getData());
+                            resultList.add(document.toObject(Result.class));
+                            Log.d(LOG_TAG, "resultList is => " + resultList);
+                        }
+                        res.setValue(resultList);
+                    } else {
+                        Log.d(LOG_TAG, "Error getting documents: ", task.getException());
+                    }
+                });
+        return res;
+    }
 
     public void addNewResult(Workout workout, String wodName, String score, Integer rating,
                              String comments, String date, boolean scaled) {
         result = new Result(workout, wodName, score, rating, comments, date, scaled);
         resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
-
         //resultList.add(result);
         //if (res != null) res.setValue(resultList);   //Add the result to the mutable data list
 
         //Save the data to the database
         initFirebase();
-
         if (firebaseAuth.getCurrentUser() != null) {
             userID = firebaseAuth.getCurrentUser().getUid();
             DocumentReference documentReference = firebaseFirestore.collection("users").document(userID).collection("results").document(resultID);
@@ -116,39 +147,5 @@ public class ResultRepo {
             Log.i("ResultRepo", "User is not logged in");
         }
     }
-
-    public MutableLiveData<List<Result>> getFilteredResults(String workoutName) {
-        res = new MutableLiveData<>();
-        initFirebase();
-        if (firebaseAuth.getCurrentUser() != null) {
-            userID = firebaseAuth.getCurrentUser().getUid();
-
-            res = readFilteredCollection(workoutName);
-            res.setValue(resultList);
-            Log.d(LOG_TAG, "res is: " + res);
-        }
-        return res;
-    }
-
-    private MutableLiveData<List<Result>> readFilteredCollection(String workoutName) {
-        resultList = new ArrayList<>();
-        firebaseFirestore.collection("users").document(userID).collection("results")
-                .whereEqualTo("wodName",workoutName)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                            Log.d(LOG_TAG, document.getId() + " => " + document.getData());
-                            resultList.add(document.toObject(Result.class));
-                            Log.d(LOG_TAG, "resultList is => " + resultList);
-                        }
-                        res.setValue(resultList);
-                    } else {
-                        Log.d(LOG_TAG, "Error getting documents: ", task.getException());
-                    }
-                });
-        return res;
-    }
-
 
 }

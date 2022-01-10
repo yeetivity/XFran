@@ -1,4 +1,7 @@
 package kth.jjve.xfran.utils;
+/*
+Utilities for workout object
+ */
 
 import android.util.JsonReader;
 
@@ -19,7 +22,7 @@ public class WorkoutUtils {
         return exercises.toString();
     }
 
-    /* ------------ METHODS FOR PARSING WORKOUT LIST ------------ */
+    /*------ METHODS FOR PARSING WORKOUT LIST ------*/
     public static void parseWorkouts(JsonReader reader, ArrayList<Workout> dataSet) throws IOException {
         // read json array, loop through workouts on dataSet and read each of them
         reader.beginArray();

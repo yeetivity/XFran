@@ -1,4 +1,7 @@
 package kth.jjve.xfran.viewmodels;
+/*
+View model for workouts
+ */
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -27,10 +30,6 @@ public class WorkoutVM extends ViewModel {
     }
 
     public LiveData<List<Workout>> getWorkouts() {
-        /*
-        LiveData can only be observed, not mutable
-        Therefore it will not change during a state change of the fragment
-         */
         return mWorkouts;
     }
 }

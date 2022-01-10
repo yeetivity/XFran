@@ -47,7 +47,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         mContext = context;
         //set all workout items to collapsed view when adapter is constructed
         mExpandedStatus.clear();
-        mExpandedStatus.addAll(Collections.nCopies(mWorkouts.size(), false));
+        mExpandedStatus.addAll(Collections.nCopies(mWorkouts.size(), true));
 
         this.mItemClickListener = onItemClickListener;
         this.mPlanClickListener = onPlanButtonClickListener;
@@ -70,10 +70,6 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         String exercises = WorkoutUtils.buildExerciseString(mWorkouts.get(i));
         ((ViewHolder) vh).mExercises.setText(exercises);
 
-        //Set workout item view to collapsed/expanded according to ArrayList value
-        boolean expanded = mExpandedStatus.get(i);
-        ((ViewHolder) vh).mExpandedView.setVisibility(expanded ? View.VISIBLE : View.GONE);
-        mExpandedStatus.set(i, (!expanded));
     }
 
     @Override
@@ -116,6 +112,8 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             planButton = itemView.findViewById(R.id.button_plan_wod);
             saveButton = itemView.findViewById(R.id.button_save_wod);
             viewButton = itemView.findViewById(R.id.button_view_wod_results);
+
+            mExpandedView.setVisibility(View.GONE);
 
             /*------ LISTENERS ------*/
             //listener for item click

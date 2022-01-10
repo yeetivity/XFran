@@ -33,15 +33,16 @@ public class ResultsListWODActivity extends BaseActivity {
 
     private final String LOG_TAG = getClass().getSimpleName();
 
+    /*------ INTENT ------*/
     public static String WORKOUT_ID = "Workout ID";
     public static String WORKOUT_OBJ = "Workout Obj";
 
-    /*_________ VIEW MODEL _________*/
+    /*------ VIEW MODEL ------*/
     private ResultVM mResultVM;
     private ResultsWODRecyclerAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
-    /*_________ INTENT _________*/
+    /*------ INTENT ------*/
     private String workoutName;
     private Integer position;
     private Workout workout;
@@ -49,7 +50,6 @@ public class ResultsListWODActivity extends BaseActivity {
     /*------ HOOKS ------*/
     private TextView mName, mDescription, mExercises;
     private Button workoutItemSaveButton, workoutItemPlanButton, workoutItemViewButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,10 +87,10 @@ public class ResultsListWODActivity extends BaseActivity {
         workoutItemPlanButton.setVisibility(GONE);
         workoutItemViewButton.setVisibility(GONE);
 
-        /*_________ VIEW _________*/
+        /*------ VIEW ------*/
         mRecyclerView = findViewById(R.id.rv_resultlistwod);
 
-        /*----- VIEW MODEL -----*/
+        /*------ VIEW MODEL ------*/
         mResultVM = ViewModelProviders.of(this).get(ResultVM.class);
         mResultVM.initFiltered(workoutName);
 
@@ -100,10 +100,10 @@ public class ResultsListWODActivity extends BaseActivity {
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(mAdapter);
         mResultVM.getResults().observe(this, this::setRecyclerView);
-
     }
 
     private void setRecyclerView(List<Result> resultList) {
+        // update UI with data retrieved from firebase
         mRecyclerView.setAdapter(new ResultsWODRecyclerAdapter(this, resultList));
         Log.d(LOG_TAG, "new adapter set for new resultList: " + resultList);
     }
