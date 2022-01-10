@@ -28,19 +28,21 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     /*------ LISTENERS ------*/
     private final ListItemClickListener mItemClickListener;
     private final PlanButtonClickListener mPlanClickListener;
+    private final SaveButtonClickListener mSaveClickListener;
+    private final ViewButtonClickListener mViewClickListener;
+    private Context mContext;
+    private List<Workout> mWorkouts = new ArrayList<>();
     /*
     ArrayList saves a boolean for each workout item (false-->collapsed view/ true-->expanded view)
     The position on the array corresponds to the position on the mWorkouts list
      */
-    private final SaveButtonClickListener mSaveClickListener;
-    private Context mContext;
-    private List<Workout> mWorkouts = new ArrayList<>();
     private ArrayList<Boolean> mExpandedStatus = new ArrayList<>();
 
     public WorkoutsRecyclerAdapter(Context context, List<Workout> workouts,
                                    ListItemClickListener onItemClickListener,
                                    PlanButtonClickListener onPlanButtonClickListener,
-                                   SaveButtonClickListener onSaveButtonClickListener) {
+                                   SaveButtonClickListener onSaveButtonClickListener,
+                                   ViewButtonClickListener onViewButtonClickListener) {
         mWorkouts = workouts;
         mContext = context;
         //set all workout items to collapsed view when adapter is constructed
@@ -50,6 +52,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.mItemClickListener = onItemClickListener;
         this.mPlanClickListener = onPlanButtonClickListener;
         this.mSaveClickListener = onSaveButtonClickListener;
+        this.mViewClickListener = onViewButtonClickListener;
     }
 
     @NonNull
@@ -91,12 +94,16 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         void onSaveButtonClick(int position);
     }
 
+    public interface ViewButtonClickListener {
+        void onViewButtonClick(int position);
+    }
+
     private class ViewHolder extends RecyclerView.ViewHolder {
 
         /*------ HOOKS ------*/
         private TextView mName, mDescription, mExercises;
         private View mExpandedView;
-        private Button planButton, saveButton;
+        private Button planButton, saveButton, viewButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -108,6 +115,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             mExercises = itemView.findViewById(R.id.workout_exercises);
             planButton = itemView.findViewById(R.id.button_plan_wod);
             saveButton = itemView.findViewById(R.id.button_save_wod);
+            viewButton = itemView.findViewById(R.id.button_view_wod_results);
 
             /*------ LISTENERS ------*/
             //listener for item click
@@ -129,6 +137,11 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             saveButton.setOnClickListener(v -> {
                 int position = getAdapterPosition();
                 mSaveClickListener.onSaveButtonClick(position);
+            });
+
+            viewButton.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                mViewClickListener.onViewButtonClick(position);
             });
         }
     }

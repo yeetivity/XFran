@@ -50,7 +50,7 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
         mWorkoutVM.getWorkouts().observe(this, workouts -> mAdapter.notifyDataSetChanged());
 
         /*------ INIT ------*/
-        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutVM.getWorkouts().getValue(), this, this::onPlan, this::onSave);
+        mAdapter = new WorkoutsRecyclerAdapter(this, mWorkoutVM.getWorkouts().getValue(), this, this::onPlan, this::onSave, this::onView);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(lm);
         mRecyclerView.setAdapter(mAdapter);
@@ -76,8 +76,15 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
     }
 
     public void onSave(int position) {
-        //start activity of workout saver
         Intent intent = new Intent(this, SaveResultsActivity.class);
+        intent.putExtra(WORKOUT_ID, position);
+        intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
+        Log.i(LOG_TAG, "workout sent: " + mWorkoutVM.getWorkouts().getValue().get(position));
+        startActivity(intent);
+    }
+
+    public void onView(int position) {
+        Intent intent = new Intent(this, ResultsListWODActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
         Log.i(LOG_TAG, "workout sent: " + mWorkoutVM.getWorkouts().getValue().get(position));

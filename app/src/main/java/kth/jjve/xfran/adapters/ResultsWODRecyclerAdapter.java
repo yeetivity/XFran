@@ -42,7 +42,6 @@ public class ResultsWODRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder vh, int i) {
 
-        ((ViewHolder) vh).mName.setText(mResults.get(i).getWorkout().getTitle());
         ((ViewHolder) vh).mScaled.setText(ResultUtils.scalingString(mResults.get(i)));
         ((ViewHolder) vh).mFeelScore.setText(ResultUtils.feelScoreString(mResults.get(i)));
         ((ViewHolder) vh).mComments.setText(ResultUtils.commentsString(mResults.get(i)));
@@ -59,7 +58,7 @@ public class ResultsWODRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     private class ViewHolder extends RecyclerView.ViewHolder {
 
         /*------ HOOKS ------*/
-        private TextView mName, mDescription, mExercises, mScaled, mFeelScore, mComments, mDate, mScore;
+        private TextView mDescription, mExercises, mScaled, mFeelScore, mComments, mDate, mScore;
         private View mExpandedView;
         private Button planButton, viewButton;
 
@@ -67,7 +66,6 @@ public class ResultsWODRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
             super(itemView);
 
             /*------ HOOKS ------*/
-            mName = itemView.findViewById(R.id.workout_name);
             mDescription = itemView.findViewById(R.id.workout_description);
             mExpandedView = itemView.findViewById(R.id.item_expanded);
             mExercises = itemView.findViewById(R.id.workout_exercises);

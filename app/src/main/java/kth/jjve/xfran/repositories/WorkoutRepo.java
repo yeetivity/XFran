@@ -30,6 +30,7 @@ public class WorkoutRepo {
 
     // Pretend to get data from a webservice or cage or online source
     public MutableLiveData<List<Workout>> getWorkouts() throws IOException {
+        dataSet = new ArrayList<>();
         setWorkouts(); //Todo: save to firebase to allow custom workouts?
         MutableLiveData<List<Workout>> data = new MutableLiveData<>();
         data.setValue(dataSet);
