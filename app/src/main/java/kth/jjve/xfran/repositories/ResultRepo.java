@@ -17,10 +17,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Map;
 import java.util.Objects;
 
@@ -28,6 +32,7 @@ import kth.jjve.xfran.LoginActivity;
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.models.Result;
 import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.utils.CalendarUtils;
 
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.dateFromString;
 import static kth.jjve.xfran.weeklycalendar.CalendarUtils.timeFromString;
@@ -37,13 +42,17 @@ public class ResultRepo {
     private static final String LOG_TAG = ResultRepo.class.getSimpleName();
 
     private static ResultRepo instance;
-    FirebaseAuth firebaseAuth;
-    FirebaseFirestore firebaseFirestore;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
     String userID;
     String resultID;
     private List<Result> resultList = new ArrayList<Result>();
     private Result result = new Result();
+
     private MutableLiveData<List<Result>> res;
+    private MutableLiveData<ArrayList<ArrayList<Integer>>> resCal = new MutableLiveData<>();
+
+    private ArrayList<Result> dataSet = new ArrayList<>();
 
     public static ResultRepo getInstance() {
         if (instance == null) {
@@ -126,14 +135,13 @@ public class ResultRepo {
                              String comments, String date, boolean scaled) {
         result = new Result(workout, wodName, score, rating, comments, date, scaled);
         resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
-        //resultList.add(result);
-        //if (res != null) res.setValue(resultList);   //Add the result to the mutable data list
 
         //Save the data to the database
         initFirebase();
         if (firebaseAuth.getCurrentUser() != null) {
             userID = firebaseAuth.getCurrentUser().getUid();
             DocumentReference documentReference = firebaseFirestore.collection("users").document(userID).collection("results").document(resultID);
+
             Map<String, Object> resultData = new HashMap<>();
             resultData.put("workout", result.getWorkout());
             resultData.put("wodName", result.getWodName());
@@ -148,4 +156,52 @@ public class ResultRepo {
         }
     }
 
+
+    public MutableLiveData<ArrayList<ArrayList<Integer>>> getListOfDates(LocalDate selectedDate) {
+        /*
+        Method that creates both a list of dates on which the user has worked out and the feelScores that were logged.
+        The list is only made for the month the user is currently looking at in the calendar activity
+        If a workout is only planned, the feelScore is non existing in the database and a 0 is added to the list
+         */
+        ArrayList<Integer> dates = new ArrayList<>();
+        ArrayList<Integer> feels = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> combine = new ArrayList<>();
+
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+        if (fAuth.getCurrentUser() != null){
+            userID = fAuth.getCurrentUser().getUid();
+
+            CollectionReference c = fStore.collection("users").document(userID).collection("results");
+            c.get().addOnCompleteListener(task -> { // Gets all the files inside of the collection
+                if (task.isSuccessful()){
+                    // Loop through the documents and check the dates
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                        String d = document.getId();
+                        LocalDate resultDate = CalendarUtils.dateFromString(d);
+
+                        if (resultDate.getMonthValue() == selectedDate.getMonthValue() &&
+                        resultDate.getYear() == selectedDate.getYear()){
+                            dates.add(resultDate.getDayOfMonth());
+                            try{
+                                // feelScore is initially a Double, which requires 2x conversion
+                                // Todo: make sure we save it as int, which will make this easier
+                                double f = document.getDouble("feelScore");
+                                int g = (int) f;
+                                feels.add(g);
+                            } catch (Exception e){
+                                feels.add(0);
+                            }
+                        }
+                    }
+                    combine.add(dates);
+                    combine.add(feels);
+                    resCal.setValue(combine);
+                }
+            });
+        }
+
+        return resCal;
+    }
 }

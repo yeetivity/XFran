@@ -1,4 +1,4 @@
-package kth.jjve.xfran.weeklycalendar;
+package kth.jjve.xfran.utils;
 
 /*
 Function: useful methods for the calendar
@@ -46,6 +46,26 @@ public class CalendarUtils {
             current = current.plusDays(1);
         }
         return days;
+    }
+
+    public static ArrayList<String> daysInMonthArray(LocalDate selectedDate) {
+        ArrayList<String> daysInMonthArray = new ArrayList<>();
+        YearMonth yearMonth = YearMonth.from(selectedDate);
+
+        int daysInMonth = yearMonth.lengthOfMonth();
+
+        LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
+        int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
+
+        for(int i = 1; i <= 42; i++)
+        {
+            if(i <= dayOfWeek || i > daysInMonth + dayOfWeek){
+                daysInMonthArray.add("");
+            } else {
+                daysInMonthArray.add(String.valueOf(i - dayOfWeek));
+            }
+        }
+        return daysInMonthArray;
     }
 
     private static LocalDate mondayForDate(LocalDate current) {

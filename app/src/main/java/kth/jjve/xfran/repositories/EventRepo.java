@@ -6,8 +6,8 @@ Activity: PlanEventActivity & WeeklyCalendarActivity
 Jitse van Esch, Mariah Sabioni & Elisa Perini
  */
 
-import static kth.jjve.xfran.weeklycalendar.CalendarUtils.dateFromString;
-import static kth.jjve.xfran.weeklycalendar.CalendarUtils.timeFromString;
+import static kth.jjve.xfran.utils.CalendarUtils.dateFromString;
+import static kth.jjve.xfran.utils.CalendarUtils.timeFromString;
 
 import android.util.Log;
 
@@ -29,7 +29,6 @@ import kth.jjve.xfran.models.EventInApp;
 
 public class EventRepo {
 
-    private static final String LOG_TAG = EventRepo.class.getSimpleName();
     private static EventRepo instance;
     private ArrayList<EventInApp> dataSet = new ArrayList<>();
     FirebaseAuth fAuth;

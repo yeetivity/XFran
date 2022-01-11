@@ -7,8 +7,8 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
 
 import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_ID;
 import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_OBJ;
-import static kth.jjve.xfran.weeklycalendar.CalendarUtils.daysInWeekArray;
-import static kth.jjve.xfran.weeklycalendar.CalendarUtils.monthYearFromDate;
+import static kth.jjve.xfran.utils.CalendarUtils.daysInWeekArray;
+import static kth.jjve.xfran.utils.CalendarUtils.monthYearFromDate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDate;
@@ -30,15 +31,15 @@ import kth.jjve.xfran.adapters.EventAdapter;
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
 import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.utils.CalendarUtils;
 import kth.jjve.xfran.viewmodels.EventVM;
-import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 public class CalendarViewActivity extends BaseActivity implements CalendarAdapter.OnItemListener {
 
     /*_________ VIEW _________*/
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
-    private ListView eventListView;
+    private RecyclerView eventListView;
 
     /*_________ INTENT _________*/
     private Integer position;
@@ -50,7 +51,7 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_calendar_week, contentFrameLayout);
-        navigationView.setCheckedItem(R.id.nav_calendar);
+        navigationView.setCheckedItem(R.id.nav_plan_workout);
 
         /*------ HOOKS ------*/
         ImageButton buttonBack = findViewById(R.id.buttonBack);
@@ -59,6 +60,7 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
+
 
         /*----- CALENDAR ------*/
         setWeekView(LocalDate.now());
@@ -78,7 +80,6 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         });
 
         buttonNewEvent.setOnClickListener(v -> {
-            startActivity(new Intent(this, PlanEventActivity.class));
             Intent intent = new Intent(this, PlanEventActivity.class);
             intent.putExtra(WORKOUT_ID, position);
             intent.putExtra(WORKOUT_OBJ, mWorkout);
@@ -90,7 +91,7 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
     @Override
     protected void onResume(){
         super.onResume();
-        navigationView.setCheckedItem(R.id.nav_calendar);
+        navigationView.setCheckedItem(R.id.nav_plan_workout);
     }
 
     @Override
@@ -111,8 +112,8 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         // set the adapter using the days that are in the particular week
         calendarRecyclerView.setAdapter(new CalendarAdapter(daysInWeekArray, this));
 
-        // clear the list of planned workouts
-        eventListView.setAdapter(new EventAdapter(getApplicationContext(), new ArrayList<>()));
+        eventListView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        eventListView.setAdapter(new EventAdapter(getApplicationContext(), new ArrayList<>(), this::onAddResult));
 
         // using the view model
         EventVM eventVM = ViewModelProviders.of(this).get(EventVM.class);
@@ -120,13 +121,19 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         eventVM.getEvents().observe(this, this::setRecyclerView);
     }
 
+    public void onAddResult(int position) {
+        Intent intent = new Intent(this, WorkoutsListActivity.class);
+        startActivity(intent);
+    }
+
     private void setRecyclerView(List<EventInApp> eventList) {
         // convert the list into an arraylist
         ArrayList<EventInApp> dailyEventInApps = new ArrayList<>(eventList);
 
         // set the adapter, using a list of planned events
-        eventListView.setAdapter(new EventAdapter(getApplicationContext(), dailyEventInApps));
+        eventListView.setAdapter(new EventAdapter(getApplicationContext(), dailyEventInApps, this::onAddResult));
     }
+
 
 
 }
