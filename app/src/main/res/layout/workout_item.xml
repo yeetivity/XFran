@@ -9,10 +9,6 @@
     android:layout_marginBottom="8dp"
     app:cardBackgroundColor="@color/black">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <RelativeLayout
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
@@ -32,61 +28,84 @@
             android:textSize="20sp"
             android:textColor="?colorOnSecondary"/>
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_expanded"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/workout_name"
             android:orientation="vertical"
             android:padding="4dp">
+            <!-- Todo: make this more pretty (change text?) -->
 
             <Button
                 android:id="@+id/button_plan_wod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/workout_exercises"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/add_plan" />
+                android:text="@string/add_plan"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/button_save_wod"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/button_save_wod"
+                app:layout_constraintEnd_toStartOf="@id/button_save_wod"/>
 
             <Button
                 android:id="@+id/button_save_wod"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/workout_exercises"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_toEndOf="@+id/button_plan_wod"
-                android:text="@string/add_result" />
+                android:layout_marginEnd="8dp"
+                android:text="@string/add_result"
+                android:textSize="11sp"
+                app:layout_constraintStart_toEndOf="@+id/button_plan_wod"
+                app:layout_constraintTop_toBottomOf="@id/workout_exercises"
+                app:layout_constraintEnd_toStartOf="@id/button_view_wod_results"/>
+
+            <Button
+                android:id="@+id/button_view_wod_results"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/compare_result"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@id/button_save_wod"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_save_wod"
+                app:layout_constraintTop_toTopOf="@id/button_save_wod" />
 
             <TextView
                 android:id="@+id/workout_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
                 android:text="@string/workout_description"
                 android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" 
                 android:textColor="?colorOnSecondary"/>
+
 
             <TextView
                 android:id="@+id/workout_exercises"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/workout_description"
-                android:layout_alignParentStart="true"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/workout_exercises"
                 android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/workout_description"
                 android:textColor="?colorOnSecondary"/>
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </androidx.cardview.widget.CardView>
