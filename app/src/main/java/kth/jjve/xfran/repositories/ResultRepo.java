@@ -182,7 +182,9 @@ public class ResultRepo {
                     // Loop through the documents and check the dates
                     for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                         String date = document.getId();
-                        LocalDate resultDate = CalendarUtils.dateFromString(date); //Todo: make sure that this can take multiple results on a day
+                        String actualdate = date.substring(0, 10);
+
+                        LocalDate resultDate = CalendarUtils.dateFromString(actualdate);
 
                         if (resultDate.getMonthValue() == selectedDate.getMonthValue() &&
                         resultDate.getYear() == selectedDate.getYear()){
