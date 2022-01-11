@@ -155,6 +155,7 @@
                 android:importantForAutofill="no"
                 android:minHeight="48dp"
                 android:textAlignment="textEnd"
+                android:inputType="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/score_text"/>
 

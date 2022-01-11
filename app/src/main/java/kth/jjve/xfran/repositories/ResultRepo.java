@@ -5,54 +5,42 @@ Repository for result objects
 
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import androidx.lifecycle.MutableLiveData;
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
-
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.Map;
 import java.util.Objects;
 
-import kth.jjve.xfran.LoginActivity;
-import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.models.Result;
 import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.utils.CalendarUtils;
-
-import static kth.jjve.xfran.weeklycalendar.CalendarUtils.dateFromString;
-import static kth.jjve.xfran.weeklycalendar.CalendarUtils.timeFromString;
 
 public class ResultRepo {
 
     private static final String LOG_TAG = ResultRepo.class.getSimpleName();
 
-    private static ResultRepo instance;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
     String resultID;
-    private List<Result> resultList = new ArrayList<Result>();
+    private Integer resultNumber; //Todo: find a better name for this
+
+    private static ResultRepo instance;
+    private List<Result> resultList = new ArrayList<>();
     private Result result = new Result();
 
-    private MutableLiveData<List<Result>> res;
-    private MutableLiveData<ArrayList<ArrayList<Integer>>> resCal = new MutableLiveData<>();
-
-    private ArrayList<Result> dataSet = new ArrayList<>();
+    private final MutableLiveData<List<Result>> res = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<ArrayList<Integer>>> resCalendar = new MutableLiveData<>();
 
     public static ResultRepo getInstance() {
         if (instance == null) {
@@ -61,101 +49,121 @@ public class ResultRepo {
         return instance;
     }
 
-    private void initFirebase() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseFirestore = FirebaseFirestore.getInstance();
+    private boolean initFirebase() {
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+
+        if (fAuth.getCurrentUser() != null){
+            userID = fAuth.getCurrentUser().getUid();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public MutableLiveData<List<Result>> getResults() {
-        res = new MutableLiveData<>();
-        initFirebase();
-        if (firebaseAuth.getCurrentUser() != null) {
-            userID = firebaseAuth.getCurrentUser().getUid();
-            res = readAllCollection(); //gets all the results on firebase for the logged user
-            res.setValue(resultList);
+
+        if (initFirebase()) {
+            // get all the results on firebase for the logged user
+            resultList = new ArrayList<>();
+            fStore.collection("users").document(userID).collection("results")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                Log.d(LOG_TAG, document.getId() + " => " + document.getData());
+                                resultList.add(document.toObject(Result.class));
+                                Log.d(LOG_TAG, "resultList is => " + resultList);
+                            }
+                            res.setValue(resultList);
+                        } else {
+                            Log.d(LOG_TAG, "Error getting documents: ", task.getException());
+                        }
+                    });
             Log.d(LOG_TAG, "res is: " + res);
         }
-        return res;
-    }
-
-    private MutableLiveData<List<Result>> readAllCollection() {
-        //reads all the documents in a collection
-        resultList = new ArrayList<>();
-        firebaseFirestore.collection("users").document(userID).collection("results")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                            Log.d(LOG_TAG, document.getId() + " => " + document.getData());
-                            resultList.add(document.toObject(Result.class));
-                            Log.d(LOG_TAG, "resultList is => " + resultList);
-                        }
-                        res.setValue(resultList);
-                    } else {
-                        Log.d(LOG_TAG, "Error getting documents: ", task.getException());
-                    }
-                });
         return res;
     }
 
     public MutableLiveData<List<Result>> getFilteredResults(String workoutName) {
-        res = new MutableLiveData<>();
-        initFirebase();
-        if (firebaseAuth.getCurrentUser() != null) {
-            userID = firebaseAuth.getCurrentUser().getUid();
-            res = readFilteredCollection(workoutName); //get results on firebase that match the workout name for the logged user
-            res.setValue(resultList);
+        if (initFirebase()) {
+            // get results on firebase that match the workout name for the logged user
+            resultList = new ArrayList<>();
+            fStore.collection("users").document(userID).collection("results")
+                    .whereEqualTo("wodName", workoutName)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                Log.d(LOG_TAG, document.getId() + " => " + document.getData());
+                                resultList.add(document.toObject(Result.class));
+                                Log.d(LOG_TAG, "resultList is => " + resultList);
+                            }
+                            res.setValue(resultList);
+                        } else {
+                            Log.d(LOG_TAG, "Error getting documents: ", task.getException());
+                        }
+                    });
+
             Log.d(LOG_TAG, "res is: " + res);
         }
-        return res;
-    }
-
-    private MutableLiveData<List<Result>> readFilteredCollection(String workoutName) {
-        //reads the documents in a collection that match the workout name for the logged user
-        resultList = new ArrayList<>();
-        firebaseFirestore.collection("users").document(userID).collection("results")
-                .whereEqualTo("wodName", workoutName)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                            Log.d(LOG_TAG, document.getId() + " => " + document.getData());
-                            resultList.add(document.toObject(Result.class));
-                            Log.d(LOG_TAG, "resultList is => " + resultList);
-                        }
-                        res.setValue(resultList);
-                    } else {
-                        Log.d(LOG_TAG, "Error getting documents: ", task.getException());
-                    }
-                });
         return res;
     }
 
     public void addNewResult(Workout workout, String wodName, String score, Integer rating,
                              String comments, String date, boolean scaled) {
+
+        resultNumber = 1;
         result = new Result(workout, wodName, score, rating, comments, date, scaled);
-        resultID = date.toString() + "_" + workout.getTitle().replaceAll(" ", "-").toLowerCase(); //Create identifier
+
 
         //Save the data to the database
-        initFirebase();
-        if (firebaseAuth.getCurrentUser() != null) {
-            userID = firebaseAuth.getCurrentUser().getUid();
-            DocumentReference documentReference = firebaseFirestore.collection("users").document(userID).collection("results").document(resultID);
+        if (initFirebase()){
+            resultID = date;
+            checkAndWrite(resultID, wodName, date, result);
 
-            Map<String, Object> resultData = new HashMap<>();
-            resultData.put("workout", result.getWorkout());
-            resultData.put("wodName", result.getWodName());
-            resultData.put("date", result.getDate().toString());
-            resultData.put("scaled", result.isScaled());
-            resultData.put("score", result.getScore());
-            resultData.put("feelScore", result.getFeelScore());
-            resultData.put("comments", result.getComments());
-            documentReference.set(resultData).addOnSuccessListener(aVoid -> Log.d("ResultRepo", "onSuccess: result was saved for " + userID + "at" + resultID));
         } else {
             Log.i("ResultRepo", "User is not logged in");
         }
     }
 
+    public void checkAndWrite(String ID, String wodName, String date, Result result){
+        DocumentReference docRef = fStore.collection("users").document(userID).collection("results").document(ID);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()){
+                DocumentSnapshot document = task.getResult();
+                assert document != null;
+                if (document.exists()){
+                    if (Objects.equals(document.getString("wodName"), wodName)){
+                        saveResult(docRef, result);
+                    } else{
+                        resultID = date + "_" + resultNumber;
+                        resultNumber ++;
+                        checkAndWrite(resultID, wodName, date, result);
+                    }
+                }else{
+                    saveResult(docRef, result);
+                }
+            }
+        });
+
+    }
+
+    public void saveResult(DocumentReference dr, Result result){
+        Map<String, Object> resultData = new HashMap<>();
+
+        resultData.put("workout", result.getWorkout());
+        resultData.put("wodName", result.getWodName());
+        resultData.put("date", result.getDate());
+        resultData.put("scaled", result.isScaled());
+        resultData.put("score", result.getScore());
+        resultData.put("feelScore", result.getFeelScore());
+        resultData.put("comments", result.getComments());
+
+        dr.set(resultData).addOnSuccessListener(aVoid ->
+                Log.d("ResultRepo", "onSuccess: result was saved for " + userID + "at" + resultID));
+
+    }
 
     public MutableLiveData<ArrayList<ArrayList<Integer>>> getListOfDates(LocalDate selectedDate) {
         /*
@@ -167,41 +175,33 @@ public class ResultRepo {
         ArrayList<Integer> feels = new ArrayList<>();
         ArrayList<ArrayList<Integer>> combine = new ArrayList<>();
 
-        fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
-
-        if (fAuth.getCurrentUser() != null){
-            userID = fAuth.getCurrentUser().getUid();
-
+        if (initFirebase()){
             CollectionReference c = fStore.collection("users").document(userID).collection("results");
             c.get().addOnCompleteListener(task -> { // Gets all the files inside of the collection
                 if (task.isSuccessful()){
                     // Loop through the documents and check the dates
                     for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                        String d = document.getId();
-                        LocalDate resultDate = CalendarUtils.dateFromString(d);
+                        String date = document.getId();
+                        LocalDate resultDate = CalendarUtils.dateFromString(date); //Todo: make sure that this can take multiple results on a day
 
                         if (resultDate.getMonthValue() == selectedDate.getMonthValue() &&
                         resultDate.getYear() == selectedDate.getYear()){
                             dates.add(resultDate.getDayOfMonth());
                             try{
-                                // feelScore is initially a Double, which requires 2x conversion
-                                // Todo: make sure we save it as int, which will make this easier
-                                double f = document.getDouble("feelScore");
-                                int g = (int) f;
-                                feels.add(g);
+                                int feel = Objects.requireNonNull(document.getLong("feelScore")).intValue();
+                                feels.add(feel);
                             } catch (Exception e){
-                                feels.add(0);
+                                feels.add(0); // no result is logged, which means the event is planned
                             }
                         }
                     }
                     combine.add(dates);
                     combine.add(feels);
-                    resCal.setValue(combine);
+                    resCalendar.setValue(combine);
                 }
             });
         }
 
-        return resCal;
+        return resCalendar;
     }
 }
