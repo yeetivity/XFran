@@ -153,11 +153,13 @@ public class SaveResultsActivity extends BaseActivity {
             Toast.makeText(getApplicationContext(), "Result saved", Toast.LENGTH_SHORT).show();
 
             //Go to result list of the workout saved
-            Intent intent = new Intent(this, ResultsListWODActivity.class);
-            intent.putExtra(WORKOUT_ID, position);
-            intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(workout));
-            Log.i(LOG_TAG, "workout sent: " + workout);
-            startActivity(intent);
+            //Todo: only use if we find a faster way to update the list
+//            Intent intent = new Intent(this, ResultsListWODActivity.class);
+//            intent.putExtra(WORKOUT_ID, position);
+//            intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(workout));
+//            Log.i(LOG_TAG, "workout sent: " + workout);
+//            startActivity(intent);
+            finish();
 
         } catch (DateTimeParseException e) {
             //error message if date format is not respected and parsing fails

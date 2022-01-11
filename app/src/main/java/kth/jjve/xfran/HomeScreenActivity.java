@@ -37,7 +37,8 @@ public class HomeScreenActivity extends BaseActivity {
         WODDescription = findViewById(R.id.home_WODDescription);
         WODExercises = findViewById(R.id.home_WODExercises);
         Username = findViewById(R.id.home_username);
-        PlannedWorkouts = findViewById(R.id.home_rv);
+        //Todo: get the planned workouts of the day to the home view
+//        PlannedWorkouts = findViewById(R.id.home_rv);
 
         /*-----  VM  -----*/
         homeVM = ViewModelProviders.of(this).get(HomeVM.class);

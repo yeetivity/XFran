@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Objects;
@@ -87,11 +88,14 @@ public class ResultsListActivity extends BaseActivity implements ResultsRecycler
 
     public void onView(int position) {
         //start activity to view all results of the workout
-        Intent intent = new Intent(this, ResultsListWODActivity.class);
-        intent.putExtra(WORKOUT_ID, position);
-        intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mResultVM.getResults().getValue().get(position).getWorkout()));
-        Log.i(LOG_TAG, "workout sent: " + mResultVM.getResults().getValue().get(position).getWorkout());
-        startActivity(intent);
+        //Todo: fix that this starts working properly
+//        Intent intent = new Intent(this, ResultsListWODActivity.class);
+//        intent.putExtra(WORKOUT_ID, position);
+//        intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mResultVM.getResults().getValue().get(position).getWorkout()));
+//        Log.i(LOG_TAG, "workout sent: " + mResultVM.getResults().getValue().get(position).getWorkout());
+//        startActivity(intent);
+
+        Toast.makeText(getApplicationContext(), "Under construction", Toast.LENGTH_SHORT).show();
 
     }
 

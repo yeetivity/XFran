@@ -49,7 +49,7 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         try {
             mExpandedStatus.addAll(Collections.nCopies(mResults.size(), true));
         } catch (Exception e) {
-            Toast.makeText(AppCtx.getContext(), "No results available", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(AppCtx.getContext(), "No results available", Toast.LENGTH_SHORT).show();
         }
 
         this.mItemClickListener = onItemClickListener;

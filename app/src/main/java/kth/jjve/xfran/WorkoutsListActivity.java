@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -84,10 +85,12 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
 
     public void onView(int position) {
         // view all saved results for selected workout
-        Intent intent = new Intent(this, ResultsListWODActivity.class);
-        intent.putExtra(WORKOUT_ID, position);
-        intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
-        startActivity(intent);
+        // Todo: fix that this works
+//        Intent intent = new Intent(this, ResultsListWODActivity.class);
+//        intent.putExtra(WORKOUT_ID, position);
+//        intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
+//        startActivity(intent);
+        Toast.makeText(getApplicationContext(), "Under construction", Toast.LENGTH_SHORT).show();
     }
 
 }
