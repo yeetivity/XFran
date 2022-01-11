@@ -18,6 +18,8 @@
         <entry key="app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout-land/activity_edit_profile.xml" value="0.1675485008818342" />
         <entry key="app/src/main/res/layout/act_calendar_editevent.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/layout/act_calendar_week.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/act_workouts.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/activity_homescreen.xml" value="0.14763231197771587" />
@@ -29,6 +31,7 @@
         <entry key="app/src/main/res/layout/menu_header.xml" value="0.33242753623188404" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/trainingdiary_item.xml" value="0.33242753623188404" />
+        <entry key="app/src/main/res/layout/workout_item.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.19791666666666666" />
       </map>
     </option>
