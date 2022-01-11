@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.XFran">
         <activity
-            android:name=".MontlyCalendarActivity"
+            android:name=".MonthlyCalendarActivity"
             android:exported="false" />
         <activity
             android:name=".BaseActivity"
@@ -65,7 +65,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

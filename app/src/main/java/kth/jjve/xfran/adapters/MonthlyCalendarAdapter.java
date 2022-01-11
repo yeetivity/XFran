@@ -7,11 +7,9 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
 based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
  */
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import kth.jjve.xfran.R;
-import kth.jjve.xfran.viewholders.MontlyCalendarViewHolder;
+import kth.jjve.xfran.viewholders.MonthlyCalendarViewHolder;
 
-public class MonthlyCalendarAdapter extends RecyclerView.Adapter<MontlyCalendarViewHolder>{
+public class MonthlyCalendarAdapter extends RecyclerView.Adapter<MonthlyCalendarViewHolder>{
 
     private final ArrayList<String> daysOfMonth;
     private final ArrayList<Integer> workoutDays, feelScores;
@@ -40,16 +38,16 @@ public class MonthlyCalendarAdapter extends RecyclerView.Adapter<MontlyCalendarV
 
     @NonNull
     @Override
-    public MontlyCalendarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MonthlyCalendarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.montly_calendar_cell, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         layoutParams.height = (int) (parent.getHeight() * 0.1666666);
-        return new MontlyCalendarViewHolder(view, onItemListener);
+        return new MonthlyCalendarViewHolder(view, onItemListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MontlyCalendarViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MonthlyCalendarViewHolder holder, int position) {
         holder.dayOfMonth.setText(daysOfMonth.get(position));
 
         if (!daysOfMonth.get(position).equals("")){

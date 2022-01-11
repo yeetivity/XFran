@@ -24,7 +24,7 @@ import kth.jjve.xfran.adapters.MonthlyCalendarAdapter;
 import kth.jjve.xfran.utils.CalendarUtils;
 import kth.jjve.xfran.viewmodels.CalendarVM;
 
-public class MontlyCalendarActivity extends BaseActivity implements MonthlyCalendarAdapter.OnItemListener {
+public class MonthlyCalendarActivity extends BaseActivity implements MonthlyCalendarAdapter.OnItemListener {
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;

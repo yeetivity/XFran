@@ -87,7 +87,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.closeDrawers();
                 break;
             case R.id.nav_calendar:
-                startActivity(new Intent(getApplicationContext(), MontlyCalendarActivity.class));
+                startActivity(new Intent(getApplicationContext(), MonthlyCalendarActivity.class));
                 drawerLayout.closeDrawers();
                 break;
             case R.id.nav_plan_workout:
