@@ -40,7 +40,6 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private RecyclerView eventListView;
-    private Button saveResult;
 
     /*_________ INTENT _________*/
     private Integer position;
@@ -81,7 +80,6 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         });
 
         buttonNewEvent.setOnClickListener(v -> {
-            startActivity(new Intent(this, PlanEventActivity.class)); // TODO delete this probs!!!!
             Intent intent = new Intent(this, PlanEventActivity.class);
             intent.putExtra(WORKOUT_ID, position);
             intent.putExtra(WORKOUT_OBJ, mWorkout);
