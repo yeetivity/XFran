@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
@@ -30,7 +29,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/workout_title"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="?colorOnSecondary"/>
 
         <RelativeLayout
             android:id="@+id/item_expanded"
@@ -70,7 +70,8 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/workout_description"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="?colorOnSecondary"/>
 
             <TextView
                 android:id="@+id/workout_exercises"
@@ -81,7 +82,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/workout_exercises"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="?colorOnSecondary"/>
 
         </RelativeLayout>
 

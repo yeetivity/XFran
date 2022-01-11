@@ -87,4 +87,7 @@
     <string name="wod">WOD</string>
     <string name="planned_today">Planned today</string>
     <string name="logged_in_as">Logged in as:</string>
+    <string name="workouts">Workouts</string>
+    <string name="plan_workout">Plan Workout</string>
+    <string name="calendar">calendar</string>
 </resources>

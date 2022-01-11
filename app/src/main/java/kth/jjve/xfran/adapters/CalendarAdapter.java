@@ -19,8 +19,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import kth.jjve.xfran.R;
-import kth.jjve.xfran.weeklycalendar.CalendarUtils;
-import kth.jjve.xfran.weeklycalendar.CalendarViewHolder;
+import kth.jjve.xfran.utils.CalendarUtils;
+import kth.jjve.xfran.viewholders.CalendarViewHolder;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>{
 
@@ -41,7 +41,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>{
         if(days.size() > 15) //month view
             layoutParams.height = (int) (parent.getHeight() * 0.166666666);
         else // week view
-            layoutParams.height = (int) parent.getHeight();
+            layoutParams.height = parent.getHeight();
 
         return new CalendarViewHolder(view, onItemListener, days);
     }

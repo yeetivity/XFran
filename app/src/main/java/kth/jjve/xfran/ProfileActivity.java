@@ -45,7 +45,6 @@ public class ProfileActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         navigationView.setCheckedItem(R.id.nav_profile);
-        //Todo: update bug (doesn't update in onResume)
     }
 
     @SuppressLint("SetTextI18n")

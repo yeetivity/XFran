@@ -6,8 +6,8 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
 import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.utils.CalendarUtils;
 import kth.jjve.xfran.viewmodels.EventVM;
-import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 import android.content.Intent;
 import android.icu.util.Calendar;
@@ -15,14 +15,12 @@ import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.time.LocalTime;

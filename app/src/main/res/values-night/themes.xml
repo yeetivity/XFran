@@ -2,18 +2,17 @@
     <!-- Base application theme. -->
     <style name="Theme.XFran" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/Midnight_Blue</item>
-        <item name="colorPrimaryVariant">@color/Orange_500</item>
+        <item name="colorPrimary">@color/Orange_500</item>
+        <item name="colorPrimaryVariant">@color/Red_600</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/Midnight_Blue</item>
-        <item name="colorSecondaryVariant">@color/Red_600</item>
-        <item name="colorOnSecondary">@color/Orange_500</item>
+        <item name="colorSecondary">@color/Orange_200</item>
+        <item name="colorSecondaryVariant">@color/Orange_300</item>
+        <item name="colorOnSecondary">@color/Midnight_Blue</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-
-        <!-- Default background color -->
-        <item name="colorOnBackground">@color/grey</item>
+        <!-- Background color. -->
+        <item name="colorOnBackground"> @color/grey </item>
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

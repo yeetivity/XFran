@@ -71,7 +71,8 @@
                 android:padding="5dp"
                 android:hint="@string/editProfile_firstname_hint"
                 android:importantForAutofill="no"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="?colorOnSecondary"/>
 
             <EditText
                 android:id="@+id/editProfileLastName"
@@ -83,7 +84,8 @@
                 android:padding="5dp"
                 android:hint="@string/editProfile_lastname_hint"
                 android:importantForAutofill="no"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="?colorOnSecondary"/>
         </LinearLayout>
 
         <TextView
@@ -113,7 +115,8 @@
                 android:padding="5dp"
                 android:hint="@string/editProfile_weight_hint"
                 android:importantForAutofill="no"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textColor="?colorOnSecondary"/>
 
             <EditText
                 android:id="@+id/editProfileHeight"
@@ -125,7 +128,8 @@
                 android:padding="5dp"
                 android:hint="@string/editProfile_height_hint"
                 android:importantForAutofill="no"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColor="?colorOnSecondary"/>
         </LinearLayout>
 
         <TextView
@@ -138,6 +142,7 @@
             android:padding="5dp"
             android:inputType="textPassword"
             android:text="@string/testpassword"
+            android:textColor="@color/black"
             android:background="@drawable/input_background"
             tools:ignore="TextViewEdits" />
 

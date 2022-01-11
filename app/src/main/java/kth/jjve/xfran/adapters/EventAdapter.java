@@ -27,7 +27,7 @@ import java.util.List;
 
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.EventInApp;
-import kth.jjve.xfran.weeklycalendar.CalendarUtils;
+import kth.jjve.xfran.utils.CalendarUtils;
 
 public class EventAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
