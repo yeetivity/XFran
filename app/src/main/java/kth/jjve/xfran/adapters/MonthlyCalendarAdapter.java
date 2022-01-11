@@ -67,11 +67,11 @@ public class MonthlyCalendarAdapter extends RecyclerView.Adapter<MontlyCalendarV
                     // Alter the bg color of the dot based on the feelScore
                     if (feelScore == 0){ // planned activity --> grey
                         ((GradientDrawable) dot).setColor(Color.parseColor("#808080"));
-                    } else if (feelScore == 1 || feelScore == 2){ // bad workout --> red
+                    } else if (feelScore == 4 || feelScore == 5){ // bad workout --> red
                         ((GradientDrawable) dot).setColor(Color.parseColor("#530000"));
                     } else if (feelScore == 3){ // mediocre workout --> yellow
                         ((GradientDrawable) dot).setColor(Color.parseColor("#FFCC00"));
-                    } else if (feelScore == 4 || feelScore == 5){ // good workout --> green
+                    } else if (feelScore == 1 || feelScore == 2){ // good workout --> green
                         ((GradientDrawable) dot).setColor(Color.parseColor("#006400"));
                     } else {
                         Log.i("MonthAdapter", "Wrong feelscore given");
