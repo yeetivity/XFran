@@ -56,7 +56,6 @@ public class HomeVM extends AndroidViewModel {
     }
 
     private void setWOD(MutableLiveData<List<Workout>> mWorkouts) {
-        // Todo: mDate now gets overwritten when activity is destroyed, find a way to make sure it does not
         if (checkLastUpdate()) {
 
             // Get a random workout
@@ -133,7 +132,7 @@ public class HomeVM extends AndroidViewModel {
         mWODExercises = new MutableLiveData<>();
 
         mWODTitle.setValue(wod.getTitle());
-        mWODDescription.setValue(wod.getType());
+        mWODDescription.setValue(wod.getDescription());
         mWODExercises.setValue(wod.getDetails());
     }
 

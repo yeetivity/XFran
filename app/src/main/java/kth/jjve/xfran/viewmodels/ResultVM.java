@@ -1,5 +1,7 @@
 package kth.jjve.xfran.viewmodels;
-
+/*
+View model for results
+ */
 
 import android.app.Application;
 import android.util.Log;
@@ -22,7 +24,6 @@ public class ResultVM extends AndroidViewModel {
 
     private static final String LOG_TAG = ResultVM.class.getSimpleName();
 
-    private Result mNewResult;
     private MutableLiveData<List<Result>> mResults; //subclass of LiveData (mutable)
     private ResultRepo mRepo;
 
@@ -32,19 +33,29 @@ public class ResultVM extends AndroidViewModel {
 
     public void init() {
         if (mResults != null) {
+            mResults = mRepo.getResults();
             return;
         }
         mRepo = ResultRepo.getInstance();
         mResults = mRepo.getResults();
     }
 
+    public void initFiltered(String workoutName) {
+        if (mResults != null) {
+            mResults = mRepo.getFilteredResults(workoutName);
+            return;
+        }
+        mRepo = ResultRepo.getInstance();
+        mResults = mRepo.getFilteredResults(workoutName);
+    }
+
     public LiveData<List<Result>> getResults() {
         return mResults;
     }
 
-    public void addNewResult(Workout workout, String score, Integer rating,
-                             String comments, LocalDate date, boolean scaled) {
-        mRepo.addNewResult(workout, score, rating, comments, date, scaled);
+    public void addNewResult(Workout workout, String wodName, String score, Integer rating,
+                             String comments, String date, boolean scaled) {
+        mRepo.addNewResult(workout, wodName, score, rating, comments, date, scaled);
     }
 }
 

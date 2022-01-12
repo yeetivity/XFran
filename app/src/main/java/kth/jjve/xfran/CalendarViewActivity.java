@@ -7,8 +7,8 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
 
 import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_ID;
 import static kth.jjve.xfran.WorkoutsListActivity.WORKOUT_OBJ;
-import static kth.jjve.xfran.weeklycalendar.CalendarUtils.daysInWeekArray;
-import static kth.jjve.xfran.weeklycalendar.CalendarUtils.monthYearFromDate;
+import static kth.jjve.xfran.utils.CalendarUtils.daysInWeekArray;
+import static kth.jjve.xfran.utils.CalendarUtils.monthYearFromDate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,8 +31,8 @@ import kth.jjve.xfran.adapters.EventAdapter;
 import kth.jjve.xfran.models.EventInApp;
 import kth.jjve.xfran.adapters.CalendarAdapter;
 import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.utils.CalendarUtils;
 import kth.jjve.xfran.viewmodels.EventVM;
-import kth.jjve.xfran.weeklycalendar.CalendarUtils;
 
 public class CalendarViewActivity extends BaseActivity implements CalendarAdapter.OnItemListener {
 
@@ -51,7 +51,7 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_calendar_week, contentFrameLayout);
-        navigationView.setCheckedItem(R.id.nav_calendar);
+        navigationView.setCheckedItem(R.id.nav_plan_workout);
 
         /*------ HOOKS ------*/
         ImageButton buttonBack = findViewById(R.id.buttonBack);
@@ -91,7 +91,7 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
     @Override
     protected void onResume(){
         super.onResume();
-        navigationView.setCheckedItem(R.id.nav_calendar);
+        navigationView.setCheckedItem(R.id.nav_plan_workout);
     }
 
     @Override

@@ -145,6 +145,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/scaled_text" />
 
+            <!-- Todo: fix the input type   -->
             <EditText
                 android:id="@+id/edit_score"
                 android:layout_width="wrap_content"
@@ -155,6 +156,7 @@
                 android:importantForAutofill="no"
                 android:minHeight="48dp"
                 android:textAlignment="textEnd"
+                android:inputType="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/score_text"/>
 
