@@ -54,8 +54,6 @@ public class SaveResultsActivity extends BaseActivity {
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_result_save, contentFrameLayout);
 
-        navigationView.setCheckedItem(R.id.nav_workouts);
-
         /*------ HOOKS ------*/
         //workout_item
         mName = findViewById(R.id.workout_name);
@@ -115,12 +113,6 @@ public class SaveResultsActivity extends BaseActivity {
         todayLocalDate = LocalDate.now();
         mDate.setText(todayLocalDate.toString());
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_workouts);
     }
 
     public void saveResult() {

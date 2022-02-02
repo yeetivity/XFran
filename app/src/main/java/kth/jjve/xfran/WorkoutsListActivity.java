@@ -39,8 +39,6 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_workouts, contentFrameLayout);
 
-        navigationView.setCheckedItem(R.id.nav_workouts);
-
         /*------ VIEW ------*/
         RecyclerView mRecyclerView = findViewById(R.id.rv_workoutlist);
 
@@ -57,11 +55,6 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_workouts);
-    }
 
     @Override
     public void onListItemClick(int position) {

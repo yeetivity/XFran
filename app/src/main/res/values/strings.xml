@@ -97,4 +97,6 @@
     <string name="workouts">Workouts</string>
     <string name="plan_workout">Plan Workout</string>
     <string name="calendar">Calendar</string>
+    <string name="add">Add</string>
+    <string name="results">Results</string>
 </resources>

@@ -23,7 +23,6 @@ public class ProfileActivity extends BaseActivity {
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_profile, contentFrameLayout);
-        navigationView.setCheckedItem(R.id.nav_profile);
 
         /*----- HOOKS -----*/
         mName = findViewById(R.id.profile_username);
@@ -41,11 +40,6 @@ public class ProfileActivity extends BaseActivity {
         edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_profile);
-    }
 
     @SuppressLint("SetTextI18n")
     private void setViews(UserProfile userProfile){

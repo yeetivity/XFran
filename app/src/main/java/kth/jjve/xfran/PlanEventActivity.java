@@ -42,7 +42,6 @@ public class PlanEventActivity extends BaseActivity {
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_planevent, contentFrameLayout);
-        navigationView.setCheckedItem(R.id.nav_calendar);
 
         /*------ HOOKS ------*/
         eventNameET = findViewById(R.id.eventNameET);
@@ -82,12 +81,6 @@ public class PlanEventActivity extends BaseActivity {
             s_eventName = mWorkout.getTitle();
             eventNameTV.setText(s_eventName);
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_calendar);
     }
 
     private void setEventInApp(){

@@ -51,7 +51,6 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_calendar_week, contentFrameLayout);
-        navigationView.setCheckedItem(R.id.nav_plan_workout);
 
         /*------ HOOKS ------*/
         ImageButton buttonBack = findViewById(R.id.buttonBack);
@@ -85,13 +84,6 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
             intent.putExtra(WORKOUT_OBJ, mWorkout);
             startActivity(intent);
         });
-    }
-
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_plan_workout);
     }
 
     @Override

@@ -39,7 +39,6 @@ public class MonthlyCalendarActivity extends BaseActivity implements MonthlyCale
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_calendar_month, contentFrameLayout);
-        navigationView.setCheckedItem(R.id.nav_calendar);
 
         /*------ HOOKS ------*/
         ImageButton buttonBack = findViewById(R.id.buttonBack_month);
@@ -59,12 +58,6 @@ public class MonthlyCalendarActivity extends BaseActivity implements MonthlyCale
         /*-------- LISTENERS ------------*/
         buttonBack.setOnClickListener(v -> setMonthView(CalendarUtils.selectedDate.minusMonths(1)));
         buttonNext.setOnClickListener(v -> setMonthView(CalendarUtils.selectedDate.plusMonths(1)));
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_calendar);
     }
 
     private void setMonthView(LocalDate date) {

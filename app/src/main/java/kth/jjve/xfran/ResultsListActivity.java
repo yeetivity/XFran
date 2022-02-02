@@ -44,7 +44,6 @@ public class ResultsListActivity extends BaseActivity implements ResultsRecycler
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_result_view, contentFrameLayout);
 
-        navigationView.setCheckedItem(R.id.nav_results);
 
         /*------ VIEW ------*/
         mRecyclerView = findViewById(R.id.rv_resultlist);
@@ -65,12 +64,6 @@ public class ResultsListActivity extends BaseActivity implements ResultsRecycler
         // update UI with data retrieved from firebase
         mRecyclerView.setAdapter(new ResultsRecyclerAdapter(this, resultList, this, this::onPlan, this::onView));
         Log.d(LOG_TAG, "new adapter set for new resultList: " + resultList);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_results);
     }
 
     @Override

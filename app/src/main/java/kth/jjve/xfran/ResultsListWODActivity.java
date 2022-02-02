@@ -58,8 +58,6 @@ public class ResultsListWODActivity extends BaseActivity {
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_result_view_wod, contentFrameLayout);
 
-        navigationView.setCheckedItem(R.id.nav_results);
-
         /*------ HOOKS ------*/
         //workout_item
         mName = findViewById(R.id.workout_name);
@@ -106,12 +104,6 @@ public class ResultsListWODActivity extends BaseActivity {
         // update UI with data retrieved from firebase
         mRecyclerView.setAdapter(new ResultsWODRecyclerAdapter(this, resultList));
         Log.d(LOG_TAG, "new adapter set for new resultList: " + resultList);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_results);
     }
 
 }
