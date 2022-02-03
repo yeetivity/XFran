@@ -32,10 +32,6 @@ public class BaseActivity extends AppCompatActivity {
 
         /*----- FBASE -----*/
         fAuth = FirebaseAuth.getInstance();
-
-        if (fAuth.getCurrentUser() != null) { // check if user is already logged in
-            //Todo: Check something
-        }
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -55,7 +51,11 @@ public class BaseActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), CalendarViewActivity.class));
                     break;
                 case R.id.nav_profile:
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    if (fAuth.getCurrentUser() != null){
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    } else {
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    }
                     break;
             }
             return false;

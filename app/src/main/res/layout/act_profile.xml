@@ -246,13 +246,32 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <ImageButton
-            android:id="@+id/profile_Edit"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_marginTop="4dp"
-            android:contentDescription="@string/edit"
-            app:srcCompat="@drawable/ic_baseline_edit_24" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/profile_Logout"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_weight="1"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/edit"
+                app:srcCompat="@drawable/ic_baseline_logout_24" />
+
+            <ImageButton
+                android:id="@+id/profile_Edit"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_weight="1"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/edit"
+                app:srcCompat="@drawable/ic_baseline_edit_24" />
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
