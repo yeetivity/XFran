@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/input_background"
+        android:background="@drawable/bgr_orangebox"
         app:labelVisibilityMode="unlabeled"
         app:itemIconTint="@color/grey"
         app:menu="@menu/menu"/>

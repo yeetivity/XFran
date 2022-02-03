@@ -32,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:src="@drawable/ic_arrow_backward"
                 tools:ignore="ContentDescription" />
 
             <TextView
@@ -49,7 +49,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_baseline_arrow_forward_24"
+                android:src="@drawable/ic_arrow_forward"
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>

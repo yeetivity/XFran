@@ -42,7 +42,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_baseline_supervised_user_circle_24"
+                android:src="@drawable/ic_default_userpicture"
                 android:contentDescription="@string/profilepicture" />
 
             <TextView
@@ -258,7 +258,7 @@
                 android:layout_weight="1"
                 android:layout_marginTop="4dp"
                 android:contentDescription="@string/edit"
-                app:srcCompat="@drawable/ic_baseline_logout_24" />
+                app:srcCompat="@drawable/ic_logout" />
 
             <ImageButton
                 android:id="@+id/profile_Edit"
@@ -267,7 +267,7 @@
                 android:layout_weight="1"
                 android:layout_marginTop="4dp"
                 android:contentDescription="@string/edit"
-                app:srcCompat="@drawable/ic_baseline_edit_24" />
+                app:srcCompat="@drawable/ic_edit" />
 
 
         </LinearLayout>
