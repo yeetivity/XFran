@@ -21,16 +21,10 @@
             android:label="@string/title_activity_result"
             android:theme="@style/Theme.XFran.NoActionBar" />
         <activity
-            android:name=".MonthlyCalendarActivity"
-            android:exported="false" />
-        <activity
             android:name=".BaseActivity"
             android:exported="false" />
         <activity
             android:name=".WorkoutsListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ResultsListActivity"
             android:exported="false" />
         <activity
             android:name=".ResultsListWODActivity"

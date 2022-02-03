@@ -3,21 +3,20 @@ package kth.jjve.xfran.adapters;
 Adapter for Results list
  */
 
-import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.Result;
 import kth.jjve.xfran.utils.ResultUtils;
@@ -30,7 +29,6 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private final ResultsRecyclerAdapter.ListItemClickListener mItemClickListener;
     private final ResultsRecyclerAdapter.PlanButtonClickListener mPlanClickListener;
     private final ResultsRecyclerAdapter.SaveButtonClickListener mViewClickListener;
-    private Context mContext;
     private List<Result> mResults = new ArrayList<>();
     /*
     ArrayList saves a boolean for each result item (false-->collapsed view/ true-->expanded view)
@@ -38,12 +36,11 @@ public class ResultsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
      */
     private ArrayList<Boolean> mExpandedStatus = new ArrayList<>();
 
-    public ResultsRecyclerAdapter(Context context, List<Result> results,
+    public ResultsRecyclerAdapter(List<Result> results,
                                   ResultsRecyclerAdapter.ListItemClickListener onItemClickListener,
                                   ResultsRecyclerAdapter.PlanButtonClickListener onPlanButtonClickListener,
                                   ResultsRecyclerAdapter.SaveButtonClickListener onViewButtonClickListener) {
         mResults = results;
-        mContext = context;
         //set all result items to collapsed view when adapter is constructed
         mExpandedStatus.clear();
         try {
