@@ -3,7 +3,8 @@ package kth.jjve.xfran;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.MenuInflater;
+import android.widget.PopupMenu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -40,12 +41,29 @@ public class BaseActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.nav_home:
                     startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
+                    finish();
                     break;
                 case R.id.nav_results:
                     startActivity(new Intent(getApplicationContext(), ResultActivity.class));
                     break;
                 case R.id.nav_add:
-                    Toast.makeText(getApplicationContext(), "Under construction", Toast.LENGTH_SHORT).show();
+                    PopupMenu popup = new PopupMenu(getApplicationContext(), findViewById(R.id.nav_add));
+                    MenuInflater inflater = popup.getMenuInflater();
+                    inflater.inflate(R.menu.add_menu, popup.getMenu());
+                    popup.setOnMenuItemClickListener(item1 -> {
+                        switch (item1.getItemId()){
+                            case R.id.nav_add_event:
+                                //Todo: Make sure that we can directly go to planning (now null error)
+                                startActivity(new Intent(getApplicationContext(), CalendarViewActivity.class));
+                                break;
+                            case R.id.nav_add_result:
+                                //Todo: Make sure that we can direclty go to logging result
+                                startActivity(new Intent(getApplicationContext(), WorkoutsListActivity.class));
+                                break;
+                        }
+                        return false;
+                    });
+                    popup.show();
                     break;
                 case R.id.nav_calendar:
                     startActivity(new Intent(getApplicationContext(), CalendarViewActivity.class));
