@@ -12,9 +12,18 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Background color. -->
-        <item name="colorOnBackground"> @color/white </item>
+        <item name="colorOnBackground">@color/white</item>
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="Theme.XFran.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.XFran.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.XFran.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
