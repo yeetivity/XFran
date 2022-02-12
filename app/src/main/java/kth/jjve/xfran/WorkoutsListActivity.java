@@ -3,16 +3,15 @@ package kth.jjve.xfran;
 Activity to let the user view workout list
  */
 
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Objects;
 
@@ -62,7 +61,7 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
 
     public void onPlan(int position) {
         // plan selected workout
-        Intent intent = new Intent(this, CalendarViewActivity.class);
+        Intent intent = new Intent(this, EventActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
         startActivity(intent);
@@ -70,7 +69,7 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
 
     public void onSave(int position) {
         // save new result for selected workout
-        Intent intent = new Intent(this, SaveResultsActivity.class);
+        Intent intent = new Intent(this, ResultSaveActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
         startActivity(intent);
@@ -79,7 +78,7 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
     public void onView(int position) {
         // view all saved results for selected workout
         // Todo: fix that this works
-//        Intent intent = new Intent(this, ResultsListWODActivity.class);
+//        Intent intent = new Intent(this, ResultActivity.class);
 //        intent.putExtra(WORKOUT_ID, position);
 //        intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
 //        startActivity(intent);

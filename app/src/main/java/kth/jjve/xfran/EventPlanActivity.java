@@ -5,10 +5,6 @@ Activity to input and save the event
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
-import kth.jjve.xfran.models.Workout;
-import kth.jjve.xfran.utils.CalendarUtils;
-import kth.jjve.xfran.viewmodels.EventVM;
-
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -25,9 +21,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import java.time.LocalTime;
 
-public class PlanEventActivity extends BaseActivity {
+import kth.jjve.xfran.models.Workout;
+import kth.jjve.xfran.utils.CalendarUtils;
+import kth.jjve.xfran.viewmodels.EventVM;
 
-    private static final String LOG_TAG = PlanEventActivity.class.getSimpleName();
+public class EventPlanActivity extends BaseActivity {
+
+    private static final String LOG_TAG = EventPlanActivity.class.getSimpleName();
     private EditText eventNameET, eventStartTimeEdit, eventEndTimeEdit;
     private String s_eventName, startTime, stopTime;
     private EventVM mEventVM;

@@ -2,7 +2,7 @@ package kth.jjve.xfran.adapters;
 
 /*
 Function:
-Activity: CalendarViewActivity
+Used by: EventActivity
 Jitse van Esch, Elisa Perini & Mariah Sabioni
 */
 

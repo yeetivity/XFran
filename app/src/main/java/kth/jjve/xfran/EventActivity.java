@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -34,7 +33,7 @@ import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.utils.CalendarUtils;
 import kth.jjve.xfran.viewmodels.EventVM;
 
-public class CalendarViewActivity extends BaseActivity implements CalendarAdapter.OnItemListener {
+public class EventActivity extends BaseActivity implements CalendarAdapter.OnItemListener {
 
     /*_________ VIEW _________*/
     private TextView monthYearText;
@@ -79,7 +78,7 @@ public class CalendarViewActivity extends BaseActivity implements CalendarAdapte
         });
 
         buttonNewEvent.setOnClickListener(v -> {
-            Intent intent = new Intent(this, PlanEventActivity.class);
+            Intent intent = new Intent(this, EventPlanActivity.class);
             intent.putExtra(WORKOUT_ID, position);
             intent.putExtra(WORKOUT_OBJ, mWorkout);
             startActivity(intent);

@@ -1,5 +1,11 @@
 package kth.jjve.xfran.models;
 
+/*
+Function: defines userprofile object
+Activity:
+Jitse van Esch, Elisa Perini & Mariah Sabioni
+ */
+
 public class UserProfile {
 
     private String userFirstName;

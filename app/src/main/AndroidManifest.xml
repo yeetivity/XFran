@@ -27,31 +27,28 @@
             android:name=".WorkoutsListActivity"
             android:exported="false" />
         <activity
-            android:name=".ResultsListWODActivity"
+            android:name=".ResultSaveActivity"
             android:exported="false" />
         <activity
-            android:name=".SaveResultsActivity"
+            android:name=".ProfileEditActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".ProfileLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
+            android:name=".ProfileRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".CalendarViewActivity"
+            android:name=".EventActivity"
             android:exported="false" />
         <activity
-            android:name=".PlanEventActivity"
+            android:name=".EventPlanActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeScreenActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -3,6 +3,8 @@ package kth.jjve.xfran;
 Activity to let the user save a result
  */
 
+import static android.view.View.GONE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,20 +17,18 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.Objects;
-
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.lifecycle.ViewModelProviders;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.utils.ResultUtils;
 import kth.jjve.xfran.utils.WorkoutUtils;
 import kth.jjve.xfran.viewmodels.ResultVM;
 
-import static android.view.View.GONE;
-
-public class SaveResultsActivity extends BaseActivity {
+public class ResultSaveActivity extends BaseActivity {
 
     private final String LOG_TAG = getClass().getSimpleName();
     private LocalDate todayLocalDate;
@@ -146,7 +146,7 @@ public class SaveResultsActivity extends BaseActivity {
 
             //Go to result list of the workout saved
             //Todo: only use if we find a faster way to update the list
-//            Intent intent = new Intent(this, ResultsListWODActivity.class);
+//            Intent intent = new Intent(this, ResultsActivity.class);
 //            intent.putExtra(WORKOUT_ID, position);
 //            intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(workout));
 //            Log.i(LOG_TAG, "workout sent: " + workout);

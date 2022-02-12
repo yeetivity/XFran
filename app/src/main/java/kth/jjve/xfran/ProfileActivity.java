@@ -39,7 +39,7 @@ public class ProfileActivity extends BaseActivity {
         mUserProfileVM.getUserProfile().observe(this, this::setViews);
 
         /*--- OBSERVER ---*/
-        edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
+        edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, ProfileEditActivity.class)));
         logout.setOnClickListener(v -> {
             fAuth.signOut();
             Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_SHORT).show();

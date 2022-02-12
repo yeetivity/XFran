@@ -1,7 +1,9 @@
 package kth.jjve.xfran.adapters;
 /*
-Adapter for Results list for a given wod
- */
+Function:
+Used by: TODO: Doesn't seem to be currently used, check with Mariah
+Jitse van Esch, Elisa Perini & Mariah Sabioni
+*/
 
 import android.content.Context;
 import android.view.LayoutInflater;

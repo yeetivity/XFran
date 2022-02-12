@@ -2,7 +2,7 @@ package kth.jjve.xfran.utils;
 
 /*
 Function: useful methods for the calendar
-Activity: CalendarViewActivity & EditEventActivity
+Activity: EventActivity & EditEventActivity
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 

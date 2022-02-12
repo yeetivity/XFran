@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 import kth.jjve.xfran.viewmodels.HomeVM;
 
-public class HomeScreenActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity {
     TextView WODTitle, WODDescription, WODExercises, Username;
     HomeVM homeVM;
 

@@ -1,8 +1,8 @@
 package kth.jjve.xfran.adapters;
 
 /*
-Function: adapter for the weekly calendar
-Activity: CalendarViewActivity
+Function: adapter for the monthly calendar
+Used by: ResultStatisticsFragment
 Jitse van Esch, Elisa Perini & Mariah Sabioni
 based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
  */

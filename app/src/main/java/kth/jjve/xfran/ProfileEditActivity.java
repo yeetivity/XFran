@@ -16,7 +16,7 @@ import android.widget.Toast;
 import kth.jjve.xfran.models.UserProfile;
 import kth.jjve.xfran.viewmodels.UserProfileVM;
 
-public class EditProfileActivity extends BaseActivity {
+public class ProfileEditActivity extends BaseActivity {
     private EditText mFirstName, mLastName, mWeight, mHeight;
     private TextView mEmail;
     private UserProfileVM mUserProfileVM;

@@ -40,7 +40,7 @@ public class BaseActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.nav_home:
-                    startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     finish();
                     break;
                 case R.id.nav_results:
@@ -54,7 +54,7 @@ public class BaseActivity extends AppCompatActivity {
                         switch (item1.getItemId()){
                             case R.id.nav_add_event:
                                 //Todo: Make sure that we can directly go to planning (now null error)
-                                startActivity(new Intent(getApplicationContext(), CalendarViewActivity.class));
+                                startActivity(new Intent(getApplicationContext(), EventActivity.class));
                                 break;
                             case R.id.nav_add_result:
                                 //Todo: Make sure that we can direclty go to logging result
@@ -66,13 +66,13 @@ public class BaseActivity extends AppCompatActivity {
                     popup.show();
                     break;
                 case R.id.nav_calendar:
-                    startActivity(new Intent(getApplicationContext(), CalendarViewActivity.class));
+                    startActivity(new Intent(getApplicationContext(), EventActivity.class));
                     break;
                 case R.id.nav_profile:
                     if (fAuth.getCurrentUser() != null){
                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     } else {
-                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ProfileLoginActivity.class));
                     }
                     break;
             }

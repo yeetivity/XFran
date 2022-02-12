@@ -1,4 +1,9 @@
 package kth.jjve.xfran.repositories;
+/*
+Function: save information to the local storage
+Used by:
+Jitse van Esch, Mariah Sabioni & Elisa Perini
+ */
 
 import java.io.Serializable;
 import java.time.LocalDate;

@@ -1,9 +1,9 @@
 package kth.jjve.xfran.models;
 
-import java.time.LocalDate;
-
 /*
- * Result constructor
+Function: defines result object
+Activity:
+Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
 public class Result {

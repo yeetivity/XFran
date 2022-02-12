@@ -1,7 +1,9 @@
 package kth.jjve.xfran.adapters;
 /*
-Adapter for Results list
- */
+Function: Adapter for recycler view displaying list of results
+Used by: ResultListFragment
+Jitse van Esch, Elisa Perini & Mariah Sabioni
+*/
 
 import android.util.Log;
 import android.view.LayoutInflater;

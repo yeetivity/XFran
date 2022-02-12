@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?colorOnBackground"
-    tools:context=".HomeScreenActivity"
+    tools:context=".HomeActivity"
     android:fitsSystemWindows="true">
 
     <!-- First child layout    -->
