@@ -51,6 +51,13 @@
         android:textAlignment="center"
         android:textColor="@color/black"/>
 
+    <EditText
+        android:id="@+id/eventDateET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date" />
+
     <TextView
         android:id="@+id/eventStartTime"
         android:layout_width="wrap_content"

@@ -1,8 +1,6 @@
 package kth.jjve.xfran.viewmodels;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
