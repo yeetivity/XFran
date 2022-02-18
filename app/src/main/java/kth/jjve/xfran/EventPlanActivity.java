@@ -101,13 +101,10 @@ public class EventPlanActivity extends BaseActivity {
                 int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
                 datePickerDialog = new DatePickerDialog(EventPlanActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
-                                String date = dayOfMonth + "/"  + (monthOfYear + 1) + "/" + year;
-                                eventDateET.setText(date);
-                            }
+                        (view, year, monthOfYear, dayOfMonth) -> {
+                            // set day of month , month and year value in the edit text
+                            String date = dayOfMonth + "/"  + (monthOfYear + 1) + "/" + year;
+                            eventDateET.setText(date);
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
             }
