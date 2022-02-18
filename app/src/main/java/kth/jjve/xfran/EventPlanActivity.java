@@ -15,7 +15,6 @@ import android.provider.CalendarContract;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import kth.jjve.xfran.models.Workout;
@@ -91,23 +89,20 @@ public class EventPlanActivity extends BaseActivity {
             eventNameTV.setText(s_eventName);
         }
 
-        eventDateET.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // calender class's instance and get current date , month and year from calender
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // current year
-                int mMonth = c.get(Calendar.MONTH); // current month
-                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
-                // date picker dialog
-                datePickerDialog = new DatePickerDialog(EventPlanActivity.this,
-                        (view, year, monthOfYear, dayOfMonth) -> {
-                            // set day of month , month and year value in the edit text
-                            String date = dayOfMonth + "/"  + (monthOfYear + 1) + "/" + year;
-                            eventDateET.setText(date);
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.show();
-            }
+        eventDateET.setOnClickListener(v -> {
+            // calender class's instance and get current date , month and year from calender
+            final Calendar calendar = Calendar.getInstance();
+            int mYear = calendar.get(Calendar.YEAR);
+            int mMonth = calendar.get(Calendar.MONTH); // ADD +1 to get actual month!!!
+            int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+            datePickerDialog = new DatePickerDialog(EventPlanActivity.this,
+                    (view, year, month, day) -> {
+                        // set day of month , month and year value in the edit text
+                        String date = day + "/"  + (month + 1) + "/" + year;
+                        eventDateET.setText(date);
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
         });
 
     }
