@@ -89,6 +89,8 @@ public class EventPlanActivity extends BaseActivity {
             eventNameTV.setText(s_eventName);
         }
 
+        /*------ DATE PICKER DIALOG -----*/
+        // TODO: see why you need to press the edittext twice
         eventDateET.setOnClickListener(v -> {
             // calender class's instance and get current date , month and year from calender
             final Calendar calendar = Calendar.getInstance();
@@ -165,13 +167,12 @@ public class EventPlanActivity extends BaseActivity {
 
     private void exportToExternalCalendar() {
         try {
-            // TODO add event date!!!!
             Calendar beginTime = Calendar.getInstance();
-            beginTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate),
-                    CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
+            beginTime.set(CalendarUtils.exportYear(buildDate(s_eventDate)), CalendarUtils.exportMonth(buildDate(s_eventDate)),
+                    CalendarUtils.exportDay(buildDate(s_eventDate)), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
             Calendar endTime = Calendar.getInstance();
-            endTime.set(CalendarUtils.exportYear(CalendarUtils.selectedDate), CalendarUtils.exportMonth(CalendarUtils.selectedDate),
-                    CalendarUtils.exportDay(CalendarUtils.selectedDate), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
+            endTime.set(CalendarUtils.exportYear(buildDate(s_eventDate)), CalendarUtils.exportMonth(buildDate(s_eventDate)),
+                    CalendarUtils.exportDay(buildDate(s_eventDate)), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
             Intent intent = new Intent(Intent.ACTION_INSERT)
                     .setData(CalendarContract.Events.CONTENT_URI)
                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
