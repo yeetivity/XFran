@@ -7,7 +7,9 @@ Jitse van Esch, Elisa Perini & Mariah Sabioni
 
 import static kth.jjve.xfran.utils.CalendarUtils.buildDate;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -105,6 +108,33 @@ public class EventPlanActivity extends BaseActivity {
                         eventDateET.setText(date);
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
+        });
+
+        /*------ TIME PICKER DIALOG -----*/
+        // TODO: see why you need to press the edittext twice
+        // TODO: see if can be implemented in method?
+        eventStartTimeEdit.setOnClickListener(v -> {
+            Calendar mCurrentTime = Calendar.getInstance();
+            int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+            int minute = mCurrentTime.get(Calendar.MINUTE);
+            TimePickerDialog timePickerDialog;
+            timePickerDialog = new TimePickerDialog(EventPlanActivity.this, (view, hourOfDay, minuteOfHour) -> {
+                @SuppressLint("DefaultLocale") String s_time = String.format("%02d:%02d", hourOfDay, minuteOfHour);
+                eventStartTimeEdit.setText(s_time);
+            }, hour, minute, true);//Yes 24 hour time
+            timePickerDialog.show();
+        });
+
+        eventEndTimeEdit.setOnClickListener(v -> {
+            Calendar mCurrentTime = Calendar.getInstance();
+            int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+            int minute = mCurrentTime.get(Calendar.MINUTE);
+            TimePickerDialog timePickerDialog;
+            timePickerDialog = new TimePickerDialog(EventPlanActivity.this, (view, hourOfDay, minuteOfHour) -> {
+                @SuppressLint("DefaultLocale") String s_time = String.format("%02d:%02d", hourOfDay, minuteOfHour);
+                eventEndTimeEdit.setText(s_time);
+            }, hour, minute, true);//Yes 24 hour time
+            timePickerDialog.show();
         });
 
     }
