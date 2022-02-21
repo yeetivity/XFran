@@ -111,7 +111,6 @@ public class EventPlanActivity extends BaseActivity {
         });
 
         /*------ TIME PICKER DIALOG -----*/
-        // TODO: see why you need to press the edittext twice
         // TODO: see if can be implemented in method?
         eventStartTimeInput.setOnClickListener(v -> {
             Calendar mCurrentTime = Calendar.getInstance();
@@ -158,7 +157,6 @@ public class EventPlanActivity extends BaseActivity {
             return;
         }
 
-        //TODO make safety feature if time format wrong pretty
         if (TextUtils.isEmpty(startTime)){
             eventStartTimeInput.setError("Start time is required");
             return;
@@ -177,7 +175,7 @@ public class EventPlanActivity extends BaseActivity {
     //TODO delete event
 
     private void saveEventToCalendar() {
-        // method to save the event in the calendar in the app and in the calendar provider, called by export buttom
+        // method to save the event in the calendar in the app and in the calendar provider, called by export button
         setEventInApp();
         exportToExternalCalendar();
         createEventInApp();
