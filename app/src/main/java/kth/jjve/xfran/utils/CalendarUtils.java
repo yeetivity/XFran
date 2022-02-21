@@ -17,7 +17,7 @@ import java.util.Objects;
 public class CalendarUtils {
     public static LocalDate selectedDate;
 
-    public static LocalDate buildDate(String date){
+    public static LocalDate ymdToLocalDate(String date){
         // combines year, month and day and builds local date variable
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
         return LocalDate.parse(date, formatter);

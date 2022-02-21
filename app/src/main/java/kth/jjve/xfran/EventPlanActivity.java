@@ -5,7 +5,7 @@ Activity to input and save the event
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
-import static kth.jjve.xfran.utils.CalendarUtils.buildDate;
+import static kth.jjve.xfran.utils.CalendarUtils.ymdToLocalDate;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -20,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -34,7 +33,8 @@ import kth.jjve.xfran.viewmodels.EventVM;
 public class EventPlanActivity extends BaseActivity {
 
     private static final String LOG_TAG = EventPlanActivity.class.getSimpleName();
-    private EditText eventNameET, eventStartTimeEdit, eventEndTimeEdit, eventDateET;
+    private EditText eventNameET;
+    private TextView eventStartTimeInput, eventEndTimeInput, eventDateInput;
     private String s_eventName, startTime, stopTime, s_eventDate;
     private EventVM mEventVM;
 
@@ -58,9 +58,9 @@ public class EventPlanActivity extends BaseActivity {
         TextView eventDate = findViewById(R.id.eventDate);
         TextView eventStartTime = findViewById(R.id.eventStartTime);
         TextView eventEndTime = findViewById(R.id.eventEndTime);
-        eventStartTimeEdit = findViewById(R.id.eventStartTimeEdit);
-        eventEndTimeEdit = findViewById(R.id.eventEndTimeEdit);
-        eventDateET = findViewById(R.id.eventDateET);
+        eventStartTimeInput = findViewById(R.id.eventStartTimeInput);
+        eventEndTimeInput = findViewById(R.id.eventEndTimeInput);
+        eventDateInput = findViewById(R.id.eventDateInput);
         Button buttonSave = findViewById(R.id.eventSave);
         Button buttonClose = findViewById(R.id.close);
         Button buttonExport = findViewById(R.id.savetogoogle);
@@ -93,8 +93,7 @@ public class EventPlanActivity extends BaseActivity {
         }
 
         /*------ DATE PICKER DIALOG -----*/
-        // TODO: see why you need to press the edittext twice
-        eventDateET.setOnClickListener(v -> {
+        eventDateInput.setOnClickListener(v -> {
             // calender class's instance and get current date , month and year from calender
             final Calendar calendar = Calendar.getInstance();
             int mYear = calendar.get(Calendar.YEAR);
@@ -105,34 +104,35 @@ public class EventPlanActivity extends BaseActivity {
                     (view, year, month, day) -> {
                         // set day of month , month and year value in the edit text
                         String date = day + "/"  + (month + 1) + "/" + year;
-                        eventDateET.setText(date);
+                        eventDateInput.setText(date);
                     }, mYear, mMonth, mDay);
+            datePickerDialog.getDatePicker().setFirstDayOfWeek(Calendar.MONDAY);
             datePickerDialog.show();
         });
 
         /*------ TIME PICKER DIALOG -----*/
         // TODO: see why you need to press the edittext twice
         // TODO: see if can be implemented in method?
-        eventStartTimeEdit.setOnClickListener(v -> {
+        eventStartTimeInput.setOnClickListener(v -> {
             Calendar mCurrentTime = Calendar.getInstance();
             int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
             int minute = mCurrentTime.get(Calendar.MINUTE);
             TimePickerDialog timePickerDialog;
             timePickerDialog = new TimePickerDialog(EventPlanActivity.this, (view, hourOfDay, minuteOfHour) -> {
                 @SuppressLint("DefaultLocale") String s_time = String.format("%02d:%02d", hourOfDay, minuteOfHour);
-                eventStartTimeEdit.setText(s_time);
+                eventStartTimeInput.setText(s_time);
             }, hour, minute, true);//Yes 24 hour time
             timePickerDialog.show();
         });
 
-        eventEndTimeEdit.setOnClickListener(v -> {
+        eventEndTimeInput.setOnClickListener(v -> {
             Calendar mCurrentTime = Calendar.getInstance();
             int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
             int minute = mCurrentTime.get(Calendar.MINUTE);
             TimePickerDialog timePickerDialog;
             timePickerDialog = new TimePickerDialog(EventPlanActivity.this, (view, hourOfDay, minuteOfHour) -> {
                 @SuppressLint("DefaultLocale") String s_time = String.format("%02d:%02d", hourOfDay, minuteOfHour);
-                eventEndTimeEdit.setText(s_time);
+                eventEndTimeInput.setText(s_time);
             }, hour, minute, true);//Yes 24 hour time
             timePickerDialog.show();
         });
@@ -144,9 +144,9 @@ public class EventPlanActivity extends BaseActivity {
         if (mWorkout == null){
             s_eventName = eventNameET.getText().toString();
         }
-        s_eventDate = eventDateET.getText().toString();
-        startTime = eventStartTimeEdit.getText().toString();
-        stopTime = eventEndTimeEdit.getText().toString();
+        s_eventDate = eventDateInput.getText().toString();
+        startTime = eventStartTimeInput.getText().toString();
+        stopTime = eventEndTimeInput.getText().toString();
 
         if (TextUtils.isEmpty(s_eventName)){
             eventNameET.setError("Event name is required");
@@ -154,18 +154,18 @@ public class EventPlanActivity extends BaseActivity {
         }
 
         if (TextUtils.isEmpty(s_eventDate)){
-            eventDateET.setError("Date is required");
+            eventDateInput.setError("Date is required");
             return;
         }
 
         //TODO make safety feature if time format wrong pretty
         if (TextUtils.isEmpty(startTime)){
-            eventStartTimeEdit.setError("Start time is required");
+            eventStartTimeInput.setError("Start time is required");
             return;
         }
 
         if (TextUtils.isEmpty(stopTime)){
-            eventEndTimeEdit.setError("End time is required");
+            eventEndTimeInput.setError("End time is required");
         }
     }
 
@@ -186,7 +186,7 @@ public class EventPlanActivity extends BaseActivity {
     private void createEventInApp() {
         // method to create the event and output it in the app
         try {
-            mEventVM.addNewEvent(s_eventName, buildDate(s_eventDate), LocalTime.parse(startTime), LocalTime.parse(stopTime));
+            mEventVM.addNewEvent(s_eventName, ymdToLocalDate(s_eventDate), LocalTime.parse(startTime), LocalTime.parse(stopTime));
             Toast.makeText(getApplicationContext(), "event saved", Toast.LENGTH_SHORT).show();
             finish();
         } catch (Exception e) {
@@ -198,11 +198,11 @@ public class EventPlanActivity extends BaseActivity {
     private void exportToExternalCalendar() {
         try {
             Calendar beginTime = Calendar.getInstance();
-            beginTime.set(CalendarUtils.exportYear(buildDate(s_eventDate)), CalendarUtils.exportMonth(buildDate(s_eventDate)),
-                    CalendarUtils.exportDay(buildDate(s_eventDate)), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
+            beginTime.set(CalendarUtils.exportYear(ymdToLocalDate(s_eventDate)), CalendarUtils.exportMonth(ymdToLocalDate(s_eventDate)),
+                    CalendarUtils.exportDay(ymdToLocalDate(s_eventDate)), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
             Calendar endTime = Calendar.getInstance();
-            endTime.set(CalendarUtils.exportYear(buildDate(s_eventDate)), CalendarUtils.exportMonth(buildDate(s_eventDate)),
-                    CalendarUtils.exportDay(buildDate(s_eventDate)), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
+            endTime.set(CalendarUtils.exportYear(ymdToLocalDate(s_eventDate)), CalendarUtils.exportMonth(ymdToLocalDate(s_eventDate)),
+                    CalendarUtils.exportDay(ymdToLocalDate(s_eventDate)), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
             Intent intent = new Intent(Intent.ACTION_INSERT)
                     .setData(CalendarContract.Events.CONTENT_URI)
                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())

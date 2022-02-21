@@ -51,8 +51,8 @@
         android:textAlignment="center"
         android:textColor="@color/black"/>
 
-    <EditText
-        android:id="@+id/eventDateET"
+    <TextView
+        android:id="@+id/eventDateInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -72,14 +72,13 @@
         android:textAlignment="center"
         android:textColor="@color/black"/>
 
-    <EditText
-        android:id="@+id/eventStartTimeEdit"
+    <TextView
+        android:id="@+id/eventStartTimeInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
         android:textAlignment="center"
-        android:inputType="time"
         android:hint="@string/time_hint"
         android:importantForAutofill="no" />
 
@@ -94,14 +93,13 @@
         android:textAlignment="center"
         android:textColor="@color/black"/>
 
-    <EditText
-        android:id="@+id/eventEndTimeEdit"
+    <TextView
+        android:id="@+id/eventEndTimeInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
         android:textAlignment="center"
-        android:inputType="time"
         android:hint="@string/time_hint"
         android:importantForAutofill="no" />
 
