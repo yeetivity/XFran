@@ -35,7 +35,7 @@ public class EventPlanActivity extends BaseActivity {
     private static final String LOG_TAG = EventPlanActivity.class.getSimpleName();
     private EditText eventNameET;
     private TextView eventStartTimeInput, eventEndTimeInput, eventDateInput;
-    private String string_eventName, startTime, stopTime, string_eventDate;
+    private String sEventName, sStartTime, sStopTime, sEventDate;
     private EventVM mEventVM;
 
     /*_________ INTENT _________*/
@@ -62,8 +62,8 @@ public class EventPlanActivity extends BaseActivity {
         Button buttonExport = findViewById(R.id.savetogoogle);
 
         /*----- CALENDAR ------*/
-        String string_date = "Date:";
-        eventDate.setText(string_date);
+        String sDate = "Date:";
+        eventDate.setText(sDate);
 
         /*-----  VM  -----*/
         mEventVM = ViewModelProviders.of(this).get(EventVM.class);
@@ -84,15 +84,14 @@ public class EventPlanActivity extends BaseActivity {
             eventNameTV.setVisibility(View.GONE);
         } else { //if accessing from WorkoutsListActivity (with intent)
             eventNameET.setVisibility(View.GONE);
-            string_eventName = mWorkout.getTitle();
-            eventNameTV.setText(string_eventName);
+            sEventName = mWorkout.getTitle();
+            eventNameTV.setText(sEventName);
         }
 
         /*------ DATE & TIME PICKER DIALOGS -----*/
         eventDateInput.setOnClickListener(v -> datePickerDialog());
         eventStartTimeInput.setOnClickListener(v -> timePickerDialog(eventStartTimeInput));
         eventEndTimeInput.setOnClickListener(v -> timePickerDialog(eventEndTimeInput));
-
     }
 
     private void timePickerDialog(TextView textView){
@@ -125,33 +124,25 @@ public class EventPlanActivity extends BaseActivity {
 
     private void setEventInApp(){
         // method to obtain the events name and start/end time
-        if (mWorkout == null){
-            string_eventName = eventNameET.getText().toString();
-        }
-        string_eventDate = eventDateInput.getText().toString();
-        startTime = eventStartTimeInput.getText().toString();
-        stopTime = eventEndTimeInput.getText().toString();
+        if (mWorkout == null){ sEventName = eventNameET.getText().toString(); }
+        sEventDate = eventDateInput.getText().toString();
+        sStartTime = eventStartTimeInput.getText().toString();
+        sStopTime = eventEndTimeInput.getText().toString();
 
-        checkIfEmptyET(string_eventName, eventNameET);
-        checkIfEmptyTV(string_eventDate, eventDateInput);
-        checkIfEmptyTV(startTime, eventStartTimeInput);
-        checkIfEmptyTV(stopTime, eventEndTimeInput);
+        checkIfEmptyET(sEventName, eventNameET);
+        checkIfEmptyTV(sEventDate, eventDateInput);
+        checkIfEmptyTV(sStartTime, eventStartTimeInput);
+        checkIfEmptyTV(sStopTime, eventEndTimeInput);
     }
 
     //TODO understand why fail safe fails if no event name
     private void checkIfEmptyTV(String string, TextView textView){
         // checks if the textView is empty
-        if (TextUtils.isEmpty(string)) {
-            textView.setError("Required");
-        }
-        return;
+        if (TextUtils.isEmpty(string)) { textView.setError("Required"); }
     }
     private void checkIfEmptyET(String string, EditText editText){
         // checks if the editText is empty
-        if (TextUtils.isEmpty(string)) {
-            editText.setError("Required");
-        }
-        return;
+        if (TextUtils.isEmpty(string)) { editText.setError("Required"); }
     }
 
     private void saveEvent() {
@@ -171,7 +162,7 @@ public class EventPlanActivity extends BaseActivity {
     private void createEventInApp() {
         // method to create the event and output it in the app
         try {
-            mEventVM.addNewEvent(string_eventName, ymdToLocalDate(string_eventDate), LocalTime.parse(startTime), LocalTime.parse(stopTime));
+            mEventVM.addNewEvent(sEventName, ymdToLocalDate(sEventDate), LocalTime.parse(sStartTime), LocalTime.parse(sStopTime));
             Toast.makeText(getApplicationContext(), "event saved", Toast.LENGTH_SHORT).show();
             finish();
         } catch (Exception e) {
@@ -183,16 +174,16 @@ public class EventPlanActivity extends BaseActivity {
     private void exportToExternalCalendar() {
         try {
             Calendar beginTime = Calendar.getInstance();
-            beginTime.set(CalendarUtils.exportYear(ymdToLocalDate(string_eventDate)), CalendarUtils.exportMonth(ymdToLocalDate(string_eventDate)),
-                    CalendarUtils.exportDay(ymdToLocalDate(string_eventDate)), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
+            beginTime.set(CalendarUtils.exportYear(ymdToLocalDate(sEventDate)), CalendarUtils.exportMonth(ymdToLocalDate(sEventDate)),
+                    CalendarUtils.exportDay(ymdToLocalDate(sEventDate)), CalendarUtils.exportHours(sStartTime), CalendarUtils.exportMinutes(sStartTime));
             Calendar endTime = Calendar.getInstance();
-            endTime.set(CalendarUtils.exportYear(ymdToLocalDate(string_eventDate)), CalendarUtils.exportMonth(ymdToLocalDate(string_eventDate)),
-                    CalendarUtils.exportDay(ymdToLocalDate(string_eventDate)), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
+            endTime.set(CalendarUtils.exportYear(ymdToLocalDate(sEventDate)), CalendarUtils.exportMonth(ymdToLocalDate(sEventDate)),
+                    CalendarUtils.exportDay(ymdToLocalDate(sEventDate)), CalendarUtils.exportHours(sStopTime), CalendarUtils.exportMinutes(sStopTime));
             Intent intent = new Intent(Intent.ACTION_INSERT)
                     .setData(CalendarContract.Events.CONTENT_URI)
                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                     .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                    .putExtra(CalendarContract.Events.TITLE, string_eventName)
+                    .putExtra(CalendarContract.Events.TITLE, sEventName)
                     .putExtra(CalendarContract.Events.DESCRIPTION, "Group class"); //TODO: add WO description here
             startActivity(intent);
         } catch (Exception e) {
