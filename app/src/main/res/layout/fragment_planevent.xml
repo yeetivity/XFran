@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EventPlanActivity">
+
+
+    <TextView
+        android:id="@+id/nametext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/planEvent_dialogTitle"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/eventNameET"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/nameEvent"
+        android:textColorHint="@color/black"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/eventDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nametext"
+        tools:ignore="LabelFor" />
+
+    <ImageButton
+        android:id="@+id/openCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/eventDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/eventDate"
+        app:layout_constraintTop_toTopOf="@+id/eventDate"
+        app:srcCompat="@drawable/ic_calendar_edit"
+        android:contentDescription="@string/savebutton" />
+
+    <TextView
+        android:id="@+id/eventDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/dateEvent_Hint"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/eventEndTime"
+        app:layout_constraintEnd_toStartOf="@+id/openCalendar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventNameET" />
+
+    <TextView
+        android:id="@+id/eventStartTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/startTime"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/eventEndTime"
+        app:layout_constraintEnd_toStartOf="@+id/eventStartTimeInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/eventEndTime" />
+
+    <TextView
+        android:id="@+id/eventEndTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/endTime"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/eventExport"
+        app:layout_constraintEnd_toStartOf="@+id/eventEndTimeInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/eventStartTimeInput"
+        app:layout_constraintTop_toBottomOf="@+id/eventDate" />
+
+    <ImageButton
+        android:id="@+id/eventStartTimeInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/eventEndTime"
+        app:layout_constraintEnd_toStartOf="@+id/eventEndTime"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/eventStartTime"
+        app:layout_constraintTop_toTopOf="@+id/eventEndTime"
+        app:srcCompat="@drawable/ic_clock"
+        android:contentDescription="@string/savebutton" />
+
+    <ImageButton
+        android:id="@+id/eventEndTimeInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/eventEndTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/eventEndTime"
+        app:layout_constraintTop_toTopOf="@+id/eventEndTime"
+        app:srcCompat="@drawable/ic_clock"
+        android:contentDescription="@string/savebutton" />
+
+    <ImageButton
+        android:id="@+id/eventSave"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/Orange_500"
+        app:layout_constraintBottom_toBottomOf="@+id/eventExport"
+        app:layout_constraintEnd_toStartOf="@+id/eventExport"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/eventExport"
+        app:srcCompat="@drawable/ic_save"
+        android:contentDescription="@string/savebutton" />
+
+    <ImageButton
+        android:id="@+id/eventExport"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/Orange_500"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/eventSave"
+        app:srcCompat="@drawable/ic_upload"
+        android:contentDescription="@string/savebutton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

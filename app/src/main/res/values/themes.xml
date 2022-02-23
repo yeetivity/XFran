@@ -26,4 +26,13 @@
     <style name="Theme.XFran.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.XFran.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ThemeDialog" parent="Theme.AppCompat.Dialog">
+        ...
+        <item name="windowMinWidthMajor">65%</item>
+        <item name="windowMinWidthMinor">65%</item>
+        <item name="windowFixedHeightMajor">60%</item>
+        <item name="windowFixedHeightMinor">60%</item>
+        <item name="android:windowBackground">@drawable/bgr_planevent</item>
+    </style>
 </resources>
