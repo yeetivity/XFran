@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">XFran</string>
     <string name="nav_close">Close navigation drawer</string>
     <string name="nav_open">Open navigation drawer</string>
@@ -89,7 +89,7 @@
     <string name="score_for_time_hint">mm:ss</string>
     <string name="score_for_weight_hint">0.0</string>
     <string name="score_emom_hint">rounds</string>
-    <string name="score_sets_hint">weight1-weight2-…</string>
+    <string name="score_sets_hint" tools:ignore="Typos">weight1-weight2-…</string>
     <string name="wod">WOD</string>
     <string name="planned_today">Planned today</string>
     <string name="logged_in_as">Logged in as:</string>
@@ -107,4 +107,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="plan_event">Plan Workout</string>
+    <string name="myresults">"My Results"</string>
+    <string name="statistics">Statistics</string>
 </resources>
