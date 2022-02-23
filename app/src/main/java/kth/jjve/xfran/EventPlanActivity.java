@@ -16,12 +16,13 @@ import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.time.LocalTime;
@@ -30,7 +31,7 @@ import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.utils.CalendarUtils;
 import kth.jjve.xfran.viewmodels.EventVM;
 
-public class EventPlanActivity extends BaseActivity {
+public class EventPlanActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = EventPlanActivity.class.getSimpleName();
     private EditText eventNameET;
@@ -46,9 +47,8 @@ public class EventPlanActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
-        getLayoutInflater().inflate(R.layout.act_planevent, contentFrameLayout);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.act_planevent);
 
         /*------ HOOKS ------*/
         eventNameET = findViewById(R.id.eventNameET);
