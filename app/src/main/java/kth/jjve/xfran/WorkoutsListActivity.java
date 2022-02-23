@@ -61,7 +61,7 @@ public class WorkoutsListActivity extends BaseActivity implements WorkoutsRecycl
 
     public void onPlan(int position) {
         // plan selected workout
-        Intent intent = new Intent(this, EventActivity.class);
+        Intent intent = new Intent(this, EventPlanActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(mWorkoutVM.getWorkouts().getValue()).get(position));
         startActivity(intent);

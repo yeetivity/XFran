@@ -68,7 +68,12 @@ public class EventPlanActivity extends AppCompatActivity {
 
         /*-----  VM  -----*/
         mEventVM = ViewModelProviders.of(this).get(EventVM.class);
-        mEventVM.init(CalendarUtils.selectedDate);
+        try {
+            mEventVM.init(CalendarUtils.selectedDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         /*-------- LISTENERS ------------*/
         buttonSave.setOnClickListener(v -> saveEvent());
