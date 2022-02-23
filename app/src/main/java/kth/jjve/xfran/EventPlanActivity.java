@@ -35,15 +35,13 @@ public class EventPlanActivity extends BaseActivity {
     private static final String LOG_TAG = EventPlanActivity.class.getSimpleName();
     private EditText eventNameET;
     private TextView eventStartTimeInput, eventEndTimeInput, eventDateInput;
-    private String s_eventName, startTime, stopTime, s_eventDate;
+    private String string_eventName, startTime, stopTime, string_eventDate;
     private EventVM mEventVM;
 
     /*_________ INTENT _________*/
     private Integer position;
     private Workout mWorkout;
 
-    /*-------- DATE PICKER ------*/
-    DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +54,6 @@ public class EventPlanActivity extends BaseActivity {
         eventNameET = findViewById(R.id.eventNameET);
         TextView eventNameTV = findViewById(R.id.eventNameTV);
         TextView eventDate = findViewById(R.id.eventDate);
-        TextView eventStartTime = findViewById(R.id.eventStartTime);
-        TextView eventEndTime = findViewById(R.id.eventEndTime);
         eventStartTimeInput = findViewById(R.id.eventStartTimeInput);
         eventEndTimeInput = findViewById(R.id.eventEndTimeInput);
         eventDateInput = findViewById(R.id.eventDateInput);
@@ -66,8 +62,8 @@ public class EventPlanActivity extends BaseActivity {
         Button buttonExport = findViewById(R.id.savetogoogle);
 
         /*----- CALENDAR ------*/
-        String s_date = "Date:";
-        eventDate.setText(s_date);
+        String string_date = "Date:";
+        eventDate.setText(string_date);
 
         /*-----  VM  -----*/
         mEventVM = ViewModelProviders.of(this).get(EventVM.class);
@@ -88,83 +84,74 @@ public class EventPlanActivity extends BaseActivity {
             eventNameTV.setVisibility(View.GONE);
         } else { //if accessing from WorkoutsListActivity (with intent)
             eventNameET.setVisibility(View.GONE);
-            s_eventName = mWorkout.getTitle();
-            eventNameTV.setText(s_eventName);
+            string_eventName = mWorkout.getTitle();
+            eventNameTV.setText(string_eventName);
         }
 
-        /*------ DATE PICKER DIALOG -----*/
-        eventDateInput.setOnClickListener(v -> {
-            // calender class's instance and get current date , month and year from calender
-            final Calendar calendar = Calendar.getInstance();
-            int mYear = calendar.get(Calendar.YEAR);
-            int mMonth = calendar.get(Calendar.MONTH); // ADD +1 to get actual month!!!
-            int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        /*------ DATE & TIME PICKER DIALOGS -----*/
+        eventDateInput.setOnClickListener(v -> datePickerDialog());
+        eventStartTimeInput.setOnClickListener(v -> timePickerDialog(eventStartTimeInput));
+        eventEndTimeInput.setOnClickListener(v -> timePickerDialog(eventEndTimeInput));
 
-            datePickerDialog = new DatePickerDialog(EventPlanActivity.this,
-                    (view, year, month, day) -> {
-                        // set day of month , month and year value in the edit text
-                        String date = day + "/"  + (month + 1) + "/" + year;
-                        eventDateInput.setText(date);
-                    }, mYear, mMonth, mDay);
-            datePickerDialog.getDatePicker().setFirstDayOfWeek(Calendar.MONDAY);
-            datePickerDialog.show();
-        });
+    }
 
-        /*------ TIME PICKER DIALOG -----*/
-        // TODO: see if can be implemented in method?
-        eventStartTimeInput.setOnClickListener(v -> {
-            Calendar mCurrentTime = Calendar.getInstance();
-            int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
-            int minute = mCurrentTime.get(Calendar.MINUTE);
-            TimePickerDialog timePickerDialog;
-            timePickerDialog = new TimePickerDialog(EventPlanActivity.this, (view, hourOfDay, minuteOfHour) -> {
-                @SuppressLint("DefaultLocale") String s_time = String.format("%02d:%02d", hourOfDay, minuteOfHour);
-                eventStartTimeInput.setText(s_time);
-            }, hour, minute, true);//Yes 24 hour time
-            timePickerDialog.show();
-        });
+    private void timePickerDialog(TextView textView){
+        // opens time picker dialog
+        Calendar mCurrentTime = Calendar.getInstance();
+        int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mCurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(EventPlanActivity.this, (view, hourOfDay, minuteOfHour) -> {
+            @SuppressLint("DefaultLocale") String time = String.format("%02d:%02d", hourOfDay, minuteOfHour);
+            textView.setText(time);
+        }, hour, minute, true);//Yes 24 hour time
+        timePickerDialog.show();
+    }
 
-        eventEndTimeInput.setOnClickListener(v -> {
-            Calendar mCurrentTime = Calendar.getInstance();
-            int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
-            int minute = mCurrentTime.get(Calendar.MINUTE);
-            TimePickerDialog timePickerDialog;
-            timePickerDialog = new TimePickerDialog(EventPlanActivity.this, (view, hourOfDay, minuteOfHour) -> {
-                @SuppressLint("DefaultLocale") String s_time = String.format("%02d:%02d", hourOfDay, minuteOfHour);
-                eventEndTimeInput.setText(s_time);
-            }, hour, minute, true);//Yes 24 hour time
-            timePickerDialog.show();
-        });
-
+    private void datePickerDialog(){
+        // calender class's instance and get current date , month and year from calender
+        final Calendar calendar = Calendar.getInstance();
+        int mYear = calendar.get(Calendar.YEAR);
+        int mMonth = calendar.get(Calendar.MONTH); // ADD +1 to get actual month!!!
+        int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(EventPlanActivity.this,
+                (view, year, month, day) -> {
+                    // set day of month , month and year value in the edit text
+                    String date = day + "/"  + (month + 1) + "/" + year;
+                    eventDateInput.setText(date);
+                }, mYear, mMonth, mDay);
+        datePickerDialog.getDatePicker().setFirstDayOfWeek(Calendar.MONDAY);
+        datePickerDialog.show();
     }
 
     private void setEventInApp(){
         // method to obtain the events name and start/end time
         if (mWorkout == null){
-            s_eventName = eventNameET.getText().toString();
+            string_eventName = eventNameET.getText().toString();
         }
-        s_eventDate = eventDateInput.getText().toString();
+        string_eventDate = eventDateInput.getText().toString();
         startTime = eventStartTimeInput.getText().toString();
         stopTime = eventEndTimeInput.getText().toString();
 
-        if (TextUtils.isEmpty(s_eventName)){
-            eventNameET.setError("Event name is required");
-            return;
-        }
+        checkIfEmptyET(string_eventName, eventNameET);
+        checkIfEmptyTV(string_eventDate, eventDateInput);
+        checkIfEmptyTV(startTime, eventStartTimeInput);
+        checkIfEmptyTV(stopTime, eventEndTimeInput);
+    }
 
-        if (TextUtils.isEmpty(s_eventDate)){
-            eventDateInput.setError("Date is required");
-            return;
+    //TODO understand why fail safe fails if no event name
+    private void checkIfEmptyTV(String string, TextView textView){
+        // checks if the textView is empty
+        if (TextUtils.isEmpty(string)) {
+            textView.setError("Required");
         }
-
-        if (TextUtils.isEmpty(startTime)){
-            eventStartTimeInput.setError("Start time is required");
-            return;
+        return;
+    }
+    private void checkIfEmptyET(String string, EditText editText){
+        // checks if the editText is empty
+        if (TextUtils.isEmpty(string)) {
+            editText.setError("Required");
         }
-
-        if (TextUtils.isEmpty(stopTime)){
-            eventEndTimeInput.setError("End time is required");
-        }
+        return;
     }
 
     private void saveEvent() {
@@ -184,7 +171,7 @@ public class EventPlanActivity extends BaseActivity {
     private void createEventInApp() {
         // method to create the event and output it in the app
         try {
-            mEventVM.addNewEvent(s_eventName, ymdToLocalDate(s_eventDate), LocalTime.parse(startTime), LocalTime.parse(stopTime));
+            mEventVM.addNewEvent(string_eventName, ymdToLocalDate(string_eventDate), LocalTime.parse(startTime), LocalTime.parse(stopTime));
             Toast.makeText(getApplicationContext(), "event saved", Toast.LENGTH_SHORT).show();
             finish();
         } catch (Exception e) {
@@ -196,16 +183,16 @@ public class EventPlanActivity extends BaseActivity {
     private void exportToExternalCalendar() {
         try {
             Calendar beginTime = Calendar.getInstance();
-            beginTime.set(CalendarUtils.exportYear(ymdToLocalDate(s_eventDate)), CalendarUtils.exportMonth(ymdToLocalDate(s_eventDate)),
-                    CalendarUtils.exportDay(ymdToLocalDate(s_eventDate)), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
+            beginTime.set(CalendarUtils.exportYear(ymdToLocalDate(string_eventDate)), CalendarUtils.exportMonth(ymdToLocalDate(string_eventDate)),
+                    CalendarUtils.exportDay(ymdToLocalDate(string_eventDate)), CalendarUtils.exportHours(startTime), CalendarUtils.exportMinutes(startTime));
             Calendar endTime = Calendar.getInstance();
-            endTime.set(CalendarUtils.exportYear(ymdToLocalDate(s_eventDate)), CalendarUtils.exportMonth(ymdToLocalDate(s_eventDate)),
-                    CalendarUtils.exportDay(ymdToLocalDate(s_eventDate)), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
+            endTime.set(CalendarUtils.exportYear(ymdToLocalDate(string_eventDate)), CalendarUtils.exportMonth(ymdToLocalDate(string_eventDate)),
+                    CalendarUtils.exportDay(ymdToLocalDate(string_eventDate)), CalendarUtils.exportHours(stopTime), CalendarUtils.exportMinutes(stopTime));
             Intent intent = new Intent(Intent.ACTION_INSERT)
                     .setData(CalendarContract.Events.CONTENT_URI)
                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                     .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                    .putExtra(CalendarContract.Events.TITLE, s_eventName)
+                    .putExtra(CalendarContract.Events.TITLE, string_eventName)
                     .putExtra(CalendarContract.Events.DESCRIPTION, "Group class"); //TODO: add WO description here
             startActivity(intent);
         } catch (Exception e) {
