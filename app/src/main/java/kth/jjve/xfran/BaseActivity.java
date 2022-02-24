@@ -54,7 +54,7 @@ public class BaseActivity extends AppCompatActivity {
                         switch (item1.getItemId()){
                             case R.id.nav_add_event:
                                 //Todo: Make sure that we can directly go to planning (now null error)
-                                startActivity(new Intent(getApplicationContext(), EventActivity.class));
+                                startActivity(new Intent(getApplicationContext(), EventPlanActivity.class));
                                 break;
                             case R.id.nav_add_result:
                                 //Todo: Make sure that we can direclty go to logging result
