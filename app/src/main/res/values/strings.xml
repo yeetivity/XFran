@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">XFran</string>
     <string name="nav_close">Close navigation drawer</string>
     <string name="nav_open">Open navigation drawer</string>
@@ -110,4 +110,6 @@
     <string name="plan_event">Plan Workout</string>
     <string name="planEvent_dialogTitle">Plan your workout</string>
     <string name="savebutton">saveButton</string>
+    <string name="myresults">"My Results"</string>
+    <string name="statistics">Statistics</string>
 </resources>

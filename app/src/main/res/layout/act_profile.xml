@@ -4,273 +4,284 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/profile_LL_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/profile_LL_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/Orange_500_opacity"
-            android:fontFamily="@font/aldrich"
-            android:paddingStart="20sp"
-            android:paddingEnd="20sp"
-            android:paddingTop="10sp"
-            android:text="@string/profile_title"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:typeface="normal" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/Orange_500_opacity"
-            android:padding="20dp">
-
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/ic_default_userpicture"
-                android:contentDescription="@string/profilepicture" />
+            android:layout_marginBottom="0dp"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/profile_username"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/profile_image"
-                android:layout_centerHorizontal="true"
+                android:background="@color/Orange_500_opacity"
                 android:fontFamily="@font/aldrich"
-                android:includeFontPadding="false"
-                android:text="@string/test_name"
+                android:paddingStart="20sp"
+                android:paddingTop="10sp"
+                android:paddingEnd="20sp"
+                android:text="@string/profile_title"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
-            <TextView
-                android:id="@+id/profile_useremail"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/Orange_500_opacity"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/profilepicture"
+                    android:src="@drawable/ic_default_userpicture" />
+
+                <TextView
+                    android:id="@+id/profile_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_image"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/aldrich"
+                    android:includeFontPadding="false"
+                    android:text="@string/test_name"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/profile_useremail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profile_username"
+                    android:layout_centerHorizontal="true"
+                    android:includeFontPadding="false"
+                    android:text="@string/testemail"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/profile_username"
-                android:layout_centerHorizontal="true"
-                android:includeFontPadding="false"
-                android:text="@string/testemail"
-                android:textColor="@color/grey"
-                android:textSize="14sp" />
-        </RelativeLayout>
+                android:layout_marginTop="-50dp"
+                android:padding="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-50dp"
-            android:padding="20dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/Orange_500"
+                    app:cardElevation="10dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="125dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/Orange_500"
-                app:cardElevation="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
+                        <TextView
+                            android:id="@+id/profile_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:includeFontPadding="false"
+                            android:text="@string/testweight"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/profile_weight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:includeFontPadding="false"
-                        android:text="@string/testweight"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/profile_weight"
+                            android:layout_centerHorizontal="true"
+                            android:includeFontPadding="false"
+                            android:text="@string/weight_description"
+                            android:textAlignment="center"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/profile_weight"
-                        android:layout_centerHorizontal="true"
-                        android:includeFontPadding="false"
-                        android:text="@string/weight_description"
-                        android:textAlignment="center"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
+                    </RelativeLayout>
 
-                </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-            </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/Orange_500"
+                    app:cardElevation="10dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="125dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/Orange_500"
-                app:cardElevation="10dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
+                        <TextView
+                            android:id="@+id/profile_height"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_centerVertical="true"
+                            android:includeFontPadding="false"
+                            android:text="@string/test_length"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
 
-                    <TextView
-                        android:id="@+id/profile_height"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:includeFontPadding="false"
-                        android:text="@string/test_length"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/profile_height"
+                            android:layout_centerHorizontal="true"
+                            android:includeFontPadding="false"
+                            android:text="@string/length_description"
+                            android:textAlignment="center"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/profile_height"
-                        android:layout_centerHorizontal="true"
-                        android:includeFontPadding="false"
-                        android:text="@string/length_description"
-                        android:textAlignment="center"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
+                    </RelativeLayout>
 
-                </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
 
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-25dp"
-            android:padding="20dp">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="125dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/Orange_500"
-                app:cardElevation="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/profile_heartrate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:includeFontPadding="false"
-                        android:text="@string/testheartrate"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/profile_heartrate"
-                        android:layout_centerHorizontal="true"
-                        android:includeFontPadding="false"
-                        android:text="@string/heartrate_description"
-                        android:textAlignment="center"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="125dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/Orange_500"
-                app:cardElevation="10dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/profile_lastupdate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:includeFontPadding="false"
-                        android:text="@string/testmeasurementdate"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/profile_lastupdate"
-                        android:layout_centerHorizontal="true"
-                        android:includeFontPadding="false"
-                        android:text="@string/measurement_description"
-                        android:textAlignment="center"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/profile_Logout"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_weight="1"
-                android:layout_marginTop="4dp"
-                android:contentDescription="@string/edit"
-                app:srcCompat="@drawable/ic_logout" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-25dp"
+                android:padding="20dp">
 
-            <ImageButton
-                android:id="@+id/profile_Edit"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/Orange_500"
+                    app:cardElevation="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/profile_heartrate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:includeFontPadding="false"
+                            android:text="@string/testheartrate"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/profile_heartrate"
+                            android:layout_centerHorizontal="true"
+                            android:includeFontPadding="false"
+                            android:text="@string/heartrate_description"
+                            android:textAlignment="center"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/Orange_500"
+                    app:cardElevation="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/profile_lastupdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:includeFontPadding="false"
+                            android:text="@string/testmeasurementdate"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/profile_lastupdate"
+                            android:layout_centerHorizontal="true"
+                            android:includeFontPadding="false"
+                            android:text="@string/measurement_description"
+                            android:textAlignment="center"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_weight="1"
-                android:layout_marginTop="4dp"
-                android:contentDescription="@string/edit"
-                app:srcCompat="@drawable/ic_edit" />
-
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
         </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/buttonLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/profile_Logout"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/edit"
+            app:srcCompat="@drawable/ic_logout" />
+
+        <ImageButton
+            android:id="@+id/profile_Edit"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginTop="4dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/edit"
+            app:srcCompat="@drawable/ic_edit" />
+
 
     </LinearLayout>
 

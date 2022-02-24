@@ -38,9 +38,9 @@ public class ResultActivity extends BaseActivity {
                 (tab, position) -> {
             //The tab layout mediator allows switching between the fragments and changing of tab text
                     if (position == 0) {
-                        tab.setText("Result List");
+                        tab.setText(R.string.myresults);
                     } else {
-                        tab.setText("Statistics");
+                        tab.setText(R.string.statistics);
                     }
                 }).attach();
     }
