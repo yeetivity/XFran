@@ -2,24 +2,18 @@ package kth.jjve.xfran.adapters;
 
 /*
 Function:
-Activity: CalendarViewActivity
+Used by: EventActivity
 Jitse van Esch, Elisa Perini & Mariah Sabioni
 */
 
-import static kth.jjve.xfran.adapters.AppCtx.getContext;
-
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -27,7 +21,6 @@ import java.util.List;
 
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.EventInApp;
-import kth.jjve.xfran.utils.CalendarUtils;
 
 public class EventAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -43,7 +36,7 @@ public class EventAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.event_cell, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cell_event, viewGroup, false);
         return new EventAdapter.ViewHolder(view);
     }
 

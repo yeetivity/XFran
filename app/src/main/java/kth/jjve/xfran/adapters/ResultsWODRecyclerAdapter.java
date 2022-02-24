@@ -1,27 +1,26 @@
 package kth.jjve.xfran.adapters;
 /*
-Adapter for Results list for a given wod
- */
+Function:
+Used by: TODO: Doesn't seem to be currently used, check with Mariah
+Jitse van Esch, Elisa Perini & Mariah Sabioni
+*/
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import kth.jjve.xfran.R;
 import kth.jjve.xfran.models.Result;
-import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.utils.ResultUtils;
-import kth.jjve.xfran.utils.WorkoutUtils;
 
 public class ResultsWODRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -38,7 +37,7 @@ public class ResultsWODRecyclerAdapter extends RecyclerView.Adapter<RecyclerView
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.result_wod_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_result_wod, viewGroup, false);
         return new ResultsWODRecyclerAdapter.ViewHolder(view);
     }
 

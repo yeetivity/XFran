@@ -9,15 +9,16 @@
     <application
         android:name=".adapters.AppCtx"
         android:allowBackup="true"
-        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.XFran">
         <activity
-            android:name=".MonthlyCalendarActivity"
-            android:exported="false" />
+            android:name=".ResultActivity"
+            android:exported="false"
+            android:label="@string/title_activity_result"
+            android:theme="@style/Theme.XFran.NoActionBar" />
         <activity
             android:name=".BaseActivity"
             android:exported="false" />
@@ -25,34 +26,29 @@
             android:name=".WorkoutsListActivity"
             android:exported="false" />
         <activity
-            android:name=".ResultsListActivity"
+            android:name=".ResultSaveActivity"
             android:exported="false" />
         <activity
-            android:name=".ResultsListWODActivity"
+            android:name=".ProfileEditActivity"
             android:exported="false" />
         <activity
-            android:name=".SaveResultsActivity"
+            android:name=".ProfileLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
+            android:name=".ProfileRegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".CalendarViewActivity"
+            android:name=".EventActivity"
             android:exported="false" />
         <activity
-            android:name=".PlanEventActivity"
+            android:name=".EventPlanActivity"
+            android:theme="@style/ThemeDialog"
             android:exported="false" />
         <activity
-            android:name=".HomeScreenActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,4 +61,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

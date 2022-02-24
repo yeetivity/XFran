@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">XFran</string>
     <string name="nav_close">Close navigation drawer</string>
     <string name="nav_open">Open navigation drawer</string>
@@ -40,8 +40,9 @@
     <string name="startTime">Start time</string>
     <string name="endTime">End time</string>
     <string name="date">Date</string>
-    <string name="nameEvent">Name of the Event:</string>
+    <string name="nameEvent">Name of the Event</string>
     <string name="newEvent">NEW EVENT</string>
+    <string name="dateEvent_Hint">Add date</string>
     <string name="menu_home">Home</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_trainingdiary">Training Diary</string>
@@ -89,7 +90,7 @@
     <string name="score_for_time_hint">mm:ss</string>
     <string name="score_for_weight_hint">0.0</string>
     <string name="score_emom_hint">rounds</string>
-    <string name="score_sets_hint">weight1-weight2-…</string>
+    <string name="score_sets_hint">weight 1 - weight 2 - …</string>
     <string name="wod">WOD</string>
     <string name="planned_today">Planned today</string>
     <string name="logged_in_as">Logged in as:</string>
@@ -97,4 +98,18 @@
     <string name="workouts">Workouts</string>
     <string name="plan_workout">Plan Workout</string>
     <string name="calendar">Calendar</string>
+    <string name="add">Add</string>
+    <string name="results">Results</string>
+    <string name="title_activity_result">ResultActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="resulttab_1">Result List</string>
+    <string name="resulttab_2">Statistics</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="plan_event">Plan Workout</string>
+    <string name="planEvent_dialogTitle">Plan your workout</string>
+    <string name="savebutton">saveButton</string>
+    <string name="myresults">"My Results"</string>
+    <string name="statistics">Statistics</string>
 </resources>

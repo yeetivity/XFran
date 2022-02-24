@@ -4,25 +4,63 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.21302083333333333" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/bgr_orangebox.xml" value="0.2945" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/bgr_planevent.xml" value="0.1965" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/dot.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_edit_calendar_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_leaderboard_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/ic_baseline_supervised_user_circle_24.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/input_background.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/menu_add.xml" value="0.22135416666666666" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/menu_header_background.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/drawable/rv_background.xml" value="0.3828125" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/act_calendar_month.xml" value="0.36666666666666664" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/act_calendar_week.xml" value="0.1762917933130699" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/act_home.xml" value="0.10733695652173914" />
-        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/act_planevent.xml" value="0.20677083333333332" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/act_planevent.xml" value="0.1" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/act_profile.xml" value="0.32653985507246375" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/act_result_save.xml" value="0.17831813576494426" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/act_result_view.xml" value="0.17831813576494426" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/act_result_view_wod.xml" value="0.20729166666666668" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/activity_homescreen.xml" value="0.1778115501519757" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/activity_result.xml" value="0.1" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/activity_training_diary.xml" value="0.25" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/base_activity.xml" value="0.21784420289855072" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/calendar_cell.xml" value="0.10364583333333334" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/cell_event.xml" value="0.20520833333333333" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/cell_weeklycal.xml" value="0.20520833333333333" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/fragment_planevent.xml" value="0.21467391304347827" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/fragment_result.xml" value="0.36666666666666664" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/fragment_result_list.xml" value="0.1" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/fragment_result_statistics.xml" value="0.35260416666666666" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/menu_header.xml" value="0.1778115501519757" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/montly_calendar_cell.xml" value="0.36666666666666664" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/result_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/result_wod_item.xml" value="0.36666666666666664" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/toolbar.xml" value="0.1778115501519757" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/trainingdiary_item.xml" value="0.25" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/trainingdiary_item1.xml" value="0.1" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/layout/workout_item.xml" value="0.17831813576494426" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/menu/add_menu.xml" value="0.20729166666666668" />
+        <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/menu/bottom_nav.xml" value="0.2864583333333333" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/menu/menu.xml" value="0.29074074074074074" />
         <entry key="..\:/jjves/Documents/SpT-KTH/Q2-MobileApplications/XFran/app/src/main/res/menu/menu_background.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_calendar_month_24.xml" value="0.2140625" />
         <entry key="app/src/main/res/layout-land/activity_edit_profile.xml" value="0.1675485008818342" />
         <entry key="app/src/main/res/layout/act_calendar_editevent.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/act_calendar_week.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/layout/act_planevent.xml" value="0.2421875" />
         <entry key="app/src/main/res/layout/act_workouts.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/activity_calendar.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.19791666666666666" />
@@ -36,6 +74,7 @@
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.19791666666666666" />
         <entry key="app/src/main/res/layout/trainingdiary_item.xml" value="0.33242753623188404" />
         <entry key="app/src/main/res/layout/workout_item.xml" value="0.35572916666666665" />
+        <entry key="app/src/main/res/menu/add_menu.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.19791666666666666" />
       </map>
     </option>

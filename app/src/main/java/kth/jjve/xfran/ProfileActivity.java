@@ -1,13 +1,14 @@
 package kth.jjve.xfran;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.lifecycle.ViewModelProviders;
 
 import kth.jjve.xfran.models.UserProfile;
 import kth.jjve.xfran.viewmodels.UserProfileVM;
@@ -23,7 +24,6 @@ public class ProfileActivity extends BaseActivity {
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_profile, contentFrameLayout);
-        navigationView.setCheckedItem(R.id.nav_profile);
 
         /*----- HOOKS -----*/
         mName = findViewById(R.id.profile_username);
@@ -31,6 +31,7 @@ public class ProfileActivity extends BaseActivity {
         mWeight = findViewById(R.id.profile_weight);
         mHeight = findViewById(R.id.profile_height);
         ImageButton edit = findViewById(R.id.profile_Edit);
+        ImageButton logout = findViewById(R.id.profile_Logout);
 
         /*-----  VM  -----*/
         UserProfileVM mUserProfileVM = ViewModelProviders.of(this).get(UserProfileVM.class);
@@ -38,14 +39,14 @@ public class ProfileActivity extends BaseActivity {
         mUserProfileVM.getUserProfile().observe(this, this::setViews);
 
         /*--- OBSERVER ---*/
-        edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, EditProfileActivity.class)));
+        edit.setOnClickListener(v -> startActivity(new Intent(ProfileActivity.this, ProfileEditActivity.class)));
+        logout.setOnClickListener(v -> {
+            fAuth.signOut();
+            Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_SHORT).show();
+            finish();
+        });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_profile);
-    }
 
     @SuppressLint("SetTextI18n")
     private void setViews(UserProfile userProfile){
@@ -56,5 +57,4 @@ public class ProfileActivity extends BaseActivity {
             mHeight.setText(Integer.toString(userProfile.getHeight()));
         }
     }
-    //Todo: make login invisible
 }

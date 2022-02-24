@@ -1,7 +1,11 @@
 package kth.jjve.xfran.adapters;
 /*
-Adapter for Workouts list
- */
+Function: Adapter to show the recycler view with the list of workouts
+Used by: WorkoutListActivity
+Jitse van Esch, Elisa Perini & Mariah Sabioni
+*/
+
+//Todo: see if we can make all the recyclerview adapters to one class or a base class with extensions
 
 import android.content.Context;
 import android.util.Log;
@@ -58,7 +62,7 @@ public class WorkoutsRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.workout_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_workout, viewGroup, false);
         return new ViewHolder(view);
     }
 

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import kth.jjve.xfran.models.UserProfile;
 import kth.jjve.xfran.viewmodels.UserProfileVM;
 
-public class EditProfileActivity extends BaseActivity {
+public class ProfileEditActivity extends BaseActivity {
     private EditText mFirstName, mLastName, mWeight, mHeight;
     private TextView mEmail;
     private UserProfileVM mUserProfileVM;
@@ -28,7 +28,6 @@ public class EditProfileActivity extends BaseActivity {
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_profile_edit, contentFrameLayout);
-        navigationView.setCheckedItem(R.id.nav_profile);
 
         /*----- HOOKS -----*/
         mFirstName = findViewById(R.id.editProfileFirstName);
@@ -45,12 +44,6 @@ public class EditProfileActivity extends BaseActivity {
 
         /*--- OBSERVER ---*/
         save.setOnClickListener(v -> saveUserProfile());
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_profile);
     }
 
     @SuppressLint("SetTextI18n")

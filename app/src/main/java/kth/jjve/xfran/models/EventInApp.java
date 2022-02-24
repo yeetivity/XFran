@@ -1,13 +1,12 @@
 package kth.jjve.xfran.models;
 /*
-Function: defines event
-Activity: CalendarViewActivity
+Function: defines event (event == logged workout)
+Activity: EventActivity
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class EventInApp {
 

@@ -1,7 +1,11 @@
 package kth.jjve.xfran.repositories;
 /*
-Repository for result objects
+Function: repository for results
+Used by:
+Jitse van Esch, Mariah Sabioni & Elisa Perini
  */
+
+//Todo: check if we can make a repository base class
 
 import android.util.Log;
 

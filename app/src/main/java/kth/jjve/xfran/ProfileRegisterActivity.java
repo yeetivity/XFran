@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class RegisterActivity extends AppCompatActivity {
+public class ProfileRegisterActivity extends AppCompatActivity {
     EditText mFullName, mEmail, mPassword;
     Button mRegisterBtn;
     TextView mLoginBtn;
@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         if (firebaseAuth.getCurrentUser() != null) {
-            startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             finish();
         }
         /*------------ REGISTER ------------*/
@@ -81,23 +81,23 @@ public class RegisterActivity extends AppCompatActivity {
             // register the user in firebase
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(RegisterActivity.this, "Account created", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileRegisterActivity.this, "Account created", Toast.LENGTH_SHORT).show();
                     userID = firebaseAuth.getCurrentUser().getUid();
                     DocumentReference documentReference = firebaseFirestore.collection("users").document(userID);
                     Map<String, Object> user = new HashMap<>();
                     user.put("fullName", fullname);
                     user.put("email", email);
                     documentReference.set(user).addOnSuccessListener(aVoid -> Log.d("Register", "onSuccess: user profile is created for "+ userID));
-                    startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Error !" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileRegisterActivity.this, "Error !" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 }
             });
         });
 
         // send the user to login
-        mLoginBtn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));
+        mLoginBtn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), ProfileLoginActivity.class)));
 
     }
 }

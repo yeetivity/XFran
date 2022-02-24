@@ -16,13 +16,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 
 import kth.jjve.xfran.viewmodels.HomeVM;
 
-public class HomeScreenActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity {
     TextView WODTitle, WODDescription, WODExercises, Username;
-    RecyclerView PlannedWorkouts;
     HomeVM homeVM;
 
     @Override
@@ -31,6 +32,7 @@ public class HomeScreenActivity extends BaseActivity {
 
         FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
         getLayoutInflater().inflate(R.layout.act_home, contentFrameLayout);
+
 
         /*----- HOOKS -----*/
         WODTitle = findViewById(R.id.home_WODTitle);
@@ -53,13 +55,6 @@ public class HomeScreenActivity extends BaseActivity {
             }
             WODExercises.setText(exercises);
         });
-
-        navigationView.setCheckedItem(R.id.nav_home);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        navigationView.setCheckedItem(R.id.nav_home);
-    }
 }

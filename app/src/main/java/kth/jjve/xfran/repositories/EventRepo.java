@@ -2,7 +2,7 @@ package kth.jjve.xfran.repositories;
 
 /*
 Function: repository for events, read and write data from firebase
-Activity: PlanEventActivity & WeeklyCalendarActivity
+Activity: EventPlanActivity & EventActivity
 Jitse van Esch, Mariah Sabioni & Elisa Perini
  */
 

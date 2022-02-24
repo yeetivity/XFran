@@ -1,6 +1,8 @@
 package kth.jjve.xfran.repositories;
 /*
-Repository for workout objects
+Function: repository for workout objects
+Used by:
+Jitse van Esch, Mariah Sabioni & Elisa Perini
  */
 
 import android.util.JsonReader;

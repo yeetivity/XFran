@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
-public class LoginActivity extends AppCompatActivity {
+public class ProfileLoginActivity extends AppCompatActivity {
     EditText mEmail, mPassword;
     Button mLoginBtn;
     TextView mRegisterBtn;
@@ -64,16 +64,16 @@ public class LoginActivity extends AppCompatActivity {
             // authenticate the user in firebase
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), HomeScreenActivity.class));
+                    Toast.makeText(ProfileLoginActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                 } else {
-                    Toast.makeText(LoginActivity.this, "Error !" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileLoginActivity.this, "Error !" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                 }
             });
         });
 
         // send user to the register activity
-        mRegisterBtn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), RegisterActivity.class)));
+        mRegisterBtn.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), ProfileRegisterActivity.class)));
     }
 }

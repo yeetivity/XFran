@@ -2,7 +2,7 @@ package kth.jjve.xfran.viewholders;
 
 /*
 Function: viewholder for the weekly calendar
-Activity: CalendarViewActivity
+Activity: EventActivity
 Jitse van Esch, Elisa Perini & Mariah Sabioni
 based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
  */

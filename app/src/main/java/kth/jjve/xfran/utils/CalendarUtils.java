@@ -2,7 +2,7 @@ package kth.jjve.xfran.utils;
 
 /*
 Function: useful methods for the calendar
-Activity: CalendarViewActivity & EditEventActivity
+Activity: EventActivity & EditEventActivity
 Jitse van Esch, Elisa Perini & Mariah Sabioni
  */
 
@@ -16,6 +16,12 @@ import java.util.Objects;
 
 public class CalendarUtils {
     public static LocalDate selectedDate;
+
+    public static LocalDate ymdToLocalDate(String date){
+        // combines year, month and day and builds local date variable
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        return LocalDate.parse(date, formatter);
+    }
 
     public static String cleanDate(LocalDate date) {
         // changes date format
@@ -84,7 +90,7 @@ public class CalendarUtils {
     }
 
     /* ----------- METHODS FOR REPO -------------- */
-    // methods used to change date and time format for storing in firbase
+    // methods used to change date and time format for storing in firebase
 
     public static LocalDate dateFromString(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -5,57 +5,30 @@
 
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_baseline_home_24"
+            android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:title="@string/menu_settings" />
-
-        <item
-            android:id="@+id/nav_workouts"
-            android:icon="@drawable/icon_workout_tab"
-            android:title="@string/workouts" />
 
         <item
             android:id="@+id/nav_results"
-            android:icon="@drawable/ic_baseline_leaderboard_24"
-            android:title="Results" />
+            android:icon="@drawable/ic_results"
+            android:title="@string/results" />
 
         <item
-            android:id="@+id/nav_plan_workout"
-            android:title="@string/plan_workout"
-            android:icon="@drawable/ic_baseline_edit_calendar_24"/>
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_add"
+            android:title="@string/add"/>
 
         <item
             android:id="@+id/nav_calendar"
-            android:icon="@drawable/ic_baseline_calendar_month_24"
+            android:icon="@drawable/ic_calendar_month"
             android:title="@string/calendar" />
 
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/menu_profile"/>
 
     </group>
-
-    <item android:title="@string/menu_profile">
-
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/nav_login"
-                    android:icon="@drawable/ic_baseline_login_24"
-                    android:title="@string/menu_profile_login" />
-                <item
-                    android:id="@+id/nav_profile"
-                    android:icon="@drawable/ic_baseline_person_24"
-                    android:title="@string/menu_profile_profile" />
-
-                <item
-                    android:id="@+id/nav_logout"
-                    android:icon="@drawable/ic_baseline_logout_24"
-                    android:title="@string/menu_profile_logout" />
-            </group>
-        </menu>
-
-    </item>
 
 
 </menu>

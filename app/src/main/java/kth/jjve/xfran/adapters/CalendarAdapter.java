@@ -2,8 +2,7 @@ package kth.jjve.xfran.adapters;
 
 /*
 Function: adapter for the weekly calendar
-Activity: CalendarViewActivity
-Jitse van Esch, Elisa Perini & Mariah Sabioni
+Activity: EventActivity
 based on: https://github.com/codeWithCal/CalendarTutorialAndroidStudio/tree/WeeklyCalendar
  */
 
@@ -36,7 +35,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>{
     @Override
     public CalendarViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.calendar_cell, parent, false);
+        View view = inflater.inflate(R.layout.cell_weeklycal, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         if(days.size() > 15) //month view
             layoutParams.height = (int) (parent.getHeight() * 0.166666666);
