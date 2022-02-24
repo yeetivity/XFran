@@ -76,7 +76,7 @@ public class ResultListFragment extends Fragment implements ResultsRecyclerAdapt
 
     public void onPlan(int position) {
         //start activity to plan workout
-        Intent intent = new Intent(getActivity(), EventActivity.class);
+        Intent intent = new Intent(getActivity(), EventPlanActivity.class);
         intent.putExtra(WORKOUT_ID, position);
         intent.putExtra(WORKOUT_OBJ, Objects.requireNonNull(Objects.requireNonNull(mResultVM.getResults().getValue()).get(position).getWorkout()));
         Log.i(LOG_TAG, "workout sent: " + mResultVM.getResults().getValue().get(position).getWorkout());

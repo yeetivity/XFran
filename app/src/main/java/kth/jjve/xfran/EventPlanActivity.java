@@ -16,12 +16,13 @@ import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
+import android.view.Window;
 import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import java.time.LocalTime;
@@ -30,11 +31,11 @@ import kth.jjve.xfran.models.Workout;
 import kth.jjve.xfran.utils.CalendarUtils;
 import kth.jjve.xfran.viewmodels.EventVM;
 
-public class EventPlanActivity extends BaseActivity {
+public class EventPlanActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = EventPlanActivity.class.getSimpleName();
     private EditText eventNameET;
-    private TextView eventStartTimeInput, eventEndTimeInput, eventDateInput;
+    private TextView eventStartTime, eventEndTime, eventDate;
     private String sEventName, sStartTime, sStopTime, sEventDate;
     private EventVM mEventVM;
 
@@ -46,20 +47,20 @@ public class EventPlanActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        FrameLayout contentFrameLayout = findViewById(R.id.content_frame);
-        getLayoutInflater().inflate(R.layout.act_planevent, contentFrameLayout);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.fragment_planevent);
 
         /*------ HOOKS ------*/
         eventNameET = findViewById(R.id.eventNameET);
-        TextView eventNameTV = findViewById(R.id.eventNameTV);
-        TextView eventDate = findViewById(R.id.eventDate);
-        eventStartTimeInput = findViewById(R.id.eventStartTimeInput);
-        eventEndTimeInput = findViewById(R.id.eventEndTimeInput);
-        eventDateInput = findViewById(R.id.eventDateInput);
-        Button buttonSave = findViewById(R.id.eventSave);
-        Button buttonClose = findViewById(R.id.close);
-        Button buttonExport = findViewById(R.id.savetogoogle);
+        eventDate = findViewById(R.id.eventDate);
+        eventStartTime = findViewById(R.id.eventStartTime);
+        eventEndTime = findViewById(R.id.eventEndTime);
+
+        ImageButton eventDateInput = findViewById(R.id.openCalendar);
+        ImageButton eventStartTimeInput = findViewById(R.id.eventStartTimeInput);
+        ImageButton eventEndTimeInput = findViewById(R.id.eventEndTimeInput);
+        ImageButton buttonSave = findViewById(R.id.eventSave);
+        ImageButton buttonExport = findViewById(R.id.eventExport);
 
         /*----- CALENDAR ------*/
         String sDate = "Date:";
@@ -67,11 +68,15 @@ public class EventPlanActivity extends BaseActivity {
 
         /*-----  VM  -----*/
         mEventVM = ViewModelProviders.of(this).get(EventVM.class);
-        mEventVM.init(CalendarUtils.selectedDate);
+        try {
+            mEventVM.init(CalendarUtils.selectedDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         /*-------- LISTENERS ------------*/
         buttonSave.setOnClickListener(v -> saveEvent());
-        buttonClose.setOnClickListener(v -> finish());
         buttonExport.setOnClickListener(this::onClick);
 
         /*------ INTENT ------*/
@@ -80,18 +85,15 @@ public class EventPlanActivity extends BaseActivity {
         mWorkout = (Workout) intent.getSerializableExtra(WorkoutsListActivity.WORKOUT_OBJ);
 
         /*----- VISIBILITY ------*/
-        if (mWorkout == null){
-            eventNameTV.setVisibility(View.GONE);
-        } else { //if accessing from WorkoutsListActivity (with intent)
-            eventNameET.setVisibility(View.GONE);
+        if (mWorkout != null){
             sEventName = mWorkout.getTitle();
-            eventNameTV.setText(sEventName);
+            eventNameET.setText(sEventName);
         }
 
         /*------ DATE & TIME PICKER DIALOGS -----*/
         eventDateInput.setOnClickListener(v -> datePickerDialog());
-        eventStartTimeInput.setOnClickListener(v -> timePickerDialog(eventStartTimeInput));
-        eventEndTimeInput.setOnClickListener(v -> timePickerDialog(eventEndTimeInput));
+        eventStartTimeInput.setOnClickListener(v -> timePickerDialog(eventStartTime));
+        eventEndTimeInput.setOnClickListener(v -> timePickerDialog(eventEndTime));
     }
 
     private void timePickerDialog(TextView textView){
@@ -116,7 +118,7 @@ public class EventPlanActivity extends BaseActivity {
                 (view, year, month, day) -> {
                     // set day of month , month and year value in the edit text
                     String date = day + "/"  + (month + 1) + "/" + year;
-                    eventDateInput.setText(date);
+                    eventDate.setText(date);
                 }, mYear, mMonth, mDay);
         datePickerDialog.getDatePicker().setFirstDayOfWeek(Calendar.MONDAY);
         datePickerDialog.show();
@@ -125,14 +127,14 @@ public class EventPlanActivity extends BaseActivity {
     private void setEventInApp(){
         // method to obtain the events name and start/end time
         if (mWorkout == null){ sEventName = eventNameET.getText().toString(); }
-        sEventDate = eventDateInput.getText().toString();
-        sStartTime = eventStartTimeInput.getText().toString();
-        sStopTime = eventEndTimeInput.getText().toString();
+        sEventDate = eventDate.getText().toString();
+        sStartTime = eventStartTime.getText().toString();
+        sStopTime = eventEndTime.getText().toString();
 
         checkIfEmptyET(sEventName, eventNameET);
-        checkIfEmptyTV(sEventDate, eventDateInput);
-        checkIfEmptyTV(sStartTime, eventStartTimeInput);
-        checkIfEmptyTV(sStopTime, eventEndTimeInput);
+        checkIfEmptyTV(sEventDate, eventDate);
+        checkIfEmptyTV(sStartTime, eventStartTime);
+        checkIfEmptyTV(sStopTime, eventEndTime);
     }
 
     //TODO understand why fail safe fails if no event name

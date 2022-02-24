@@ -40,7 +40,7 @@
     <string name="startTime">Start time</string>
     <string name="endTime">End time</string>
     <string name="date">Date</string>
-    <string name="nameEvent">Name of the Event:</string>
+    <string name="nameEvent">Name of the Event</string>
     <string name="newEvent">NEW EVENT</string>
     <string name="dateEvent_Hint">Add date</string>
     <string name="menu_home">Home</string>
@@ -90,7 +90,7 @@
     <string name="score_for_time_hint">mm:ss</string>
     <string name="score_for_weight_hint">0.0</string>
     <string name="score_emom_hint">rounds</string>
-    <string name="score_sets_hint">weight1-weight2-…</string>
+    <string name="score_sets_hint">weight 1 - weight 2 - …</string>
     <string name="wod">WOD</string>
     <string name="planned_today">Planned today</string>
     <string name="logged_in_as">Logged in as:</string>
@@ -108,4 +108,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="plan_event">Plan Workout</string>
+    <string name="planEvent_dialogTitle">Plan your workout</string>
+    <string name="savebutton">saveButton</string>
 </resources>
